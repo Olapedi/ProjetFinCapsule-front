@@ -5,6 +5,7 @@ import SiteFooter from '@/components/site/sitefooter'
 
 import ForSigninForm from '@/components/site/forsigninform'
 import ForSignupForm from '@/components/site/forsignupform'
+import ForgotPasswordForm from '@/components/site/forgotpasswordform'
 
 export default function Contact() {
 
@@ -21,10 +22,16 @@ export default function Contact() {
       
       <div>
 
-
+        <ForSigninForm />
 
       </div>
       
+      <div>
+
+      <ForgotPasswordForm />
+
+      </div>
+
     </main>
   )
 }

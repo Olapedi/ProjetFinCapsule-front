@@ -118,9 +118,9 @@ export default function SiteNavbar() {
           
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Se connecter <span aria-hidden="true">&rarr;</span>
-          </a>
+          
+        <Link href = "/join" className="text-sm font-semibold leading-6 text-gray-900"> Se connecter <span aria-hidden="true">&rarr;</span></Link>
+
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -165,26 +165,25 @@ export default function SiteNavbar() {
                     </>
                   )}
                 </Disclosure>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Plans
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Contact
-                </a>
+
+                <Link href = "/" 
+                className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                > Accueil </Link>
+
+                <Link href = "/plans" 
+                className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                > Plans </Link>
+
+                 <Link href = "/contact" 
+                className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                > Contact </Link>
+
               </div>
               <div className="py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Se connecter
-                </a>
+                
+                <Link href = "/join" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"> Se connecter </Link>
+                
+                
               </div>
             </div>
           </div>
