@@ -153,7 +153,7 @@ const navigation = {
               </div>
             </div>
           </div>
-          <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between bg-gray-50">
+          <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24 lg:flex lg:items-center lg:justify-between">
             <div>
               <h3 className="text-sm font-semibold leading-6 text-gray-900">Rejoindre la newsletter</h3>
               <p className="mt-2 text-sm leading-6 text-gray-600">
@@ -183,7 +183,7 @@ const navigation = {
               </div>
             </form>
           </div>
-          <div className="mt-8 border-t border-gray-900/10 pt-8 md:flex md:items-center md:justify-between bg-gray-50">
+          <div className="mt-8 border-t border-gray-900/10 pt-8 md:flex md:items-center md:justify-between">
             <div className="flex space-x-6 md:order-2">
               {navigation.social.map((item) => (
                 <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
