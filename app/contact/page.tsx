@@ -1,9 +1,9 @@
 import Image from 'next/image'
-import Homeheader from '../components/site/homeheader'
+import ContactForm from '@/components/site/contactform'
 import SiteNavbar from '@/components/site/sitenavbar'
 import SiteFooter from '@/components/site/sitefooter'
 
-export default function Home() {
+export default function Contact() {
 
 
   return (
@@ -12,22 +12,22 @@ export default function Home() {
 
       <div>
 
-      <SiteNavbar />
-
-      </div>
-
-      <div>
-
-      <Homeheader />
+        <SiteNavbar />
 
       </div>
       
       <div>
 
-      <SiteFooter />
+      <ContactForm />
 
       </div>
 
+      <div>
+
+      <SiteFooter />
+      
+      </div>
+      
     </main>
   )
 }

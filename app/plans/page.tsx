@@ -1,9 +1,9 @@
 import Image from 'next/image'
-import Homeheader from '../components/site/homeheader'
 import SiteNavbar from '@/components/site/sitenavbar'
 import SiteFooter from '@/components/site/sitefooter'
+import Pricing from '@/components/site/pricing'
 
-export default function Home() {
+export default function Plans() {
 
 
   return (
@@ -12,22 +12,22 @@ export default function Home() {
 
       <div>
 
-      <SiteNavbar />
-
-      </div>
-
-      <div>
-
-      <Homeheader />
+        <SiteNavbar />
 
       </div>
       
       <div>
 
-      <SiteFooter />
+      <Pricing />
 
       </div>
 
+      <div>
+
+      <SiteFooter />
+      
+      </div>
+      
     </main>
   )
 }
