@@ -16,7 +16,6 @@ export default function ForSigninForm() {
 
         </Link>
 
-
           <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Se connecter
           </h2>
@@ -27,7 +26,7 @@ export default function ForSigninForm() {
             <form className="space-y-6" action="#" method="POST">
               <div>
                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                  Adresse mail
+                  Adresse e-mail
                 </label>
                 <div className="mt-2">
                   <input
@@ -66,14 +65,14 @@ export default function ForSigninForm() {
                     className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                   />
                   <label htmlFor="remember-me" className="ml-3 block text-sm leading-6 text-gray-900">
-                    Se souvenir de moi
+                    Sauvegarder
                   </label>
                 </div>
 
                 <div className="text-sm leading-6">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                    Mot de passe oublié ?
-                  </a>
+
+                  <Link href = '/join/password' className="font-semibold text-indigo-600 hover:text-indigo-500"> Mot de passe oublié ? </Link>
+
                 </div>
               </div>
 
@@ -91,9 +90,9 @@ export default function ForSigninForm() {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Vous n'êtes pas membre ?{' '}
-            <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              Inscrivez-vous !
-            </a>
+            
+            <Link href = '/join' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Inscrivez-vous ! </Link>
+            
           </p>
         </div>
       </div>

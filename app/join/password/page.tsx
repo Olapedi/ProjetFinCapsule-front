@@ -7,7 +7,7 @@ import ForSigninForm from '@/components/site/forsigninform'
 import ForSignupForm from '@/components/site/forsignupform'
 import ForgotPasswordForm from '@/components/site/forgotpasswordform'
 
-export default function Join() {
+export default function Password() {
 
 
   return (
@@ -16,7 +16,7 @@ export default function Join() {
 
       <div>
 
-        <ForSignupForm />
+      <ForgotPasswordForm />
 
       </div>
 

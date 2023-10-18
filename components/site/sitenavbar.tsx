@@ -119,7 +119,7 @@ export default function SiteNavbar() {
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           
-        <Link href = "/join" className="text-sm font-semibold leading-6 text-gray-900"> Se connecter <span aria-hidden="true">&rarr;</span></Link>
+        <Link href = "/join/login" className="text-sm font-semibold leading-6 text-gray-900"> Se connecter <span aria-hidden="true">&rarr;</span></Link>
 
         </div>
       </nav>
@@ -181,7 +181,7 @@ export default function SiteNavbar() {
               </div>
               <div className="py-6">
                 
-                <Link href = "/join" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"> Se connecter </Link>
+                <Link href = "/join/login" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"> Se connecter </Link>
                 
                 
               </div>
