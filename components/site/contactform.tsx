@@ -12,13 +12,12 @@ export default function ContactForm() {
 
         <div className="mx-auto mt-16 max-w-7xl px-6 sm:mt-32 lg:px-8 mb-24">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-              Pricing plans for teams of&nbsp;all&nbsp;sizes
+            <p className="my-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            Nous faisons le succès des entreprises et des personnes ambitieuses
             </p>
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">
-            Choose an affordable plan that&apos;s packed with the best features for engaging your audience, creating customer
-            loyalty, and driving sales.
+          Nous aidons les entreprises et les indépendant à s&apos;implanter sur de nouveaux marchés en Europe, aux Émirats Arabes Unis, en Afrique, aux États-Unis et en Asie. Et nous aidons les porteurs de projets et les salariés à connaître leurs premiers succès en affaire rapidement. Comment pouvons-nous vous aider dans le développement de vos affaires et de vos projets ?
           </p>
         </div>
 

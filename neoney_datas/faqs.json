@@ -1,0 +1,67 @@
+[
+    {
+        "id" : 0,
+        "question" : "Qu'est-ce que Neoney ?",
+        "answer": "Neoney est un réseau social d'affaires, regroupant des entrepreneurs, investisseurs, dirigeants d'entreprises et décideurs à l'international. Neoney est une société du groupe Kovalys Connect. Kovalys Connect est un accélérateur d'affaires international dont la mission est d'encourager l'entreprneuriat et donner les mêmes chances de réussite à tous les entrepreneurs. Nous réunissons des entrepreneurs, investisseurs, experts, porteurs de projets et décideurs au sein d'un même réseau. Le réseau est exclusif et n'accepte que les membres recommandés par des membres existants. Le réseau est organisé sous le nom de la communauté des Neo entrepreneurs."
+    },
+
+    {
+        "id" : 1,
+        "question" : "Quels sont les avantages à être sur le réseau social Neoney",
+        "answer": "Les raisons principales pour rejoindre Neoney sont les suivantes : 1 - Vous souhaitez développer un Réseau de qualité autour de vos produits et services, 2 - Vous souhaitez développer vos Compétences entrepreneuriales et concrétiser vos projets, 3 - Vous souhaitez développer votre Chiffre d'affaires ou multiplier vos Revenus et pérenniser votre activité ou entreprise. Vous y trouverez également un ensemble de ressources pour mieux piloter votre entreprise, vos projets et vos activités. Vous participez à des événements et des formations de qualité, vous gagnez en visibilité et vous avancez sereinement dans l'atteinte de vos objectifs business."
+    },
+
+    {
+        "id" : 2,
+        "question" : "Est-ce qu'il y a dans le réseau les profils de clients que je recherche pour mon activité ?",
+        "answer": "Si vos cibles clients sont les TPE/PME, décideurs, porteurs de projets, investisseurs, indépendants, coachs, salariés ou créateurs d'entreprises, alors oui, il y a certainement dans le réseau les profils que vous recherchez. Vous aurez également compris que nous ne sommes pas juste un réseau :). Nous sommes une communauté internationale basée sur la recommandation mutuelle. Vous y trouverez également des apporteurs d'affaires, des closeurs indépendants, des business consultants et des animateurs de communauté dont le métier est de vous aider dans votre développement commercial. Comment faites-vous aujourd'hui pour trouver vos clients ? Nos membres partenaires sauront vous aider à trouver les clients dont vous avez besoin."
+    },
+
+    {
+        "id" : 3,
+        "question" : "Pourquoi dois-je m'inscrire ou laisser mes coordonnées pour accéder aux ressources gratuites ?",
+        "answer": "L'entrée dans la communauté des Neo entrepreneurs se fait uniquement sur recommandation. Nous avons à coeur de bâtir une communauté internationale qualifiée. Les membres existants recommandent les nouveaux membres. Nous incitons nos membres et notre réseau de partenaires à inviter uniquement des profils qui correspondent effectivement à nos critères de sélection. Nous avons ainsi réussi à bâtir une grande famille d'entrepreneurs, composée de plusieurs dizaines de milliers d'entrepreneurs à travers le monde. En rejoignant une telle communauté, nous sommes certains que vous aimeriez y retrouver des profils de qualité avec lesquels vous pourriez effectivement faire des affaires. C'est ce que nous avons construit pour vous."
+    },
+
+    {
+        "id" : 4,
+        "question" : "Après mon inscription, pourquoi est-ce obligatoire d'envoyer mes documents et certifier mon compte ?",
+        "answer": "Il n'est pas obligatoire de certifier votre compte ou d'envoyer vos documents pour pouvoir utiliser le réseau social d'affaires Neoney. Cependant, nous vous conseillons vivement de le faire. La certification de votre compte vous permet d'être visible après des autres membres de la communauté et gagner plus facielement la confiance des acheteurs. L'envoie des documents nous permet de qualifier le réseau et vous mettre en contact uniquement avec de vraies personnes dont les activités respectent une certaine éthique et ne présentent pas de risque évident pour des collaborations fructueuses avec les autres membres de la communauté. Votre sécurité est notre priorité. Nous souhaitons mettre à votre disposition l'écosystème le plus sûr et le plus sécurisé pour faire des affaires à l'ère digitale."
+    },
+
+    {
+        "id" : 5,
+        "question" : "Si je deviens Membre, comment puis-je avoir la garantie de ne pas perdre l'argent de mon adhésion ?",
+        "answer": "Il est impossible de perdre de l'argent avec Neoney. Nos tarifs sont définis pour ne pas pénaliser les petites et moyennes entreprises et les indépendants, tout en apportant des services de qualité que vous ne trouverez nulle part ailleurs. Notre modèle économique nous le permet. Avec 1 ou 2 clients dans l'année, vous avez déjà rentabilisé votre adhésion membre. Le réseau est composé d'acheteurs, de fournisseurs, d'apporteurs d'affaires et de closeurs indépendant. Il est difficile de perdre l'argent de votre adhésion avec un tel écosystème. Sans oublier les formations, les lives et les ressources business disponibles s'il vous manque des compétences spécifiques pour vendre plus facilement ou attirer plus de prospects."
+    },
+
+    {
+        "id" : 6,
+        "question" : "Quel est le montant des commissions sur mes ventes et dois-je payer des commissions sur l'ensemble du chiffre d'affaire de mon entreprise ?",
+        "answer": "En tant que Membre et utilisateur de la plateforme Neoney, Kovalys Connect ne prend aucune commission sur les ventes que vous réalisez en dehors et dans la communauté. Notre objectif est de vous fournir un écosystème qui vous aide à générer des ventes et développer l'activité commerciale de votre entreprise. Cependant, nous vous encourageons vivement à redistribuer au moins 10% de commission aux membres qui vous recommandent à de potentiels clients. La recommandation mutuelle et la redistribution de commissions entre les membres, est l'une des clés de notre succès. Ensemble, nous sommes plus forts."
+    },
+
+    {
+        "id" : 7,
+        "question" : "Que se passe-t-il si j'oublie de reverser des commissions aux membres qui m'apportent des affaires ?",
+        "answer": "Le fonctionnement de notre communauté des Neo entrepreneurs est basé sur la confiance mutuelle. Le paiement des commissions n'est pas une obligation, c'est simplement souhaitable. Si vous jouez le jeu, vous aurez plus régulièrement de la recommadation de la part des autres membres. C'est du gagnant-gagnant. L'apporteur d'affaires peut également réclamer spécifiquement un montant de commission avant la mise en relation. Notre mission est d'encourager l'entrepreneuriat et donner les mêmes chances de réussite à tous les entrepreneurs. Votre réseau est votre plus grande richesse."
+    },
+
+    {
+        "id" : 8,
+        "question" : "La commission s'applique-t-elle sur le Chiffre d'affaires ou sur la marge ?",
+        "answer": "La commission s'applique sur le chiffre d'affaires dans les métiers de services ou la vente de formation. Pour la vente de produits, la commission s'applique sur la marge commerciale. Et lorsque vous faites des métiers où votre rémunération est basée sur les commissions que vous touchez de la part de vos partenaires (agents immobiliers, gestionnaires de patrimoine etc.), la commission s'applique sur la rémunération effective que vous touchez. Dans tous les cas, l'idée du commissionnement est basée sur la confiance et fonctionne au déclaratif. La communauté des Neo entrepreneurs est animée par des membres partenaires. Cette commission permet de rémunérer ces membres partenaires pour les encourager à continuer d'animer la communauté. Sans leur motivation et leur volonté d'aider l'ensemble des membres dans le développement de leurs affaires, tout le monde en sortirait perdant. Nous sommes convaincus qu'ensemble, nous sommes plus forts. Construisons un environnement bienveillant, basé sur des valeurs fortes et dans lequel la dynamique collective du groupe permet la réussite individuelle de chacun."
+    },
+
+    {
+        "id" : 9,
+        "question" : "Quels sont les pays dans lesquels il y a des membres de la communauté des Neo entrepreneurs",
+        "answer": "Actuellement nous sommes dans la plupart des pays francophones. France, DOM TOM, Belgique, Suisse, Canada, Afrique francophone, Maghreb… Il y a également des membres dans des pays comme l'Australie, l'Allemagne, l'Espagne, l'Italie ou encore les USA, qui se sont développées ces dernières années. Nous sommes également présents dans les Émirats ArabesUnis et en Arabie Saoudite, avec notre division technologique basée à Dubaï et nos équipes locales."
+    },
+
+    {
+        "id" : 10,
+        "question" : "Depuis quand Kovalys Connect existe ? Je n'en ai jamais entendu parler.",
+        "answer": "Il n'est jamais trop tard pour entendre parler de Kovalys Connect. Nous sommes un acteur incontournable de la scène entrepreneuriale dans le monde, avec plus de 15 ans d'existence sur le terrain aux côtés des entrepreneurs. Créé par Kodzo Gawu, serial entrepreneur, investisseur, conférencier international, mentor ayant formé, côtoyé, conseillé, mentoré plus de 100.000 entrepreneurs, décideurs et chefs d'entreprises sur tous les continents, et plus de 27 années de carrière réussie dans les affaires. En chiffre, Kovalys Connect c'est : +200 Millions $ de volume d'affaires entre membres, +50.000 Dirigeants et Dirigeantes d'entreprise, +26.000 Indépendants et porteurs de projets, +1200 apporteurs d'affaires et closeurs, +15 ans d'existence aux côtés des entrepreneurs et +99% de nos membres réussissent en affaires. Bienvenue dans la communauté des Neo entrepreneurs."
+    }
+]

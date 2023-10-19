@@ -4,74 +4,68 @@ import { useState } from 'react'
 import { Dialog, Disclosure, RadioGroup } from '@headlessui/react'
 import { Bars3Icon, MinusSmallIcon, PlusSmallIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { CheckIcon } from '@heroicons/react/20/solid'
+import faqs from '../../neoney_datas/faqs.json'
+import Testimonials from '../common/testimonials'
 
 const pricing = {
   frequencies: [
-    { value: 'monthly', label: 'Monthly', priceSuffix: '/month' },
-    { value: 'annually', label: 'Annually', priceSuffix: '/year' },
+    { value: 'monthly', label: 'Mensuel', priceSuffix: '/mois' },
+    { value: 'annually', label: 'Annuel', priceSuffix: '/an' },
   ],
   tiers: [
     {
-      name: 'Community',
-      id: 'tier-hobby',
-      href: '#',
-      price: { monthly: '$15', annually: '$144' },
-      description: 'The essentials to provide your best work for clients.',
-      features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics'],
+      name: 'Communauté',
+      id: 'tier-community',
+      href: '/join/login',
+      price: { monthly: '0€', annually: '0€' },
+      description: 'Boostez vos affaires près de chez vous, dans votre ville',
+      features: ['Couverture régionale', "Limite de 200 contacts qualifiés dans votre ville", 'Limite de 200 participants uniques à vos événements'],
       mostPopular: false,
     },
     {
-      name: 'Freelancer',
+      name: 'Freelance',
       id: 'tier-freelancer',
-      href: '#',
-      price: { monthly: '$30', annually: '$288' },
-      description: 'The essentials to provide your best work for clients.',
-      features: ['5 products', 'Up to 1,000 subscribers', 'Basic analytics', '48-hour support response time'],
+      href: '/join/login',
+      price: { monthly: '100€', annually: '1000€' },
+      description: "Boostez vos affaires et votre réseau à l'échelle nationale",
+      features: ['Couverture nationale', 'Limite de 1000 contacts qualifiés dans votre pays', 'Limite de 1000 participants uniques à vos événements'],
       mostPopular: false,
     },
     {
-      name: 'Startup',
-      id: 'tier-startup',
-      href: '#',
-      price: { monthly: '$60', annually: '$576' },
-      description: 'A plan that scales with your rapidly growing business.',
+      name: 'Business',
+      id: 'tier-business',
+      href: '/join/login',
+      price: { monthly: '149€', annually: '1490€' },
+      description: "Boostez vos affaires et votre réseau à l'international",
       features: [
-        '25 products',
-        'Up to 10,000 subscribers',
-        'Advanced analytics',
-        '24-hour support response time',
-        'Marketing automations',
+        'Couverture internationale',
+        "Limite de 2000 contacts qualifiés à l'international",
+        'Limite de 2000 participants uniques à vos événements',
+        'Ajout de closeurs et commerciaux indépendants',
+        'Support utilisateur prioritaire',        
       ],
       mostPopular: true,
     },
     {
-      name: 'Agency',
-      id: 'tier-enterprise',
-      href: '#',
-      price: { monthly: '$90', annually: '$864' },
+      name: 'Agence',
+      id: 'tier-agence',
+      href: '/join/login',
+      price: { monthly: '199€', annually: '1990€' },
       description: 'Dedicated support and infrastructure for your company.',
       features: [
-        'Unlimited products',
-        'Unlimited subscribers',
-        'Advanced analytics',
-        '1-hour, dedicated support response time',
-        'Marketing automations',
-        'Custom reporting tools',
+
+        'Couverture internationale',
+        "Aucune limite de contacts qualifiés à l'international",
+        'Aucune limite de participants uniques à vos événements',
+        'Ajout de closeurs et commerciaux indépendants',
+        'Support utilisateur prioritaire',    
+        'Support utilisateur dédié 1h par mois',
+        'Ressources disponibles pour scaler vos activités'
       ],
       mostPopular: false,
     },
   ],
 }
-
-const faqs = [
-  {
-    question: "What's the best thing about Switzerland?",
-    answer:
-      "I don't know, but the flag is a big plus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate laboriosam fugiat.",
-  },
-  // More questions...
-]
-
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -89,12 +83,11 @@ export default function Pricing() {
         <div className="mx-auto mt-16 max-w-7xl px-6 sm:mt-32 lg:px-8">
           <div className="mx-auto max-w-4xl text-center">
             <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-              Pricing plans for teams of&nbsp;all&nbsp;sizes
+            Exigez le meilleur pour gérer vos affaires
             </p>
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">
-            Choose an affordable plan that&apos;s packed with the best features for engaging your audience, creating customer
-            loyalty, and driving sales.
+          Vous êtes freelances, indépendants, porteurs de projets, dirigeants ou dirigeantes d’entreprise, devenez Membre de la communauté des néo entrepreneurs et bénéficiez de l’ensemble de l’écosystème Kovalys Connect pour booster vos affaires.
           </p>
           <div className="mt-16 flex justify-center">
             <RadioGroup
@@ -167,106 +160,9 @@ export default function Pricing() {
           </div>
         </div>
 
-        {/* Logo cloud */}
-        <div className="mx-auto mt-24 max-w-7xl px-6 sm:mt-32 lg:px-8">
-          <div className="mx-auto grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-12 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 sm:gap-y-14 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-            <img
-              className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-              src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg"
-              alt="Transistor"
-              width={158}
-              height={48}
-            />
-            <img
-              className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-              src="https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg"
-              alt="Reform"
-              width={158}
-              height={48}
-            />
-            <img
-              className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-              src="https://tailwindui.com/img/logos/158x48/tuple-logo-gray-900.svg"
-              alt="Tuple"
-              width={158}
-              height={48}
-            />
-            <img
-              className="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1"
-              src="https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg"
-              alt="SavvyCal"
-              width={158}
-              height={48}
-            />
-            <img
-              className="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1"
-              src="https://tailwindui.com/img/logos/158x48/statamic-logo-gray-900.svg"
-              alt="Statamic"
-              width={158}
-              height={48}
-            />
-          </div>
-          <div className="mt-16 flex justify-center">
-            <p className="relative rounded-full bg-gray-50 px-4 py-1.5 text-sm leading-6 text-gray-600 ring-1 ring-inset ring-gray-900/5">
-              <span className="hidden md:inline">
-                Transistor saves up to $40,000 per year, per employee by working with us.
-              </span>
-              <a href="#" className="font-semibold text-indigo-600">
-                <span className="absolute inset-0" aria-hidden="true" /> See our case study{' '}
-                <span aria-hidden="true">&rarr;</span>
-              </a>
-            </p>
-          </div>
-        </div>
-
         {/* Testimonial section */}
-        <div className="mx-auto mt-24 max-w-7xl sm:mt-56 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden bg-gray-900 px-6 py-20 shadow-xl sm:rounded-3xl sm:px-10 sm:py-24 md:px-12 lg:px-20">
-            <img
-              className="absolute inset-0 h-full w-full object-cover brightness-150 saturate-0"
-              src="https://images.unsplash.com/photo-1601381718415-a05fb0a261f3?ixid=MXwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8ODl8fHxlbnwwfHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1216&q=80"
-              alt=""
-            />
-            <div className="absolute inset-0 bg-gray-900/90 mix-blend-multiply" />
-            <div className="absolute -left-80 -top-56 transform-gpu blur-3xl" aria-hidden="true">
-              <div
-                className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-r from-[#ff4694] to-[#776fff] opacity-[0.45]"
-                style={{
-                  clipPath:
-                    'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                }}
-              />
-            </div>
-            <div
-              className="hidden md:absolute md:bottom-16 md:left-[50rem] md:block md:transform-gpu md:blur-3xl"
-              aria-hidden="true"
-            >
-              <div
-                className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-r from-[#ff4694] to-[#776fff] opacity-25"
-                style={{
-                  clipPath:
-                    'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-                }}
-              />
-            </div>
-            <div className="relative mx-auto max-w-2xl lg:mx-0">
-              <img className="h-12 w-auto" src="https://tailwindui.com/img/logos/workcation-logo-white.svg" alt="" />
-              <figure>
-                <blockquote className="mt-6 text-lg font-semibold text-white sm:text-xl sm:leading-8">
-                  <p>
-                    “Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente
-                    alias molestiae. Numquam corrupti in laborum sed rerum et corporis.”
-                  </p>
-                </blockquote>
-                <figcaption className="mt-6 text-base text-white">
-                  <div className="font-semibold">Judith Black</div>
-                  <div className="mt-1">CEO of Workcation</div>
-                </figcaption>
-              </figure>
-            </div>
-          </div>
-        </div>
 
+  
         {/* FAQ section */}
         <div className="mx-auto my-24 max-w-7xl px-6 sm:my-56 lg:px-8">
           <div className="mx-auto max-w-4xl divide-y divide-gray-900/10">
