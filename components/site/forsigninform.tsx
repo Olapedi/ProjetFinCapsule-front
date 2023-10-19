@@ -3,22 +3,22 @@ import Image from "next/image";
 
 
 export default function ForSigninForm() {
+
   return (
     <>
 
       <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        
-        <Link href = "/" className="flex justify-center"> 
-   
-          <span className="sr-only">Neoney</span>
-          <Image src = '/neoney.png' width={200} height={50} alt='Logo Neoney'></Image>
+          <Link href = "/" className="flex justify-center"> 
+    
+            <span className="sr-only">Neoney</span>
+            <Image src = '/neoney.png' width={200} height={50} alt='Logo Neoney'></Image>
 
-        </Link>
+          </Link>
 
-          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Se connecter
-          </h2>
+            <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+              Se connecter
+            </h2>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
