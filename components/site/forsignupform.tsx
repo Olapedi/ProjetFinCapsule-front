@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import CountrySelector from "../common/countryselector";
 
 
 export default function ForSignupForm() {
@@ -28,15 +29,15 @@ export default function ForSignupForm() {
               
               <form className="space-y-6" action="#" method="POST">
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label htmlFor="firstname" className="block text-sm font-medium leading-6 text-gray-900">
                     Prénom
                   </label>
                   <div className="mt-2">
                     <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
+                      id="firstname"
+                      name="firstname"
+                      type="text"
+                      autoComplete="firstname"
                       required
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
@@ -50,10 +51,10 @@ export default function ForSignupForm() {
                   </label>
                   <div className="mt-2">
                     <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
+                      id="lastname"
+                      name="lastname"
+                      type="text"
+                      autoComplete="lastname"
                       required
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
@@ -94,17 +95,22 @@ export default function ForSignupForm() {
                   </div>
                 </div>
 
-
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+
+                <CountrySelector />
+
+                </div>
+                
+                <div>
+                  <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
                    Pays
                   </label>
                   <div className="mt-2">
                     <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
+                      id="country"
+                      name="country"
+                      type="type"
+                      autoComplete="country"
                       required
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
@@ -113,15 +119,15 @@ export default function ForSignupForm() {
 
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
                     Ville
                   </label>
                   <div className="mt-2">
                     <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
+                      id="city"
+                      name="city"
+                      type="text"
+                      autoComplete="city"
                       required
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
@@ -129,15 +135,15 @@ export default function ForSignupForm() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label htmlFor="phone" className="block text-sm font-medium leading-6 text-gray-900">
                     Téléphone
                   </label>
                   <div className="mt-2">
                     <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
+                      id="phone"
+                      name="phone"
+                      type="text"
+                      autoComplete="phone"
                       required
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
@@ -146,15 +152,15 @@ export default function ForSignupForm() {
 
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                  <label htmlFor="sponsor" className="block text-sm font-medium leading-6 text-gray-900">
                     Code Neo de votre sponsor
                   </label>
                   <div className="mt-2">
                     <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
+                      id="sponsor"
+                      name="sponsor"
+                      type="text"
+                      autoComplete="sponsor"
                       required
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
