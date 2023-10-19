@@ -7,7 +7,7 @@ import { CheckIcon } from '@heroicons/react/20/solid'
 import faqs from '../../neoney_datas/faqs.json'
 import Testimonials from '../common/testimonials'
 
-const pricing = {
+const pricing : any = {
   frequencies: [
     { value: 'monthly', label: 'Mensuel', priceSuffix: '/mois' },
     { value: 'annually', label: 'Annuel', priceSuffix: '/an' },
@@ -148,7 +148,7 @@ export default function Pricing() {
                   Buy plan
                 </a>
                 <ul role="list" className="mt-8 space-y-3 text-sm leading-6 text-gray-600">
-                  {tier.features.map((feature) => (
+                  {tier.features.map((feature : any) => (
                     <li key={feature} className="flex gap-x-3">
                       <CheckIcon className="h-6 w-5 flex-none text-indigo-600" aria-hidden="true" />
                       {feature}
