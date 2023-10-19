@@ -17,7 +17,7 @@ export default function ContactForm() {
             </p>
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">
-            Choose an affordable plan that’s packed with the best features for engaging your audience, creating customer
+            Choose an affordable plan that&apos;s packed with the best features for engaging your audience, creating customer
             loyalty, and driving sales.
           </p>
         </div>

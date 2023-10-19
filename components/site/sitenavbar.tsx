@@ -17,15 +17,15 @@ import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/
 import Contact from '@/app/contact/page'
 
 const products = [
-  { name: 'Rencontres', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-  { name: 'Coachings', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-  { name: 'Masterclass', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
-  { name: "Appels d'offres", description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-  { name: "Cercles d'influence", description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
+  { name: 'Rencontres', description: 'Trouvez des partenaires dans votre région', href: '/join/find', icon: ChartPieIcon },
+  { name: 'Coachings', description: 'Trouvez des mentors pour vos projets', href: '/join/find', icon: CursorArrowRaysIcon },
+  { name: 'Masterclass', description: 'Trouvez des formations de qualité élite', href: '/join/find', icon: FingerPrintIcon },
+  { name: "Appels d'offres", description: 'Répondez aux besoins des acheteurs', href: '/join/find', icon: SquaresPlusIcon },
+  { name: "Cercles d'influence", description: 'Boostez votre réseau et votre influence', href: '/join/find', icon: ArrowPathIcon },
 ]
 const callsToAction = [
-  { name: 'Regarder notre vidéo', href: '#', icon: PlayCircleIcon },
-  { name: 'Prendre rendez-vous', href: '#', icon: PhoneIcon },
+  { name: 'Regarder notre vidéo', href: '/join/login', icon: PlayCircleIcon },
+  { name: 'Prendre rendez-vous', href: '/contact', icon: PhoneIcon },
 ]
 
 function classNames(...classes: any) {
@@ -85,10 +85,15 @@ export default function SiteNavbar() {
                         <item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
                       </div>
                       <div className="flex-auto">
-                        <a href={item.href} className="block font-semibold text-gray-900">
-                          {item.name}
-                          <span className="absolute inset-0" />
-                        </a>
+
+                        <Link href = {item.href} 
+                        className='block font-semibold text-gray-900'> 
+                        
+                        {item.name} 
+                        <span className='absolute inset-0'> </span>
+                        
+                        </Link>
+
                         <p className="mt-1 text-gray-600">{item.description}</p>
                       </div>
                     </div>
@@ -96,15 +101,23 @@ export default function SiteNavbar() {
                 </div>
                 <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                   {callsToAction.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-                    >
-                      <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
+                    
+                    <Link 
+
+                    key={item.name}
+                    href = {item.href} 
+                    className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
+                    > 
+                    
+                    {item.name} 
+
+                    <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
                       {item.name}
-                    </a>
+
+                    </Link>
+
                   ))}
+                  
                 </div>
               </Popover.Panel>
             </Transition>

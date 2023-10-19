@@ -53,7 +53,7 @@ export default function ForgotPasswordForm() {
           </form>
 
           <p className="mt-10 text-center text-sm text-gray-500">
-            Vous n'êtes pas membre ?{' '}
+            Vous n&apos;êtes pas membre ?{' '}
 
             <Link href = '/join' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Inscrivez-vous ! </Link>
             

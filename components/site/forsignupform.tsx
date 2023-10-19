@@ -100,39 +100,6 @@ export default function ForSignupForm() {
                 <CountrySelector />
 
                 </div>
-                
-                <div>
-                  <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
-                   Pays
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="country"
-                      name="country"
-                      type="type"
-                      autoComplete="country"
-                      required
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
-
-
-                <div>
-                  <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
-                    Ville
-                  </label>
-                  <div className="mt-2">
-                    <input
-                      id="city"
-                      name="city"
-                      type="text"
-                      autoComplete="city"
-                      required
-                      className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    />
-                  </div>
-                </div>
 
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium leading-6 text-gray-900">
@@ -177,7 +144,7 @@ export default function ForSignupForm() {
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                     <label htmlFor="remember-me" className="ml-3 block text-xs leading-6 text-gray-900 ">
-                    Le respect de votre vie privée est notre priorité. Vos informations ne seront jamais communiquées. En continuant, vous acceptez notre Politique de Confidentialité et nos Conditions générales d’utilisation.
+                    Le respect de votre vie privée est notre priorité. Vos informations ne seront jamais communiquées. En continuant, vous acceptez notre Politique de Confidentialité et nos Conditions générales d&apos;utilisation.
 
                     </label>
                   </div>
@@ -190,7 +157,7 @@ export default function ForSignupForm() {
                     type="submit"
                     className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
-                    S'inscrire
+                    S&apos;inscrire
                   </button>
                 </div>
               </form>

@@ -20,7 +20,7 @@ export default function Homeheader() {
               Boostez vos affaires avec les bonnes connexions
               </h1>
               <p className="mt-12 text-lg leading-8 text-gray-600">
-              Neoney, c'est là où les affaires se font ! Plus de 50 000 chefs d’entreprise, CEOs, dirigeants, experts, investisseurs et indépendants, dans plus de 20 pays se connectent pour vendre à la bonne clientèle, acheter auprès des meilleurs fournisseurs, investir ou lever des fonds pour développer leur entreprise.
+              Neoney, c&apos;est là où les affaires se font ! Plus de 50 000 chefs d&apos;entreprise, CEOs, dirigeants, experts, investisseurs et indépendants, dans plus de 20 pays se connectent pour vendre à la bonne clientèle, acheter auprès des meilleurs fournisseurs, investir ou lever des fonds pour développer leur entreprise.
 
               </p>
               <div className="mt-10 flex items-center gap-x-6">
