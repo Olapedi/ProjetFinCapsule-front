@@ -87,7 +87,7 @@ export default function Pricing() {
             </p>
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">
-          Vous êtes freelances, indépendants, porteurs de projets, dirigeants ou dirigeantes d’entreprise, devenez Membre de la communauté des néo entrepreneurs et bénéficiez de l’ensemble de l’écosystème Kovalys Connect pour booster vos affaires.
+          Vous êtes freelances, indépendants, porteurs de projets, dirigeants ou dirigeantes d&apos;entreprise, devenez Membre de la communauté des néo entrepreneurs et bénéficiez de l&apos;ensemble de l&apos;écosystème Kovalys Connect pour booster vos affaires.
           </p>
           <div className="mt-16 flex justify-center">
             <RadioGroup
@@ -96,7 +96,7 @@ export default function Pricing() {
               className="grid grid-cols-2 gap-x-1 rounded-full p-1 text-center text-xs font-semibold leading-5 ring-1 ring-inset ring-gray-200"
             >
               <RadioGroup.Label className="sr-only">Payment frequency</RadioGroup.Label>
-              {pricing.frequencies.map((option) => (
+              {pricing.frequencies.map((option : any) => (
                 <RadioGroup.Option
                   key={option.value}
                   value={option}
@@ -113,7 +113,7 @@ export default function Pricing() {
             </RadioGroup>
           </div>
           <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 md:max-w-2xl md:grid-cols-2 lg:max-w-4xl xl:mx-0 xl:max-w-none xl:grid-cols-4">
-            {pricing.tiers.map((tier) => (
+            {pricing.tiers.map((tier : any) => (
               <div
                 key={tier.id}
                 className={classNames(
