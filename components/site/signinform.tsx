@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useState} from "react"
+import { useState, useEffect} from "react"
 import { logIn, logOut } from '@/redux/features/auth-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from "@/redux/store";
@@ -46,7 +46,6 @@ export default function SigninForm() {
                 dispatch(logIn(userSignedIn.email));
 
               }
-
 
       } else {
           
