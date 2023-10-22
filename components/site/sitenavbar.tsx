@@ -4,6 +4,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
+import { useAppSelector } from '@/redux/store'
+import { logIn, logOut } from '@/redux/features/auth-slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from "@/redux/store";
+
 import {
   ArrowPathIcon,
   Bars3Icon,
@@ -33,7 +38,19 @@ function classNames(...classes: any) {
 }
 
 export default function SiteNavbar() {
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const email = useAppSelector((state) => state.authReducer.value.email)
+  const isAuth = useAppSelector((state) => state.authReducer.value.isAuth)
+
+  const handlelogout = () => {
+    
+    dispatch(logOut());
+
+  }
 
   return (
     <header className="bg-white">
@@ -131,8 +148,17 @@ export default function SiteNavbar() {
           
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          
-        <Link href = "/join/login" className="text-sm font-semibold leading-6 text-gray-900"> Se connecter <span aria-hidden="true">&rarr;</span></Link>
+        
+        { isAuth && <Link 
+                    href = "/" 
+                    className="text-sm font-semibold leading-6 text-gray-900"
+                    onClick={handlelogout}
+                    
+                    > Se déconnecter <span aria-hidden="true">&rarr;</span>
+                    
+                    </Link> }
+
+        { !isAuth && <Link href = "/join/login" className="text-sm font-semibold leading-6 text-gray-900"> Se connecter <span aria-hidden="true">&rarr;</span></Link> }
 
         </div>
       </nav>
@@ -194,8 +220,13 @@ export default function SiteNavbar() {
               </div>
               <div className="py-6">
                 
-                <Link href = "/join/login" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"> Se connecter </Link>
+                { isAuth && <Link href = "/" 
+                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                onClick={handlelogout}
                 
+                > Se déconnecter </Link> }
+                
+                {!isAuth && <Link href = "/join/login" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"> Se connecter </Link>}
                 
               </div>
             </div>

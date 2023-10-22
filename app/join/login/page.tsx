@@ -6,6 +6,7 @@ import SiteFooter from '@/components/site/sitefooter'
 import ForSigninForm from '@/components/site/forsigninform'
 import ForSignupForm from '@/components/site/forsignupform'
 import ForgotPasswordForm from '@/components/site/forgotpasswordform'
+import SigninForm from '@/components/site/signinform'
 
 export default function Login() {
 
@@ -17,7 +18,7 @@ export default function Login() {
       
       <div>
 
-        <ForSigninForm />
+        <SigninForm />
 
       </div>
       
