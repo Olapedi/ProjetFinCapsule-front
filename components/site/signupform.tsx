@@ -10,7 +10,7 @@ import Select from 'react-select';
 import { logIn, logOut } from '@/redux/features/auth-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from "@/redux/store";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function SignupForm() {
 
@@ -25,11 +25,8 @@ const [sponsor, setSponsor] = useState('');
 const [error, setError] = useState('');
 
 const dispatch = useDispatch()
+const router = useRouter();
 
-const redirectToMember = () : void => {
-  const router = useRouter();
-  router.push('/members')
-}
 
 // Country selector
 
@@ -113,11 +110,8 @@ const handleSignUp = async () => {
     const result = await fetch(`${process.env.backendserver}/users/signup`, {
         method : 'POST', 
         headers : {
-
             'Content-Type':'application/json',
-
         }, 
-        
         body : JSON.stringify(user)
     })
 
@@ -130,7 +124,7 @@ const handleSignUp = async () => {
             if (userSignedIn.token !== '') {
               
               dispatch(logIn(userSignedIn.email));
-              redirectToMember()
+              router.push('/members')
             }
 
     } else {
