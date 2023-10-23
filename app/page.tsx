@@ -20,7 +20,6 @@ import { AppDispatch } from "@/redux/store";
 
 export default function Home() {
 
-
   const dispatch = useDispatch<AppDispatch>();
 
   const email = useAppSelector((state) => state.authReducer.value.email)

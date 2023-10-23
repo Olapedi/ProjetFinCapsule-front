@@ -339,13 +339,6 @@ const handleSignUp = async () => {
                 
               </div>
             </div>
-  
-            <p className="mt-10 text-center text-sm text-gray-500">
-              Déjà membre ?{' '}
-
-              <Link href = '/members' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Connectez-vous ! </Link>
-
-            </p>
           </div>
         </div>
       </main>
