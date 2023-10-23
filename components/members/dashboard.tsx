@@ -2,6 +2,13 @@
 
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
+
+import { useAppSelector } from '@/redux/store'
+import { logIn, logOut } from '@/redux/features/auth-slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from "@/redux/store";
+
+
 import {
   Bars3Icon,
   BellIcon,
@@ -15,6 +22,8 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+
+
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -30,7 +39,7 @@ const teams = [
   { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
 ]
 const userNavigation = [
-  { name: 'Your profile', href: '#' },
+
   { name: 'Sign out', href: '#' },
 ]
 
@@ -41,6 +50,17 @@ function classNames(...classes: any) {
 export default function Dashboard() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const email = useAppSelector((state) => state.authReducer.value.email)
+  const isAuth = useAppSelector((state) => state.authReducer.value.isAuth)
+
+  const handlelogout = () => {
+    
+    dispatch(logOut());
+
+  }
 
   return (
     <main>
@@ -293,7 +313,7 @@ export default function Dashboard() {
                     />
                     <span className="hidden lg:flex lg:items-center">
                       <span className="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
-                        Tom Cook
+                        {email}
                       </span>
                       <ChevronDownIcon className="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
                     </span>
@@ -317,12 +337,16 @@ export default function Dashboard() {
                                 active ? 'bg-gray-50' : '',
                                 'block px-3 py-1 text-sm leading-6 text-gray-900'
                               )}
+                              onClick={handlelogout}
                             >
                               {item.name}
                             </a>
+                            
                           )}
+                          
                         </Menu.Item>
                       ))}
+
                     </Menu.Items>
                   </Transition>
                 </Menu>

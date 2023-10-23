@@ -158,7 +158,7 @@ export default function SiteNavbar() {
                     
                     </Link> }
 
-        { !isAuth && <Link href = "/join/login" className="text-sm font-semibold leading-6 text-gray-900"> Se connecter <span aria-hidden="true">&rarr;</span></Link> }
+        { !isAuth && <Link href = "/members" className="text-sm font-semibold leading-6 text-gray-900"> Se connecter <span aria-hidden="true">&rarr;</span></Link> }
 
         </div>
       </nav>
@@ -226,7 +226,7 @@ export default function SiteNavbar() {
                 
                 > Se déconnecter </Link> }
                 
-                {!isAuth && <Link href = "/join/login" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"> Se connecter </Link>}
+                {!isAuth && <Link href = "/members" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"> Se connecter </Link>}
                 
               </div>
             </div>
