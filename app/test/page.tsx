@@ -3,6 +3,8 @@ import SiteNavbar from '@/components/site/sitenavbar'
 import SiteFooter from '@/components/site/sitefooter'
 import Pricing from '@/components/site/pricing'
 import Validation from '@/components/site/validationform'
+import UserSpace from '@/components/members/userspace'
+import Example from '@/components/members/membersnavbar'
 
 export default function Test() {
 
@@ -12,7 +14,7 @@ export default function Test() {
     <main>
 
       <div>
-         <Validation />
+         <Example />
       </div>
       
     </main>

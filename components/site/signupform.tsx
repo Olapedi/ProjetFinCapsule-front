@@ -131,12 +131,9 @@ const handleSignUp = async () => {
         
         setError(datareceived[0].message);
 
-    }
-    
+    } 
   }
-
 }
-
 
     return (
   
