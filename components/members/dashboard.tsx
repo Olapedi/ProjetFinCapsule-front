@@ -13,6 +13,7 @@ import {
   Bars3Icon,
   BellIcon,
   CalendarIcon,
+  CalendarDaysIcon,
   ChartPieIcon,
   Cog6ToothIcon,
   DocumentDuplicateIcon,
@@ -32,6 +33,7 @@ const navigation = [
   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
   { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
   { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+  { name: 'Events', href: '/event', icon: CalendarDaysIcon, current: false },
 ]
 const teams = [
   { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
