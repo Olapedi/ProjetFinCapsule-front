@@ -10,7 +10,7 @@ import Select from 'react-select';
 import { logIn, logOut } from '@/redux/features/auth-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from "@/redux/store";
-
+import { useRouter } from "next/router";
 
 export default function SignupForm() {
 
@@ -24,7 +24,12 @@ const [phone, setPhone] = useState('');
 const [sponsor, setSponsor] = useState('');
 const [error, setError] = useState('');
 
-const dispatch = useDispatch<AppDispatch>();
+const dispatch = useDispatch()
+
+const redirectToMember = () : void => {
+  const router = useRouter();
+  router.push('/members')
+}
 
 // Country selector
 
@@ -104,7 +109,6 @@ const handleSignUp = async () => {
 
     }
 
-    console.log(user);
 
     const result = await fetch(`${process.env.backendserver}/users/signup`, {
         method : 'POST', 
@@ -124,9 +128,9 @@ const handleSignUp = async () => {
             const userSignedIn = datareceived[1];
             
             if (userSignedIn.token !== '') {
-
+              
               dispatch(logIn(userSignedIn.email));
-
+              redirectToMember()
             }
 
     } else {
@@ -243,7 +247,7 @@ const handleSignUp = async () => {
                 <div>
 
                       <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
-                      Pays
+                        Pays
                       </label>
 
                       <div className="block w-full mt-2 rounded-md py-1.5 text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"> 
@@ -253,7 +257,7 @@ const handleSignUp = async () => {
                       </div>
 
                       <label htmlFor="country" className="block mt-2 text-sm font-medium leading-6 text-gray-900">
-                      Ville
+                        Ville
                       </label>
 
                       <div className="block w-full mt-2 rounded-md py-1.5 text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"> 
@@ -331,7 +335,7 @@ const handleSignUp = async () => {
                   </button>
                 </div>
 
-                <p className='error'> {error} </p>
+                <p className="text-red-600 text-sm"> {error} </p>
 
               </form>
   

@@ -7,7 +7,7 @@ import { useAppSelector } from '@/redux/store'
 import { logIn, logOut } from '@/redux/features/auth-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from "@/redux/store";
-
+import { useRouter } from 'next/router';
 
 import {
   Bars3Icon,
@@ -56,9 +56,16 @@ export default function Dashboard() {
   const email = useAppSelector((state) => state.authReducer.value.email)
   const isAuth = useAppSelector((state) => state.authReducer.value.isAuth)
 
+  const redirectToHome = () : void => {
+    const router = useRouter();
+    router.push('/')
+  }
+
+
   const handlelogout = () => {
     
     dispatch(logOut());
+    redirectToHome()
 
   }
 

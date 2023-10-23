@@ -6,6 +6,7 @@ import { useState, useEffect} from "react"
 import { logIn, logOut } from '@/redux/features/auth-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from "@/redux/store";
+import { useRouter } from "next/router";
 
 export default function SigninForm() {
 
@@ -15,6 +16,11 @@ export default function SigninForm() {
 
   const dispatch = useDispatch<AppDispatch>();
 
+  const redirectToMember = () : void => {
+    const router = useRouter();
+    router.push('/members')
+  }
+  
   const handlelogin = async () => {
 
     if (password !== '') {
@@ -44,6 +50,7 @@ export default function SigninForm() {
               if (userSignedIn.token !== '') {
 
                 dispatch(logIn(userSignedIn.email));
+                redirectToMember()
 
               }
 
@@ -101,7 +108,7 @@ export default function SigninForm() {
                   </div>
                 </div>
                 
-                <p className='error'> {error} </p>
+                <p className="text-red-600 text-sm"> {error} </p>
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
