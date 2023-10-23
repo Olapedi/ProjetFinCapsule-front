@@ -136,7 +136,7 @@ export default function SigninForm() {
                   <p className="mt-10 text-center text-sm text-gray-500">
                   Vous n&apos;êtes pas membre ?{' '}
             
-                  <Link href = '/join' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Inscrivez-vous ! </Link>
+                  <Link href = '/members' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Inscrivez-vous ! </Link>
             
                   </p>
 

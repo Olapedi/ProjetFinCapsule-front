@@ -3,7 +3,9 @@ const nextConfig = {
 
     env: {
 
-        backendserver: 'https://neoneydev1-backend.vercel.app',
+      backendserver: 'https://neoneydev1-backend.vercel.app',
+      //  backendserver: 'http://localhost:3000',
+
 
       },
 
