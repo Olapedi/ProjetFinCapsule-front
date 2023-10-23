@@ -6,6 +6,7 @@ import { useState, useEffect} from "react"
 import { logIn, logOut } from '@/redux/features/auth-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from "@/redux/store";
+import { useRouter } from "next/navigation";
 
 export default function SigninForm() {
 
@@ -14,7 +15,9 @@ export default function SigninForm() {
   const [error, setError] = useState('');
 
   const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
 
+  
   const handlelogin = async () => {
 
     if (password !== '') {
@@ -42,9 +45,14 @@ export default function SigninForm() {
               const userSignedIn = datareceived[1];
               
               if (userSignedIn.token !== '') {
-
-                dispatch(logIn(userSignedIn.email));
-
+                const data = {
+                  token : userSignedIn.token,
+                  userUid: userSignedIn.useUid,
+                  isActivated: userSignedIn.isActivated,
+                  isCertified: userSignedIn.isCertified,
+                }
+                dispatch(logIn(data));
+                router.push('/members')
               }
 
       } else {
@@ -101,7 +109,7 @@ export default function SigninForm() {
                   </div>
                 </div>
                 
-                <p className='error'> {error} </p>
+                <p className="text-red-600 text-sm"> {error} </p>
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">

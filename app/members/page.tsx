@@ -18,15 +18,18 @@ import { useState } from 'react'
 import { logIn, logOut } from '@/redux/features/auth-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from "@/redux/store";
+import  Validation from '../../components/site/validationform'
 
 export default function Members() {
 
     const dispatch = useDispatch<AppDispatch>();
     const [signup, SetSignup] = useState(false);
+    const auth = useAppSelector((state) => state.authReducer.value)
 
-    const email = useAppSelector((state) => state.authReducer.value.email)
-    const isAuth = useAppSelector((state) => state.authReducer.value.isAuth)
-  
+  console.log('activ', auth.isActivated)
+  console.log('sign', signup)
+  console.log('auth', auth.token)
+
   return (
     
     <main>
@@ -34,43 +37,39 @@ export default function Members() {
       
       <div>
 
-       {isAuth && <Dashboard /> }
+        {auth.token && <Validation /> }
+
+        {auth.token && auth.isActivated && <Dashboard /> }
+
        
-       {/*  Partie Formulaire Sign in*/}
+        {/*  Partie Formulaire Sign in*/}
 
-        {(((isAuth == false) && (signup == false)) && 
+        {(((!auth.token) && (signup == false)) && 
 
-          <div>
-            
-          <SigninForm />
-
+          <div> 
+            <SigninForm />
           </div>
 
           )}
 
-        {(((isAuth == false) && (signup == false)) && 
+        {(((!auth.token) && (signup == false)) && 
 
-          <p className="mt-10 text-center text-sm text-gray-500"> Pas encore de compte ? <span onClick={(e) => 
-              {
-                SetSignup(true);
-              
-              }}> <a href = '#' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> S&apos;inscrire </a> </span> </p>
+          <p className="mt-10 text-center text-sm text-gray-500"> Pas encore de compte ? <span onClick={(e) =>{SetSignup(true);}}>
+          <a href = '#' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> S&apos;inscrire </a> </span> </p>
 
           )}
 
       {/* Partie Sign up form */}
 
-        {((isAuth == false) && (signup == true) && 
+        {((!auth.token) && (signup == true) && 
 
           <div>
-
-          <SignupForm />
-
+            <SignupForm />
           </div>
 
           )}
 
-        {((isAuth == false) && (signup == true) && 
+        {((!auth.token) && (signup == true) && 
 
             <p className="mt-10 text-center text-sm text-gray-500"> Déjà inscrit ? <span onClick={(e) => 
               {

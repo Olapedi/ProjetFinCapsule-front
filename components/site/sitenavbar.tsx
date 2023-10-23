@@ -43,8 +43,7 @@ export default function SiteNavbar() {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const email = useAppSelector((state) => state.authReducer.value.email)
-  const isAuth = useAppSelector((state) => state.authReducer.value.isAuth)
+  const token = useAppSelector((state) => state.authReducer.value.token)
 
   const handlelogout = () => {
     
@@ -149,7 +148,7 @@ export default function SiteNavbar() {
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
         
-        { isAuth && <Link 
+        { token && <Link 
                     href = "/" 
                     className="text-sm font-semibold leading-6 text-gray-900"
                     onClick={handlelogout}
@@ -158,7 +157,7 @@ export default function SiteNavbar() {
                     
                     </Link> }
 
-        { !isAuth && <Link href = "/members" className="text-sm font-semibold leading-6 text-gray-900"> Se connecter <span aria-hidden="true">&rarr;</span></Link> }
+        { !token && <Link href = "/members" className="text-sm font-semibold leading-6 text-gray-900"> Se connecter <span aria-hidden="true">&rarr;</span></Link> }
 
         </div>
       </nav>
@@ -220,13 +219,13 @@ export default function SiteNavbar() {
               </div>
               <div className="py-6">
                 
-                { isAuth && <Link href = "/" 
+                { token && <Link href = "/" 
                 className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 onClick={handlelogout}
                 
                 > Se déconnecter </Link> }
                 
-                {!isAuth && <Link href = "/members" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"> Se connecter </Link>}
+                {!token && <Link href = "/members" className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"> Se connecter </Link>}
                 
               </div>
             </div>
