@@ -5,10 +5,8 @@ import Image from 'next/image'
 import { useState, useId } from "react";
 import countries from '../../neoney_datas/countries.json'
 import Select from 'react-select';
+import { useRouter } from "next/navigation";
 
-
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import { count } from "console";
 
 export default function EventForm() {
     
@@ -32,6 +30,10 @@ export default function EventForm() {
     const [dateEnd, setDateEnd] = useState('');
     const [country, setCountry] = useState({value: '', label: ''});
     const [city, setCity] = useState({value: '', label: ''});
+    const [error, setError] = useState('');
+
+
+    const router = useRouter();
 
 
     // Country selector
@@ -79,12 +81,10 @@ export default function EventForm() {
     //handle submit form
 
     const handleEvent = async () => {
-        if (
-            // (title !== '') && (preview !== '') && (description !== '') && (dateBegin !== '')
-            true
-            ) {
-                console.log('coucou');
-                const event = {
+        if ( (title !== '') && (preview !== '') && (description !== '') && (dateBegin !== '') ) 
+        {
+            const event = {
+                token: 'CGYcvE2nbxAKwZsyZamLknSnNA_8oghk',
                 title: title,
                 shortDescription: preview,
                 longDescription: description,
@@ -101,10 +101,20 @@ export default function EventForm() {
                 }, 
                 body: JSON.stringify(event)
             })
+        
+            const datareceived = await result.json();
 
-            console.log(result);
+            if (datareceived[0].result == true) {
+                const eventCreate = datareceived[1];
+                
+                if (eventCreate.token !== '') {
+                    router.push('/members')
+                }
+            } else {
+                setError(datareceived[0].message);
+            }
+
         }
-
     }
 
 
@@ -246,13 +256,15 @@ export default function EventForm() {
                     Annuler
                 </button>
                 <button
-                    // type="submit"
+                    type="submit"
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     onClick={handleEvent}
                 >
                     Enregistrer
                 </button>
             </div>
+
+            <p className="text-red-600 text-sm"> {error} </p>
         </div>
     )
 }
