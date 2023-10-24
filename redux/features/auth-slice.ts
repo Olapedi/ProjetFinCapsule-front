@@ -12,7 +12,8 @@ type AuthState = {
     userUid: string,
     isActivated: boolean,
     isCertified: boolean,
-
+    // currentProfile: string,
+    // avatar: string,
 }
 
 const initialState = {
@@ -23,7 +24,8 @@ const initialState = {
         userUid: "",
         isActivated: false,
         isCertified: false,
-
+        // currentProfile: "",
+        // avatar: "",
     } as AuthState,
 
 } as InitialState;
@@ -40,7 +42,7 @@ export const auth = createSlice({
             return initialState;
         },
 
-        logIn: (state, action: PayloadAction<AuthState>) => {
+        logIn: (state, action: PayloadAction<any>) => {
 
             return {
                 value : {

@@ -2,18 +2,10 @@
 
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
-
-import { useAppSelector } from '@/redux/store'
-import { logIn, logOut } from '@/redux/features/auth-slice';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from "@/redux/store";
-import { useRouter } from 'next/navigation';
-
 import {
   Bars3Icon,
   BellIcon,
   CalendarIcon,
-  CalendarDaysIcon,
   ChartPieIcon,
   Cog6ToothIcon,
   DocumentDuplicateIcon,
@@ -24,49 +16,42 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 
-
-
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
-  { name: 'Events', href: '/event', icon: CalendarDaysIcon, current: false },
+  { name: 'Profils', href: '#', icon: UsersIcon, current: false },
+  { name: 'Boosts', href: '#', icon: FolderIcon, current: false },
+  { name: 'Favoris ', href: '#', icon: CalendarIcon, current: false },
+  { name: 'Cercles', href: '#', icon: DocumentDuplicateIcon, current: false },
+  { name: 'Mes évenements', href: '#', icon: ChartPieIcon, current: false },
 ]
+
+// replace with profiles here
 const teams = [
   { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
   { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
   { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
 ]
 const userNavigation = [
-
+  { name: 'Your profile', href: '#' },
   { name: 'Sign out', href: '#' },
 ]
 
-function classNames(...classes: any) {
+function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Dashboard() {
-
+export default function UserSpace() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
-  const dispatch = useDispatch<AppDispatch>();
-
-  const user = useAppSelector((state) => state.authReducer.value)
-  const router = useRouter();
-
-
-  const handlelogout = () => {
-    
-    dispatch(logOut());
-    router.push('/')
-  }
-
   return (
-    <main>
+    <>
+      {/*
+        This example requires updating your template:
+
+        ```
+        <html class="h-full bg-white">
+        <body class="h-full">
+        ```
+      */}
       <div>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
@@ -169,18 +154,6 @@ export default function Dashboard() {
                             ))}
                           </ul>
                         </li>
-                        <li className="mt-auto">
-                          <a
-                            href="#"
-                            className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white"
-                          >
-                            <Cog6ToothIcon
-                              className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white"
-                              aria-hidden="true"
-                            />
-                            Settings
-                          </a>
-                        </li>
                       </ul>
                     </nav>
                   </div>
@@ -252,18 +225,6 @@ export default function Dashboard() {
                     ))}
                   </ul>
                 </li>
-                <li className="mt-auto">
-                  <a
-                    href="#"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white"
-                  >
-                    <Cog6ToothIcon
-                      className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white"
-                      aria-hidden="true"
-                    />
-                    Settings
-                  </a>
-                </li>
               </ul>
             </nav>
           </div>
@@ -316,7 +277,7 @@ export default function Dashboard() {
                     />
                     <span className="hidden lg:flex lg:items-center">
                       <span className="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
-                        {email}
+                        Tom Cook
                       </span>
                       <ChevronDownIcon className="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
                     </span>
@@ -340,16 +301,12 @@ export default function Dashboard() {
                                 active ? 'bg-gray-50' : '',
                                 'block px-3 py-1 text-sm leading-6 text-gray-900'
                               )}
-                              onClick={handlelogout}
                             >
                               {item.name}
                             </a>
-                            
                           )}
-                          
                         </Menu.Item>
                       ))}
-
                     </Menu.Items>
                   </Transition>
                 </Menu>
@@ -362,6 +319,6 @@ export default function Dashboard() {
           </main>
         </div>
       </div>
-    </main>
+    </>
   )
 }

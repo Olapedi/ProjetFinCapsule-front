@@ -30,8 +30,9 @@ export default function Validation() {
                 jobCategory,
                 job,
             }
-    
-            const request = await fetch(`${process.env.backendserver}/users/validate`, {
+            console.log('data',data)
+
+            const request = await fetch(`${process.env.backendserver}/users/activate`, {
                 method: 'POST',
                 headers: {'Content-Type' : 'application/json'},
                 body: JSON.stringify(data)
@@ -44,6 +45,7 @@ export default function Validation() {
             }
             else{
                 dispatch(activate())
+                console.log('has been dispatched')
             }
         }
         
@@ -62,9 +64,9 @@ export default function Validation() {
         </Link>
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-8">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">Renseignements de votre premier profil</h2>
+          <h2 className="text-base font-semibold leading-7 text-gray-900">Renseignez votre profil</h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
-          Vous avez reçu un mail avec le code de validation à l'adresse email que vous avez renseigné.
+          Vous avez reçu un mail avec le code de validation à l'adresse email que vous avez renseigné précédemment.
             <br/>
             Veuillez remplir les informations nécessaire à la finalisation de votre inscription.
           </p>
@@ -197,7 +199,6 @@ export default function Validation() {
       <div className="mt-6 flex items-center justify-end gap-x-6">
 
         <button
-          type="submit"
           className="rounded-md bg-indigo-600 px-5 tracking-wider py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           onClick={()=>handleSubmit()}
         >
