@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 
-import { useState, useId } from "react";
+import { useState, useId, useEffect } from "react";
 import countries from '../../neoney_datas/countries.json'
 import Select from 'react-select';
 import { useRouter } from "next/navigation";
@@ -31,9 +31,19 @@ export default function EventForm() {
     const [country, setCountry] = useState({value: '', label: ''});
     const [city, setCity] = useState({value: '', label: ''});
     const [error, setError] = useState('');
+    const [eventId, setEventId] = useState('');
 
 
     const router = useRouter();
+
+    
+    
+    useEffect(() => {
+        if(eventId !== '') {
+            router.push(`/members/events?eventid=${eventId}`)
+        }
+    }, [router, eventId])
+
 
 
     // Country selector
@@ -43,7 +53,7 @@ export default function EventForm() {
     countries.map((item) => {
 
         countriesoptions.push({
-            value: item.iso3, 
+            value: item.iso3,
             label : item.name
         })
 
@@ -106,17 +116,15 @@ export default function EventForm() {
 
             if (datareceived[0].result == true) {
                 const eventCreate = datareceived[1];
+
+                setEventId(eventCreate.evtUid)
                 
-                if (eventCreate.token !== '') {
-                    router.push('/members')
-                }
             } else {
                 setError(datareceived[0].message);
             }
-
+            
         }
     }
-
 
     return (
         <div className="mx-auto max-w-2xl">

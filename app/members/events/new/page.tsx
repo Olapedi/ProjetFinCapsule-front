@@ -1,41 +1,33 @@
-"use client";
+import Image from 'next/image'
+import EventForm from '@/components/site/eventform'
+import SiteNavbar from '@/components/site/sitenavbar'
+import SiteFooter from '@/components/site/sitefooter'
+
+export default function Contact() {
 
 
-import Image from "next/image";
-import EventDisplay from "@/components/site/eventdisplay";
-import SiteNavbar from "@/components/site/sitenavbar";
-import SiteFooter from "@/components/site/sitefooter";
-import { useSearchParams } from "next/navigation";
-import {useEffect, useState} from 'react'
+  return (
+    
+    <main>
 
-export default function EventView() {
-    let [data, setData] = useState([])
-    const searchParams = useSearchParams();
+      <div>
 
-    const eventid = searchParams.get("eventid");
+        <SiteNavbar />
 
-    useEffect(() => {
-        let full_url = `https://neoneydev1-backend.vercel.app/events/${eventid}`
-        fetch(full_url).then(resp => resp.json()).then(reqData => {
-            console.log(reqData)
-            setData(reqData[1])}
-        )}, [])
+      </div>
+      
+      <div>
 
-    return (
-        <main>
-            <div>
-                <SiteNavbar />
-            </div>
+      <EventForm />
 
-            <div>
-                {`le numéro de l'événement est ${eventid}\n`}
-                {JSON.stringify(data, null, 2)}
-                <EventDisplay evUid={eventid} title={data.title}/>
-            </div>
+      </div>
 
-            <div>
-                <SiteFooter />
-            </div>
-        </main>
-    );
+      <div>
+
+      <SiteFooter />
+      
+      </div>
+      
+    </main>
+  )
 }

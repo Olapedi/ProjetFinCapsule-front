@@ -9,7 +9,7 @@ import Select from "react-select";
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { count } from "console";
 
-export default function EventDisplay(props) {
+export default function EventDisplay(props : any) {
     const stats = [
         { label: "Founded", value: "2021" },
         { label: "Employees", value: "37" },
@@ -82,7 +82,7 @@ export default function EventDisplay(props) {
                     <div>
                         <div className="text-base leading-7 text-gray-700 lg:max-w-lg">
                             <p className="text-base font-semibold leading-7 text-indigo-600">
-                                Event ref : {props.evUid}
+                                Event ref : {props.evtUid}
                             </p>
                             <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                                 {props.title}
