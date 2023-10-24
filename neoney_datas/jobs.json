@@ -1,0 +1,668 @@
+[
+    {
+        "uid": "0",
+        "category": "Freelance et Indépendants",
+        "expertise": [
+
+            "Débutant",
+            "Passionné",
+            "Confirmé",
+            "Professionnel",
+            "Expert"
+
+        ],
+
+        "experience": [
+
+            "Moins de 2 ans",
+            "2 à 5 ans",
+            "5 à 10 ans",
+            "10 à 20 ans",
+            "Plus de 20 ans"
+
+        ],
+
+        "revenue" : [
+
+            "Moins de 10.000 $",
+            "Plus de 10.000 $",
+            "Plus de 20.000 $",
+            "Plus de 50.000 $",
+            "Plus de 75.000 $",
+            "Plus de 100.000 $",
+            "Plus de 150.000 $",
+            "Plus de 300.000 $",
+            "Plus de 500.000 $"
+
+        ],
+
+        "subCategory": [
+
+            "Agents artistiques",
+            "Agents d'accueil",
+            "Agents de sécurité",
+            "Agents de voyage",
+            "Agents d'escale",
+            "Agents immobiliers",
+            "Agents sportifs",
+            "Animateurs",
+            "Architectes",
+            "Artisans créateurs",
+            "Artisans BTP",
+            "Artistes",
+            "Artistes peintres",
+            "Assistantes maternelles",
+            "Athlètes",
+            "Avocats",
+            "Barmaids, Barmen",
+            "Blogueurs",
+            "Cadreurs",
+            "Chanteurs",
+            "Chauffeurs",
+            "Chef-opérateurs",
+            "Cinéastes",
+            "Clloseurs",
+            "Coiffeurs",
+            "Coiffeurs Afro",
+            "Comédiens, Acteurs",
+            "Commerciaux indépendants",
+            "Commissaires aux comptes",
+            "Concepteurs",
+            "Concièrges",
+            "Consultants",
+            "Coursiers",
+            "Courtiers",
+            "Créateurs de mode Afro",
+            "Créateurs Mode et Accessoires",
+            "Danseurs",
+            "Décorateurs d'intérieur",
+            "Déménageurs",
+            "Dépanneurs",
+            "Designers",
+            "Dessinateurs",
+            "Développeurs web",
+            "Développeurs Application mobile",
+            "Développeurs Frontend",
+            "Développeurs Backend",
+            "Directeurs artistiques",
+            "Distributeurs indépendants (MLM)",
+            "Djs",
+            "Educateurs sportifs",
+            "Employés de maison",
+            "Entraineurs",
+            "Esthéticiens",
+            "Expert-Comptables",
+            "Femmes de ménage",
+            "Femmes d'affaires",
+            "Hommes d'affaires",
+            "Formateurs",
+            "Gardiens d'immeubles",
+            "Géomètres",
+            "Gestionnaires de patrimoine",
+            "Graphistes",
+            "Guides touristiques",
+            "Hôtesses",
+            "Hôtes",
+            "Huissiers",
+            "Humoristes",
+            "Informaticiens",
+            "Ingénieurs du son",
+            "Interprètes",
+            "Jardiniers",
+            "Journalistes",
+            "Juristes",
+            "Magiciens",
+            "Make-up Artist (MUA)",
+            "Maquilleurs",
+            "Masseurs",
+            "Modèles photos", 
+            "Mannequins",
+            "Modélistes",
+            "Moniteurs",
+            "Monteurs",
+            "Musiciens",
+            "Notaires",
+            "Assistantes maternelles",
+            "Organisateurs d'événements",
+            "Personal shopper",
+            "Photographes",
+            "Piscinistes",
+            "Producteurs",
+            "Professeurs",
+            "Professeurs de chant",
+            "Professeurs de danse",
+            "Professeurs de musique",
+            "Professeurs de théatre",
+            "Réalisateurs",
+            "Retoucheurs Photos",
+            "Scénaristes",
+            "Scriptes",
+            "Sculpteurs",
+            "Secretaires",
+            "Serveurs", 
+            "Serveuses",
+            "Sportifs",
+            "Stylistes",
+            "Techniciens audiovisuels",
+            "Traducteurs",
+            "Traiteurs",
+            "Transitaires",
+            "Vendeurs",
+            "Vidéastes",
+            "Youtubeurs"
+
+        ],
+
+        "type": "Individual",
+        "avatar": "",
+        "banner": ""
+    },
+
+    {
+        "uid": "1",
+        "category": "Experts et Coachs",
+        "expertise": [
+
+            "Débutant",
+            "Passionné",
+            "Confirmé",
+            "Certitifé",
+            "Professionnel",
+            "Expert",
+            "Mentor"
+
+        ],
+
+        "experience": [
+
+            "Moins de 2 ans",
+            "2 à 5 ans",
+            "5 à 10 ans",
+            "10 à 20 ans",
+            "Plus de 20 ans"
+
+        ],
+
+        "revenue" : [
+
+            "Moins de 10.000 $",
+            "Plus de 10.000 $",
+            "Plus de 20.000 $",
+            "Plus de 50.000 $",
+            "Plus de 75.000 $",
+            "Plus de 100.000 $",
+            "Plus de 150.000 $",
+            "Plus de 300.000 $",
+            "Plus de 500.000 $"
+
+        ],
+
+        "subCategory": [
+
+            "Auteurs",
+            "Mentor Business",
+            "Coach Business",
+            "Coach de coachs",
+            "Coach Hauts-potentiels",
+            "Coach de talents",
+            "Coach de vie",
+            "Coach des hauts dirigeants",
+            "Coach en Cryptos",
+            "Coach en développement personnel",
+            "Coach en estime de soi",
+            "Coach en écriture",
+            "Coachs en finances",
+            "Coachs en gestion des émotions",
+            "Coachs en gestion du stress",
+            "Coachs en image",
+            "Coachs en immobilier",
+            "Coachs en investissement",
+            "Coachs en leadership",
+            "Coachs en nutrition",
+            "Coachs en parentalité",
+            "Coachs en performance",
+            "Coachs en préparation mentale",
+            "Coachs en Prise de parole",
+            "Coachs en séduction",
+            "Coachs en stratégie digitale",
+            "Coachs en trading",
+            "Coachs en Vente",
+            "Coachs holistiques",
+            "Coachs Instagram",
+            "Coachs Linkedin",
+            "Coachs PNL",
+            "Coachs sportifs",
+            "Coachs Team building",
+            "Coachs thérapeutes",
+            "Conférenciers",
+            "Speakers",
+            "Ecrivains",
+            "Formateurs",
+            "Historiens",
+            "Philosophes"
+
+        ],
+
+        "type": "Individual",
+        "avatar": "",
+        "banner": ""
+    },
+
+    {
+        "uid": "2",
+        "catagory": "Investisseurs",
+
+        "expertise": [
+
+            "Débutant",
+            "Passionné",
+            "Confirmé",
+            "Rentier",
+            "Professionnel"
+
+        ],
+
+        "experience": [
+
+            "Moins de 2 ans",
+            "2 à 5 ans",
+            "5 à 10 ans",
+            "10 à 20 ans",
+            "Plus de 20 ans"
+
+        ],
+
+        "revenue" : [
+
+            "Moins de 100.000 $",
+            "Plus de 100.000 $",
+            "Plus de 150.000 $",
+            "Plus de 300.000 $",
+            "Plus de 500.000 $",
+            "Plus de 750.000 $",
+            "Plus de 1.000.000 $",
+            "Plus de 5.000.000 $",
+            "Plus de 10.000.000 $"
+
+        ],
+
+        "subCategory": [
+ 
+            "Business angels",
+            "Investisseurs en capital-risque",
+            "Investisseurs en immobilier",
+            "Traders financiers",
+            "Investisseurs providentiels",
+            "Investisseurs en cryptomonnaies",
+            "Investisseurs en métaux précieux",
+            "Investisseurs en startups",
+            "Investisseurs en fonds communs de placement",
+            "Investisseurs en biotechnologie",
+            "Investisseurs en énergie renouvelable",
+            "Investisseurs en immobilier commercial",
+            "Investisseurs en art",
+            "Investisseurs en bourse",
+            "Investisseurs en technologie",
+            "Investisseurs en capital-investissement",
+            "Investisseurs en fonds de pension",
+            "Investisseurs en capital privé",
+            "Investisseurs en valeurs mobilières",
+            "Investisseurs en immobilier résidentiel",
+            "Décideurs Fonds d'investissement"
+
+        ],
+
+        "type": "Individual",
+        "avatar": "",
+        "banner": ""
+    },
+
+    {
+        "uid": "3",
+        "catagory": "Créateurs d'entreprise",
+
+        "expertise": [
+
+            "C'est ma première entreprise",
+            "C'est ma deuxième entreprise",
+            "C'est ma troisième entreprise",
+            "C'est ma quatrième entreprise",
+            "C'est ma cinquième entreprise",
+            "Plus de 5 entreprises déjà créées"
+
+        ],
+
+        "experience": [
+
+            "Moins de 2 ans",
+            "2 à 5 ans",
+            "5 à 10 ans",
+            "10 à 20 ans",
+            "Plus de 20 ans"
+
+        ],
+
+        "revenue" : [
+
+            "Moins de 10.000$",
+            "Plus de 10.000 $",
+            "Plus de 20.000 $",
+            "Plus de 50.000 $",
+            "Plus de 75.000 $",
+            "Plus de 100.000 $",
+            "Plus de 150.000 $",
+            "Plus de 300.000 $",
+            "Plus de 500.000 $",
+            "Plus de 750.000 $",
+            "Plus de 1.000.000 $",
+            "Plus de 5.000.000 $",
+            "Plus de 10.000.000 $"
+
+        ],
+
+        "subCategory": [
+ 
+            "Startups et innovation",
+            "Entrepreneuriat social",
+            "Boutique en ligne et e-commerce",
+            "Boutiques physiques",
+            "Restauration et hôtellerie",
+            "Franchises",
+            "Btp",
+            "Mode",
+            "Beauté et esthétique",
+            "Applications mobiles",
+            "Technologies propres",
+            "Technologies et Innovation",
+            "Jeux de société",
+            "Santé et bien-être",
+            "Salon de beauté",
+            "Marques",
+            "Marques de luxe",
+            "Alimentation biologique",
+            "Média et blogs",
+            "Logiciels et applications",
+            "Salles de sport",
+            "Éducation et coaching",
+            "Produits artisanaux",
+            "Prestation de service",
+            "Plateforme collaboratives",
+            "Marquetplaces",
+            "Tourisme et voyages",
+            "Import / Export",
+            "Vente de produits",
+            "Reprise d'entreprises"
+
+        ],
+
+        "type": "Individual",
+        "avatar": "",
+        "banner": ""
+    },
+
+    {
+        "uid": "4",
+        "catagory": "Santé et bien-être",
+
+        "expertise": [
+
+            "Débutant",
+            "Passionné",
+            "Confirmé",
+            "Certifié",
+            "Expert",
+            "Professionnel",
+            "Formateur"
+
+        ],
+
+        "experience": [
+
+            "Moins de 2 ans",
+            "2 à 5 ans",
+            "5 à 10 ans",
+            "10 à 20 ans",
+            "Plus de 20 ans"
+
+        ],
+
+        "revenue" : [
+
+            "Moins de 10.000$",
+            "Plus de 10.000 $",
+            "Plus de 20.000 $",
+            "Plus de 50.000 $",
+            "Plus de 75.000 $",
+            "Plus de 100.000 $",
+            "Plus de 150.000 $",
+            "Plus de 300.000 $",
+            "Plus de 500.000 $"
+
+        ],
+
+        "subCategory": [
+
+            "Acousticiens",
+            "Acupuncteurs",
+            "Addictologues",
+            "Aide-soignants",
+            "Allergologues",
+            "Andrologues",
+            "Anesthésistes",
+            "Angiologues",
+            "Audiologistes",
+            "Audioprothésistes",
+            "Auriculothérapeutes",
+            "Balnéothérapeutes",
+            "Cancérologues",
+            "Cardiologues",
+            "Cardiopédiatres",
+            "Chimiothérapeutes",
+            "Chiropracteurs",
+            "Chirurgiens",
+            "Conseiller médico-social",
+            "Consultants en lactation",
+            "Cosmétologues",
+            "Cryolipolyses",
+            "Cryothérapeutes",
+            "Dentistes",
+            "Dermatologues",
+            "Dermographes",
+            "Diabétologues",
+            "Diététiciens",
+            "Échographistes",
+            "Endocrinologues",
+            "Ergothérapeutes",
+            "Étiopathes",
+            "Gastro-entérologues",
+            "Généticiens",
+            "Gériatres",
+            "Gynécologues",
+            "Hépatologues",
+            "Herboristes",
+            "Homéopathes",
+            "Hygiènistes",
+            "Hypnopraticiens",
+            "Hypnothérapeutes",
+            "Immunologistes",
+            "Implantologues",
+            "Infectiologues",
+            "Infirmiers",
+            "Kinésithérapeutes",
+            "Médecins",
+            "Médecins généralistes",
+            "Mésothérapeutes",
+            "Naturopathes",
+            "Néphrologues",
+            "Neurochirurgiens",
+            "Neurologues",
+            "Neuropédiatres",
+            "Neuropsychiatres",
+            "Neuropsychologues",
+            "Nutritionnistes",
+            "Obstétriciens",
+            "Oncocardiologues",
+            "Oncogériatres",
+            "Oncologues",
+            "Ophtalmologues",
+            "ORL",
+            "Orthésistes",
+            "Orthodontistes",
+            "Orthopédistes",
+            "Orthophonistes",
+            "Orthoprotésistes",
+            "Orthoptistes",
+            "Ortho-rhumatologues",
+            "Orthorinologues",
+            "Orthothérapeutes",
+            "Osthéopathes",
+            "Pathologistes",
+            "Pédiatres",
+            "Pédopsychiatres",
+            "Pharmaciens",
+            "Phlébologues",
+            "Phoniatres",
+            "Phytothérapeutes",
+            "Pneumo-allergologues",
+            "Pneumologues",
+            "Pneumo-pédiatres",
+            "Podologues",
+            "Podologues",
+            "Podo-orthésistes",
+            "Posturologues",
+            "Proctologues",
+            "Prothésistes",
+            "Psychanalistes",
+            "Psychiatres",
+            "Psychologues",
+            "Psychomotriciens",
+            "Psychopédagogues",
+            "Psychothérapeutes",
+            "Radiologues",
+            "Radiopédiatres",
+            "Radiothérapeutes",
+            "Réflexologues",
+            "Rhumatologues",
+            "Sages femmes",
+            "Sénologues",
+            "Sexologues",
+            "Somatothérapeutes",
+            "Sophrologues",
+            "Stomatologues",
+            "Tabacologues",
+            "Thérapeutes",
+            "Thermalistes",
+            "Tromatologues",
+            "Urologues",
+            "Vénérologues",
+            "Vétérinaires",
+            "Médiums"
+             
+        ],
+
+        "type": "Individual",
+        "avatar": "",
+        "banner": ""
+    },
+
+    {
+        "uid": "5",
+        "category": "Entreprise",
+
+        "expertise": [
+
+            "Entreprise individuelle",
+            "TPE - Petite Entreprise",
+            "PME - Moyenne Entreprise",
+            "ETI - Entreprise de Taille Intermédiaire",
+            "GE (Grande Entreprise)"
+
+        ],
+
+        "experience": [
+
+            "Moins de 2 ans",
+            "2 à 5 ans",
+            "5 à 10 ans",
+            "10 à 20 ans",
+            "Plus de 20 ans"
+
+        ],
+
+        "revenue" : [
+
+            "Moins de 100.000 $",
+            "Plus de 100.000 $",
+            "Plus de 150.000 $",
+            "Plus de 300.000 $",
+            "Plus de 500.000 $",
+            "Plus de 750.000 $",
+            "Plus de 1.000.000 $",
+            "Plus de 5.000.000 $",
+            "Plus de 10.000.000 $"
+
+        ],
+
+        "subCategory": [
+
+            "Agences digitales",
+            "Art et Décoration",
+            "Assurances et Mutuelles",
+            "Audiovisuel, Photographie",
+            "Audit, Conseils et Stratégies",
+            "Bâtiment et Travaux publiques (BTP)",
+            "Beauté et Esthétique",
+            "Cabinet d'Avocats",
+            "Cabinet de Notaires",
+            "Comptabilité et gestion",
+            "Conciergerie et Pressing",
+            "Domiciliation d'entreprise",
+            "Location de Bureaux",
+            "Espaces de Coworking",
+            "Energie, environnement, recyclage",
+            "Evénementiel, Traiteurs ",
+            "Formation, Education, E-Learning",
+            "Fournisseurs d'accès Internet", 
+            "Opérateurs télécommunications",
+            "Hébergement, Cloud et Solutions internet",
+            "Hôtellerie et Tourisme",
+            "Immobilier et conseils",
+            "Promotion immobilière",
+            "Import / Export",
+            "Services aux entreprises",
+            "Imprimerie, Objets Publicitaires",
+            "Industries et Manufactures",
+            "Laboratoires et bureaux d'études",
+            "Location de salles, Lofts, Espaces sur-mesure",
+            "Logiciels et Applications mobiles",
+            "Marketing et Communication",
+            "Matériels Informatiques et Télécommunications",
+            "Médias et Publicité ",
+            "Mobiliers et Fournitures de bureau",
+            "Multimédia et Jeux vidéo",
+            "Recouvrement de créances",
+            "Ressources humaines et Recrutement",
+            "Restauration et Loisirs",
+            "Santé et Bien-être",
+            "Sécurité, Gardiennage, Accueil et réception",
+            "Services à la personne",
+            "Services administratifs et financiers",
+            "Services commerciaux et téléprospection",
+            "Services Généraux",
+            "Services informatiques, Support et Conseils",
+            "Traduction et Interprétariat",
+            "Transport de marchandises, Logistique, Déménagement",
+            "Transport de personnes",
+            "Véhicules et utilitaires",
+            "Vente directe",
+            "Marketing de réseau"
+             
+        ],
+
+        "type": "Group",
+        "avatar": "",
+        "banner": ""
+
+    }
+    
+]
