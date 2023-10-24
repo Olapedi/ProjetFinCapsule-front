@@ -41,8 +41,8 @@ const teams = [
   { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
 ]
 const userNavigation = [
-
-  { name: 'Sign out', href: '#' },
+  { name: 'Mon profil', href: '/members/profil' },
+  { name: 'Déconnexion', href: '#' },
 ]
 
 function classNames(...classes: any) {
@@ -60,7 +60,6 @@ export default function Dashboard() {
 
 
   const handlelogout = () => {
-    
     dispatch(logOut());
     router.push('/')
   }

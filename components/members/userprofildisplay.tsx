@@ -1,14 +1,16 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import BoostDisplay from '../site/boostdisplay'
 import { useAppSelector } from '@/redux/store'
 import { useRouter } from 'next/navigation'
 
+
 export default function UserProfilDisplay(){
 
     const user = useAppSelector((state)=>state.authReducer.value)
+    const profil = useAppSelector((state)=>state.profilReducer.value)
     const router = useRouter()
     let profilData = {}
 
@@ -16,7 +18,11 @@ export default function UserProfilDisplay(){
         const result = await fetch (`/profil/${user.currentProfil}`)
         profilData = await result.json()
     }
-     
+
+    useEffect(()=>{
+        getprofilData()
+
+    },[]) 
 
     const [contentShown, setContentShown] = useState<string>('Fiche')
 

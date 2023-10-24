@@ -12,8 +12,8 @@ type AuthState = {
     userUid: string,
     isActivated: boolean,
     isCertified: boolean,
-    // plan: string,
     
+    // plan: string,
     // currentProfile: string, => profileuid
     // avatar: string,
 }

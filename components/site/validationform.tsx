@@ -20,9 +20,13 @@ export default function Validation() {
     const dispatch = useDispatch()
     const user = useAppSelector((state) => state.authReducer.value)
 
+      
 
     // form submit to modify the profile in DB
     const handleSubmit = async () =>{
+      const req = await fetch(`${process.env.backendserver}/users/${user.userUid}`)
+      const tempRes = await req.json()
+
         if(displayName && validationCode && description && organisation && jobCategory && jobSubCategories){
             const data = {
                 displayName,
@@ -34,6 +38,8 @@ export default function Validation() {
                 jobCategory,
                 jobSubCategories,
                 useUid : user.userUid,
+                phone: tempRes.phone,
+                email: tempRes.email,
             }
             console.log('data',data)
 
