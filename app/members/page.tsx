@@ -37,7 +37,7 @@ export default function Members() {
       
       <div>
 
-        {auth.token && <Validation /> }
+        {auth.token && !auth.isActivated && <Validation /> }
 
         {auth.token && auth.isActivated && <Dashboard /> }
 

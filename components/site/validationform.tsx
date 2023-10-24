@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { activate } from '../../redux/features/auth-slice'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useAppSelector } from '@/redux/store'
 
 export default function Validation() {
     const [displayName, setDisplayName] = useState<string>('')
@@ -12,23 +13,27 @@ export default function Validation() {
     const [description, setDescription] = useState<string>('')
     const [avatar, setAvatar] = useState<string>('')
     const [organisation, setOrganisation] = useState<string>('')
+    const [title, setTitle] = useState<string>('')
     const [jobCategory, setJobCategory] = useState<string>('')
-    const [job, setJob] = useState<string>('')
-
+    const [jobSubCategories, setJobSubCategories] = useState<string>('')
     const [error, setError] = useState<string>('')
     const dispatch = useDispatch()
+    const user = useAppSelector((state) => state.authReducer.value)
+
 
     // form submit to modify the profile in DB
     const handleSubmit = async () =>{
-        if(displayName && validationCode && description && organisation && jobCategory && job){
+        if(displayName && validationCode && description && organisation && jobCategory && jobSubCategories){
             const data = {
                 displayName,
                 validationCode,
                 description,
                 avatar,
                 organisation,
+                title,
                 jobCategory,
-                job,
+                jobSubCategories,
+                useUid : user.userUid,
             }
             console.log('data',data)
 
@@ -57,12 +62,12 @@ export default function Validation() {
     }
 
   return (
-    <form className="items-center" style={{display : "flex", flexDirection : 'column'}}>
+    <div className="items-center" style={{display : "flex", flexDirection : 'column'}}>
         <Link href = "/" > 
             <span className="sr-only">Neoney</span>
             <Image src = '/neoney.png' width={200} height={50} alt='Logo Neoney'></Image>
         </Link>
-      <div className="space-y-12">
+      <div className="space-y-8">
         <div className="border-b border-gray-900/10 pb-8">
           <h2 className="text-base font-semibold leading-7 text-gray-900">Renseignez votre profil</h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
@@ -146,7 +151,22 @@ export default function Validation() {
           <h2 className="text-base font-semibold leading-7 text-gray-900">Informations de votre profil</h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">Renseignez les informations de votre profil ci-dessous</p>
           
-          <div className="sm:col-span-4">
+          <div className="sm:col-span-4 pt-6">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                Profession
+              </label>
+              <div className="mt-2">
+                <input
+                  type="text"
+                  required
+                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  onChange={(e)=>setTitle(e.target.value)}
+                  value={title}
+                />
+              </div>
+            </div>
+
+            <div className="sm:col-span-4 pt-6">
               <label className="block text-sm font-medium leading-6 text-gray-900">
                 Organisation
               </label>
@@ -161,7 +181,7 @@ export default function Validation() {
               </div>
             </div>
 
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 pb-2">
             <div className="sm:col-span-3">
               <label className="block text-sm font-medium leading-6 text-gray-900">
                 Domaine d'activité
@@ -186,8 +206,8 @@ export default function Validation() {
                   type="text"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  onChange={(e)=>setJob(e.target.value)}
-                  value={job}
+                  onChange={(e)=>setJobSubCategories(e.target.value)}
+                  value={jobSubCategories}
                 />
               </div>
             </div>
@@ -207,6 +227,6 @@ export default function Validation() {
         <p className="text-red-600 text-sm"> {error} </p>
 
       </div>
-    </form>
+    </div>
   )
 }
