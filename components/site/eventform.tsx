@@ -109,7 +109,7 @@ export default function EventForm() {
 
 
     return (
-        <form className="mx-auto max-w-2xl">
+        <div className="mx-auto max-w-2xl">
             <div className="space-y-12">
                 <div className="border-b border-gray-900/10 pb-12">
                     <h2 className="text-base font-semibold leading-7 text-gray-900">Événement</h2>
@@ -253,6 +253,6 @@ export default function EventForm() {
                     Enregistrer
                 </button>
             </div>
-        </form>
+        </div>
     )
 }
