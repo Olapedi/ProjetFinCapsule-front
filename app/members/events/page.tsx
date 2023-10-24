@@ -30,7 +30,7 @@ export default function EventView() {
             <div>
                 {`le numéro de l'événement est ${eventid}\n`}
                 {JSON.stringify(data, null, 2)}
-                <EventDisplay evUid={eventid} title={data.title}/>
+                <EventDisplay evtUid={eventid} title={data.title}/>
             </div>
 
             <div>

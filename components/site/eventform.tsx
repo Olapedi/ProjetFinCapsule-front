@@ -117,7 +117,7 @@ export default function EventForm() {
             if (datareceived[0].result == true) {
                 const eventCreate = datareceived[1];
 
-                setEventId(eventCreate.evUid)
+                setEventId(eventCreate.evtUid)
                 
             } else {
                 setError(datareceived[0].message);
