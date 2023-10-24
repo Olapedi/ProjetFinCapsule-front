@@ -1,8 +1,11 @@
 'use client'
 
-import { useState } from "react";
-
 import Image from 'next/image'
+
+import { useState, useId } from "react";
+import countries from '../../neoney_datas/countries.json'
+import Select from 'react-select';
+
 
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import { count } from "console";
@@ -21,16 +24,88 @@ export default function EventForm() {
     let formattedDate = `${year}-${month}-${day}T${hours}:${minutes}`;
 
 
+
     const [title, setTitle] = useState('');
     const [preview, setPreview] = useState('');
     const [description, setDescription] = useState('');
     const [dateBegin, setDateBegin] = useState(formattedDate);
     const [dateEnd, setDateEnd] = useState('');
-    const [city, setCity] = useState('');
-    const [country, setCountry] = useState('');
-    console.log(country)
+    const [country, setCountry] = useState({value: '', label: ''});
+    const [city, setCity] = useState({value: '', label: ''});
 
-    
+
+    // Country selector
+    let countriesoptions: any = [];
+    let [citiesoptions, setCityoptions] = useState([]);
+
+    countries.map((item) => {
+
+        countriesoptions.push({
+            value: item.iso3, 
+            label : item.name
+        })
+
+    })
+
+
+    const handleCountryChange = async (countrySelected : any) => {
+        setCountry(countrySelected);
+        setCity({value: '', label: ''});
+
+        let cityArray: any = [];
+
+        await countries.map((item) => {
+            if (item.iso3 == countrySelected.value) {
+
+                item.cities.map((item2) => {
+                    cityArray.push({
+                        value: item2, 
+                        label : item2
+                    })
+                })
+
+            }
+        })
+
+        setCityoptions(cityArray);
+    }
+
+
+    const handleCityChange = (citySelected : any) => {
+        setCity(citySelected); 
+    }
+
+
+    //handle submit form
+
+    const handleEvent = async () => {
+        if (
+            // (title !== '') && (preview !== '') && (description !== '') && (dateBegin !== '')
+            true
+            ) {
+                console.log('coucou');
+                const event = {
+                title: title,
+                shortDescription: preview,
+                longDescription: description,
+                startDate: dateBegin,
+                endDate: dateEnd,
+                country: country.value,
+                city: city.value
+            }
+
+            const result = await fetch(`${process.env.backendserver}/events/new`, {
+                method: 'POST', 
+                headers: {
+                    'Content-Type':'application/json',
+                }, 
+                body: JSON.stringify(event)
+            })
+
+            console.log(result);
+        }
+
+    }
 
 
     return (
@@ -131,42 +206,37 @@ export default function EventForm() {
                         </div>
 
                         <div className="sm:col-span-3">
-                            <label htmlFor="country-name" className="block text-sm font-medium leading-6 text-gray-900">
-                                Ville
+                            <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
+                                Pays
                             </label>
-                            <div className="mt-2">
-                                <input
-                                type="text"
-                                name="country-name"
-                                id="country-name"
-                                autoComplete="given-country"
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                value={city}
-                                onChange={(e) => setCity(e.target.value)}
+
+                            <div className="mt-2"> 
+                                <Select 
+                                    options={countriesoptions} 
+                                    onChange={handleCountryChange} 
+                                    value={country} 
+                                    instanceId={useId()}
+                                    className="block w-full mt-2 rounded-md py-1.5 text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
 
                         <div className="sm:col-span-3">
-                            <label htmlFor="country-name" className="block text-sm font-medium leading-6 text-gray-900">
-                                Pays
+                            <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
+                                Ville
                             </label>
-                            <div className="mt-2">
-                                <select
-                                id="country"
-                                name="country"
-                                autoComplete="country-name"
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-                                value={country}
-                                onChange={(e) => setCountry(e.target.value)}
-                                >
-                                    <option>France</option>
-                                    <option>États-Unis</option>
-                                    <option>Canada</option>
-                                    <option>Mexique</option>
-                                </select>
+
+                            <div className="mt-2"> 
+                                <Select 
+                                    options={citiesoptions} 
+                                    onChange={handleCityChange} 
+                                    value={city} 
+                                    instanceId={useId()}
+                                    className="block w-full mt-2 rounded-md py-1.5 text-gray-900 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                />
                             </div>
-                        </div>  
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -176,8 +246,9 @@ export default function EventForm() {
                     Annuler
                 </button>
                 <button
-                type="submit"
-                className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    // type="submit"
+                    className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    onClick={handleEvent}
                 >
                     Enregistrer
                 </button>
