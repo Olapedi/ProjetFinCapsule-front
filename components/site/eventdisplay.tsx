@@ -10,11 +10,12 @@ import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { count } from "console";
 
 export default function EventDisplay(props : any) {
+
     const stats = [
-        { label: "Founded", value: "2021" },
-        { label: "Employees", value: "37" },
-        { label: "Countries", value: "12" },
-        { label: "Raised", value: "$25M" },
+        { label: "Pays", value: props.country },
+        { label: "Ville", value: props.city },
+        { label: "Début", value: "25 Oct 2023" },
+        { label: "Fin", value: "01 Nov 2023" },
     ];
 
     return (
@@ -89,33 +90,7 @@ export default function EventDisplay(props : any) {
                             </h1>
                             <div className="max-w-xl">
                                 <p className="mt-6">
-                                    Faucibus commodo massa rhoncus, volutpat.
-                                    Dignissim sed eget risus enim. Mattis mauris
-                                    semper sed amet vitae sed turpis id. Id
-                                    dolor praesent donec est. Odio penatibus
-                                    risus viverra tellus varius sit neque erat
-                                    velit. Faucibus commodo massa rhoncus,
-                                    volutpat. Dignissim sed eget risus enim.
-                                    Mattis mauris semper sed amet vitae sed
-                                    turpis id.
-                                </p>
-                                <p className="mt-8">
-                                    Et vitae blandit facilisi magna lacus
-                                    commodo. Vitae sapien duis odio id et. Id
-                                    blandit molestie auctor fermentum dignissim.
-                                    Lacus diam tincidunt ac cursus in vel.
-                                    Mauris varius vulputate et ultrices hac
-                                    adipiscing egestas. Iaculis convallis ac
-                                    tempor et ut. Ac lorem vel integer orci.
-                                </p>
-                                <p className="mt-8">
-                                    Et vitae blandit facilisi magna lacus
-                                    commodo. Vitae sapien duis odio id et. Id
-                                    blandit molestie auctor fermentum dignissim.
-                                    Lacus diam tincidunt ac cursus in vel.
-                                    Mauris varius vulputate et ultrices hac
-                                    adipiscing egestas. Iaculis convallis ac
-                                    tempor et ut. Ac lorem vel integer orci.
+                                    {props.longDescription}
                                 </p>
                             </div>
                         </div>
