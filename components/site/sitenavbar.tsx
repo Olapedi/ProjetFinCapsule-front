@@ -141,6 +141,8 @@ export default function SiteNavbar() {
 
           <Link href="/" className="text-sm font-semibold leading-6 text-gray-900"> Accueil </Link>
 
+          <Link href="/events" className="text-sm font-semibold leading-6 text-gray-900"> Événements </Link>
+
           <Link href="/plans" className="text-sm font-semibold leading-6 text-gray-900"> Plans </Link>
           
           <Link href="/contact" className="text-sm font-semibold leading-6 text-gray-900"> Contact </Link>
