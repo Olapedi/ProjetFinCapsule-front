@@ -8,7 +8,7 @@ import Example from '@/components/members/membersnavbar'
 import MembersNavBar from '@/components/members/membersnavbar'
 import UserProfilDisplay from '@/components/members/userprofildisplay'
 import UserProfilDisplayMock from '@/components/members/userprofildisplayMockTest'
-
+import FileInputComponent from '@/components/common/image_test'
 export default function Test() {
 
 
@@ -17,7 +17,7 @@ export default function Test() {
     <main>
 
       <div>
-         <MembersNavBar />
+         <FileInputComponent />
       </div>
 
       <div>
