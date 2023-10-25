@@ -47,7 +47,7 @@ export default function SigninForm() {
               if (userSignedIn.token !== '') {
                 const data = {
                   token : userSignedIn.token,
-                  userUid: userSignedIn.useUid,
+                  usrUid: userSignedIn.usrUid,
                   isActivated: userSignedIn.isActivated,
                   isCertified: userSignedIn.isCertified,
                 }
