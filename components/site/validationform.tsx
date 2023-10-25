@@ -11,15 +11,26 @@ export default function Validation() {
     const [displayName, setDisplayName] = useState<string>('')
     const [validationCode, setValidationCode] = useState<string>('')
     const [description, setDescription] = useState<string>('')
-    const [avatar, setAvatar] = useState<File | null>(null)
+    const [avatar, setAvatar] = useState()
     const [organisation, setOrganisation] = useState<string>('')
     const [title, setTitle] = useState<string>('')
     const [jobCategory, setJobCategory] = useState<string>('')
     const [jobSubCategories, setJobSubCategories] = useState<string>('')
     const [error, setError] = useState<string>('')
+    const [imageURI, setImageURI] = useState('');
+
     const dispatch = useDispatch()
     const user = useAppSelector((state) => state.authReducer.value)
 
+    const handleImageSelect = (event) => {
+      const selectedFile = event.target.files?.[0];
+  
+      if (selectedFile) {
+        const uri = URL.createObjectURL(selectedFile);
+        setImageURI(uri);
+        setAvatar(selectedFile)
+      }
+    };
       
 
     // form submit to modify the profile in DB
@@ -33,10 +44,7 @@ export default function Validation() {
             formData.append('displayName', displayName);
             formData.append('validationCode', validationCode);
             formData.append('description', description);
-            // formData.append('avatar', {
-            //   name: avatar?.name,
-            //   type: avatar?.type
-            // });
+            // formData.append('avatar', {name : avatar.name})
             formData.append('organisation', organisation);
             formData.append('title', title);
             formData.append('jobCategory', jobCategory);
@@ -79,6 +87,7 @@ export default function Validation() {
         
     }
 console.log('avatar',avatar)
+console.log('uri',imageURI)
   return (
     <div className="items-center" style={{display : "flex", flexDirection : 'column'}}>
         <Link href = "/" > 
@@ -157,9 +166,8 @@ console.log('avatar',avatar)
                   type="file"
                    id="fileInput"
                    className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                   onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    setAvatar(file || null);}}
+                   accept="image/*"
+                   onChange={(e) => {handleImageSelect(e)}}
                    />
               </div>
             </div>

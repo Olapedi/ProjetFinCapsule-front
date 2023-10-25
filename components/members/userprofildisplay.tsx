@@ -52,7 +52,7 @@ export default function UserProfilDisplay(){
     if(profilData.socialLinkedIn){
         reseaux.push(<Link href={profilData.socialLinkedIn}>
             <Image
-                src ={}
+                src ={require('../../public/linkedinIcon.svg')}
                 width={}
                 height={}
                 alt='LinkedIn profile logo'
