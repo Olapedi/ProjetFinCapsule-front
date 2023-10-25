@@ -41,8 +41,13 @@ export default function EventForm() {
     useEffect(() => {
         if(eventId !== '') {
             router.push(`/members/events?eventid=${eventId}`)
+        } else if (error === "Token non valide") {
+            // console.log(error)
+            router.push(`/members`)
+        } else {
+            console.log(error)
         }
-    }, [router, eventId])
+    }, [router, eventId, error])
 
 
 
@@ -91,6 +96,8 @@ export default function EventForm() {
     //handle submit form
 
     const handleEvent = async () => {
+
+
         if ( (title !== '') && (preview !== '') && (description !== '') && (dateBegin !== '') ) 
         {
             const event = {
@@ -111,10 +118,13 @@ export default function EventForm() {
                 }, 
                 body: JSON.stringify(event)
             })
-        
+            
             const datareceived = await result.json();
+            // console.log(datareceived)
 
             if (datareceived[0].result == true) {
+
+
                 const eventCreate = datareceived[1];
 
                 setEventId(eventCreate.evtUid)
