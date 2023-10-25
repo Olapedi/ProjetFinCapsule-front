@@ -22,8 +22,8 @@ import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/
 import Contact from '@/app/contact/page'
 
 const products = [
-  { name: 'Rencontres', description: 'Trouvez des partenaires dans votre région', href: '/join/find', icon: ChartPieIcon },
-  { name: 'Coachings', description: 'Trouvez des mentors pour vos projets', href: '/join/find', icon: CursorArrowRaysIcon },
+  { name: 'Rencontres', description: 'Trouvez des partenaires dans votre région', href: '/members/all', icon: ChartPieIcon },
+  { name: 'Coachings', description: 'Trouvez des mentors pour vos projets', href: '/members/all', icon: CursorArrowRaysIcon },
   { name: 'Masterclass', description: 'Trouvez des formations de qualité élite', href: '/join/find', icon: FingerPrintIcon },
   { name: "Appels d'offres", description: 'Répondez aux besoins des acheteurs', href: '/join/find', icon: SquaresPlusIcon },
   { name: "Cercles d'influence", description: 'Boostez votre réseau et votre influence', href: '/join/find', icon: ArrowPathIcon },
@@ -128,7 +128,7 @@ export default function SiteNavbar() {
                     {item.name} 
 
                     <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
-                      {item.name}
+                      {/* {item.name} */}
 
                     </Link>
 
