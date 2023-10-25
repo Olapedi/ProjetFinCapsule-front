@@ -101,7 +101,7 @@ export default function EventForm() {
         if ( (title !== '') && (preview !== '') && (description !== '') && (dateBegin !== '') ) 
         {
             const event = {
-                token: 'CGYcvE2nbxAKwZsyZamLknSnNA_8oghk',
+                token: 'tT0nqgfZNInZV7bAcwFuF9-A7tTaIsln',
                 title: title,
                 shortDescription: preview,
                 longDescription: description,
