@@ -151,7 +151,7 @@ const handleSignUp = async () => {
             <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
               Bienvenue
             </h2>
-            <p className="text-center"> Inscription avec : NEO202310221403 </p>
+            <p className="text-center"> Inscription avec : neo2023102552112 </p>
           </div>
   
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">

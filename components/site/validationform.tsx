@@ -11,7 +11,7 @@ export default function Validation() {
     const [displayName, setDisplayName] = useState<string>('')
     const [validationCode, setValidationCode] = useState<string>('')
     const [description, setDescription] = useState<string>('')
-    const [avatar, setAvatar] = useState<string>('')
+    const [avatar, setAvatar] = useState<File | null>(null)
     const [organisation, setOrganisation] = useState<string>('')
     const [title, setTitle] = useState<string>('')
     const [jobCategory, setJobCategory] = useState<string>('')
@@ -24,11 +24,28 @@ export default function Validation() {
 
     // form submit to modify the profile in DB
     const handleSubmit = async () =>{
-      const req = await fetch(`${process.env.backendserver}/users/${user.userUid}`)
+      const req = await fetch(`${process.env.backendserver}/users/${user.usrUid}`)
       const tempRes = await req.json()
 
         if(displayName && validationCode && description && organisation && jobCategory && jobSubCategories){
-            const data = {
+          
+          const formData = new FormData();
+            formData.append('displayName', displayName);
+            formData.append('validationCode', validationCode);
+            formData.append('description', description);
+            // formData.append('avatar', {
+            //   name: avatar?.name,
+            //   type: avatar?.type
+            // });
+            formData.append('organisation', organisation);
+            formData.append('title', title);
+            formData.append('jobCategory', jobCategory);
+            formData.append('jobSubCategories', JSON.stringify(jobSubCategories));
+            formData.append('usrUid', user.usrUid);
+            formData.append('phone', tempRes.phone);
+            formData.append('email', tempRes.email);  
+
+          const data = {
                 displayName,
                 validationCode,
                 description,
@@ -37,7 +54,7 @@ export default function Validation() {
                 title,
                 jobCategory,
                 jobSubCategories,
-                useUid : user.userUid,
+                usrUid : user.usrUid,
                 phone: tempRes.phone,
                 email: tempRes.email,
             }
@@ -61,12 +78,7 @@ export default function Validation() {
         }
         
     }
-
-    // handling avatar updating, get the url of the image and set it with setAvatar()
-    const avatarSubmit = () => {
-
-    }
-
+console.log('avatar',avatar)
   return (
     <div className="items-center" style={{display : "flex", flexDirection : 'column'}}>
         <Link href = "/" > 
@@ -141,12 +153,14 @@ export default function Validation() {
               </label>
               <div className="mt-2 flex items-center gap-x-3">
                 <UserCircleIcon className="h-12 w-12 text-gray-300" aria-hidden="true" />
-                <button
-                  className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                  onClick={()=>avatarSubmit()}
-                >
-                  Changer
-                </button>
+                <input 
+                  type="file"
+                   id="fileInput"
+                   className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                   onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    setAvatar(file || null);}}
+                   />
               </div>
             </div>
 
