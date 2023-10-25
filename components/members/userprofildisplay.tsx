@@ -10,19 +10,66 @@ import { useRouter } from 'next/navigation'
 export default function UserProfilDisplay(){
 
     const user = useAppSelector((state)=>state.authReducer.value)
-    const profil = useAppSelector((state)=>state.profilReducer.value)
     const router = useRouter()
-    let profilData = {}
+    // let profilData = []
+    // let boosts = []
+    // let alerts = []
+    let neo = ''
+    // const getprofilData = async () => {
+    //     const result = await fetch (`/profiles/${user.proUid}`)
+    //     profilData = await result.json()
+    // }
+    // const getUserNeo = async () => {
+    //     const result = await fetch(`/users/${user.usrUid}`)
+    //     const userData = await result.json()
+    //     neo = userData.neoCode
+    // }
+    // const getProfilBoosts = async () => {
+    //     const result = await fetch(`/boosts/${user.proUid}`)
+    //     boosts = await result.json()
+    // }
+    // const getProfilAlerts = async () => {
+    //     const result = await fetch(`/alerts/${user.proUid}`)
+    //     alerts = await result.json()
+    // }
 
-    const getprofilData = async () => {
-        const result = await fetch (`/profil/${user.currentProfil}`)
-        profilData = await result.json()
-    }
+    // useEffect(()=>{
+    //     getprofilData()
+    //     getProfilAlerts()
+    //     getProfilBoosts()
+        // getUserNeo()
+    // },[]) 
 
-    useEffect(()=>{
-        getprofilData()
-
-    },[]) 
+    //mockData for testing
+    const profilData:any = [
+        {
+            result : true,
+            message: 'tout roule'
+        },
+        
+        {
+        displayName : 'Its Me',
+        avatar : 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        mainVideo : 'https://www.youtube.com/watch?v=YBCCGV_9le0',
+        title: 'Boulot boulot',
+        neocode : 'codeNeo',
+        city: 'Ville',
+        country: 'Pays',
+        boosts: ['Super', 'Top', 'Pro'],
+        alerts: ['trop cher','arnaqueur'],
+        strengths: ['rapide', 'Since 1480', 'Do the job'],
+        description : 'description description description description',
+        socialLinkedIn : 'https://chat.openai.com/',
+        socialFacebook : 'https://www.google.fr/maps/preview',
+        socialYoutube : 'https://www.youtube.com/',
+        socialInstagram : 'https://www.instagram.com/',
+        socialTweeter : 'https://twitter.com/tweeter',
+        website : 'https://www.figma.com',
+        agenda: 'https://workspace.google.com/intl/fr/products/calendar/',
+        about: 'about about about about about about about about about about about about about about',
+        legalinfos: ['go', 'do', 'this'],
+        organisation: 'boite X'
+    }]
 
     const [contentShown, setContentShown] = useState<string>('Fiche')
 
@@ -32,69 +79,67 @@ export default function UserProfilDisplay(){
     }
 
     //Partie concernant le content Fiche
-    //fonction appellée au click sur 'prendre un rdv'
-    const handleAppointment = () => {
-
+    //Afficher la liste des strengths renseignés mis à part pour possible futur ajout d'icone
+    let strengths
+    if(profilData[1].strengths){
+        strengths = profilData[1].strengths
     }
-    //Afficher la liste des badges renseignés
-    // const badges = profilData.strengths
 
 
     //afficher la section video uniquement si uploadée
     let video
-
-    if(profilData.mainVideo){
-        video = <video src={profilData.mainVideo}></video>    
+    if(profilData[1].mainVideo){
+        video = <video src={profilData[1].mainVideo}></video>    
     }
 
     //affichage des réseaux remplis par l'utilisateur uniquement
     const reseaux = []
-    if(profilData.socialLinkedIn){
-        reseaux.push(<Link href={profilData.socialLinkedIn}>
+    if(profilData[1].socialLinkedIn){
+        reseaux.push(<Link href={profilData[1].socialLinkedIn}>
             <Image
                 src ={require('../../public/linkedinIcon.svg')}
-                width={}
-                height={}
+                width={15}
+                height={15}
                 alt='LinkedIn profile logo'
             />
         </Link>)
     }
-    if(profilData.socialFacebook){
-        reseaux.push(<Link href={profilData.socialFacebook}>
+    if(profilData[1].socialFacebook){
+        reseaux.push(<Link href={profilData[1].socialFacebook}>
             <Image
-                src ={}
-                width={}
-                height={}
+                src ={require('../../public/facebookIcon.svg')}
+                width={15}
+                height={15}
                 alt='Facebook profile logo'
             />
         </Link>)
     }
-    if(profilData.socialInstagram){
-        reseaux.push(<Link href={profilData.socialInstagram}>
+    if(profilData[1].socialInstagram){
+        reseaux.push(<Link href={profilData[1].socialInstagram}>
             <Image
-                src ={}
-                width={}
-                height={}
+                src ={require('../../public/instagramIcon.svg')}
+                width={15}
+                height={15}
                 alt='Instagram profile logo'
             />
         </Link>)
     }
-    if(profilData.socialYoutube){
-        reseaux.push(<Link href={profilData.socialYoutube}>
+    if(profilData[1].socialYoutube){
+        reseaux.push(<Link href={profilData[1].socialYoutube}>
             <Image
-                src ={}
-                width={}
-                height={}
+                src ={require('../../public/youtubeIcon.svg')}
+                width={15}
+                height={15}
                 alt='Youtube profile logo'
             />
         </Link>)
     }
-    if(profilData.socialTweeter){
-        reseaux.push(<Link href={profilData.socialTweeter}>
+    if(profilData[1].socialTweeter){
+        reseaux.push(<Link href={profilData[1].socialTweeter}>
             <Image
-                src ={}
-                width={}
-                height={}
+                src ={require('../../public/tweetIcon.svg')}
+                width={15}
+                height={15}
                 alt='Tweeter profile logo'
             />
         </Link>)
@@ -103,12 +148,12 @@ export default function UserProfilDisplay(){
     //Affichage des boutons si les actions sont possibles
 
     const contactActions = []
-    if(profilData.website){
-        contactActions.push(<button onClick={()=>router.push(`/${profilData.website}`)}>En savoir plus</button>)
+    if(profilData[1].cards[0].website){
+        contactActions.push(<button onClick={()=>router.push(`/${profilData[1].cards[0].website}`)}>En savoir plus</button>)
     }
-    if(profilData.agenda){
-        contactActions.push( <button onClick={()=>handleAppointment()}>Prendre rendez-vous</button> )
-    }
+    // if(profilData[1].agenda){
+    //     contactActions.push( <button onClick={()=>handleAppointment()}>Prendre rendez-vous</button> )
+    // }
 
     let contacts = 
         <div>
@@ -130,12 +175,12 @@ export default function UserProfilDisplay(){
         case 'Fiche':
             content = 
                 <div>
-                    <div>
-                        {badges}
+                    <div className='text-base leading-7 text-gray-700'>
+                        {strengths}
 
                         <div>
-                            <h2>Présentation</h2>
-                            <p>{profilData.description}</p>
+                            <h2 className='text-2xl font-bold tracking-wide text-gray-900'>Présentation</h2>
+                            <p className='text-base leading-7 text-gray-700'>{profilData[1].cards[0].description}</p>
                         </div>
                     </div>
                 
@@ -148,16 +193,16 @@ export default function UserProfilDisplay(){
         case 'About':
             content = 
                  <div>
-                    <h2>À propos de {profilData.displayName}</h2>
-                    <p>{profilData.legalinfo}</p>
+                    <h2 className='text-2xl font-bold tracking-wide text-gray-900'>À propos de {profilData[1].cards[0].displayName}</h2>
+                    <p className='text-base leading-7 text-gray-700'>{profilData[1].about}</p>
                  </div>
         break;
 
         //Ajouter les informations légales liés à l'entreprise
         case 'Legals':
             content = 
-            <div>
-                
+            <div  className='text-base leading-7 text-gray-700'>
+                {profilData[1].legalinfos}
             </div>
                  
         break;
@@ -166,11 +211,11 @@ export default function UserProfilDisplay(){
             content = 
                 <div>
                     <div>
-                        {badges}
+                        {strengths}
 
                         <div>
-                            <h2>Présentation</h2>
-                            <p>{profilData.description}</p>
+                            <h2 className='text-2xl font-bold tracking-wide text-gray-900'>Présentation</h2>
+                            <p className='text-base leading-7 text-gray-700'>{profilData[1].cards[0].description}</p>
                         </div>
                     </div>
                 
@@ -181,45 +226,68 @@ export default function UserProfilDisplay(){
             break;
     }
 
+    console.log('profile',profilData)
 
     return (
         <div className='m-12' >
-            <div>
-                <div>
-                    <Image
-                    src={user.avatar}
-                    width={80}
-                    height={80}
-                    alt='photo of the profile'
-                    />
-                </div>
-                    
-                <div>
-                    <h2>{user.displayName}</h2>
-                    <p>{profilData.title}</p>
-                    <p>{profilData.organisation}</p>
-                    <p>{profilData.country} {profilData.city}</p>
-                    <p>Code Neo : {profilData.neocode}</p>
+            <div className='text-base leading-7 text-gray-700 flex justify-between rounded-md shadow-sm ring-1 ring-inset ring-gray-300 p-10 mb-4'>
+                <div className='flex'>
+                    <div className='pr-6'>
+                        <Image
+                        src={profilData[1].mainPicture}
+                        width={80}
+                        height={80}
+                        alt='photo of the profile'
+                        className='h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32'
+                        />
+                    </div>
+                        
+                    <div className='pr-6'>
+                        <h2 className='text-2xl font-bold tracking-wide text-gray-900'>{profilData[1].cards[0].displayName}</h2>
+                        <p>{profilData[1].cards[0].title}</p>
+                        <p>{profilData[1].cards[0].organisation}</p>
+                        <p>{profilData[1].jobCategories} {profilData[1].jobSubCategories}</p>
+                        <p>{profilData[1].countries} {profilData[1].cities}</p>
+                        <p>Code Neo : {neo}</p>
 
-                </div>
-                <div>
-                    <Image/><p>Boosts : {profileBoosts.length}</p>
-                    {/*  */}
-                    <Image/><p>Signalements : {profileAlerts.length}</p>
-                    
-                </div>
-
-                <div>
+                    </div>
+                    <div className='pr-6 flex flex-col justify-center'>
+                        <Image
+                        src={require('../../public/linkedinIcon.svg')}
+                        width={20}
+                        height={20}
+                        alt='boost icon'
+                        />
+                        <p>Boosts : {boosts.length}</p>
+                        {/*  */}
+                        <Image
+                        src={require('../../public/linkedinIcon.svg')}
+                        width={20}
+                        height={20}
+                        alt='alert icon'
+                        /><p>Signalements : {alerts.length}</p>
+                        
+                    </div>
+            </div>
+                <div className='flex space-around flex-col'>
                     {/* sandwichButton */}
-                    <button onClick={()=> handleEdit()}>Editer</button>
+                    <button
+                     className='ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+                     onClick={()=> handleEdit()}>Editer</button>
                 </div>
             </div>
 
             {/* Fiche / A propos / Info légales */}
             <div>
-                <button onClick={()=>setContentShown('Fiche')}>Présentation</button>
-                <button onClick={()=>setContentShown('About')}>À propos</button>
-                <button onClick={()=>setContentShown('Legals')}>Informations légales</button>
+                <button 
+                className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                onClick={()=>setContentShown('Fiche')}>Présentation</button>
+                <button 
+                className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                onClick={()=>setContentShown('About')}>À propos</button>
+                <button 
+                className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                onClick={()=>setContentShown('Legals')}>Informations légales</button>
             </div>
 
             {content}

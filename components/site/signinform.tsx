@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState, useEffect} from "react"
-import { logIn, logOut } from '@/redux/features/auth-slice';
+import { chooseProfil, logIn } from '@/redux/features/auth-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from "@/redux/store";
 import { useRouter } from "next/navigation";
@@ -41,10 +41,14 @@ export default function SigninForm() {
       const datareceived = await result.json();
 
       if (datareceived[0].result == true) {
-
               const userSignedIn = datareceived[1];
-              
+              console.log('userSignedIn',userSignedIn)
               if (userSignedIn.token !== '') {
+                console.log('userUid',userSignedIn.usrUid)
+                const proResult = await fetch(`${process.env.backendserver}/profiles/user/${userSignedIn.usrUid}`)
+                const proData = await proResult.json()
+                console.log('proUid', proData)
+
                 const data = {
                   token : userSignedIn.token,
                   usrUid: userSignedIn.usrUid,
@@ -52,6 +56,7 @@ export default function SigninForm() {
                   isCertified: userSignedIn.isCertified,
                 }
                 dispatch(logIn(data));
+                proData[0].result && dispatch(chooseProfil({proUid: proData[1].proUid}))
                 router.push('/members')
               }
 

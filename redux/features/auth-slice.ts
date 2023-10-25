@@ -12,10 +12,8 @@ type AuthState = {
     usrUid: string,
     isActivated: boolean,
     isCertified: boolean,
-    
+    proUid: string, 
     // plan: string,
-    // currentProfile: string, => profileuid
-    // avatar: string,
 }
 
 const initialState = {
@@ -26,8 +24,8 @@ const initialState = {
         usrUid: "",
         isActivated: false,
         isCertified: false,
-        // currentProfile: "",
-        // avatar: "",
+        proUid: "", 
+        // plan: "free",
     } as AuthState,
 
 } as InitialState;
@@ -49,19 +47,25 @@ export const auth = createSlice({
             return {
                 value : {
                     token: action.payload.token,
-                    usrUid: action.payload.userUid,
+                    usrUid: action.payload.usrUid,
                     isActivated : action.payload.isActivated,
                     isCertified: action.payload.isCertified,
+                    proUid: state.value.proUid
                 }
             }
         },
-
+        
         activate:(state) => {
             state.value.isActivated = true
-        }
+        },
+
+        chooseProfil:(state, action: PayloadAction<any>) => {
+            state.value.proUid = action.payload.proUid
+        },
+
     }
 
 })
 
-export const { logIn, logOut, activate } = auth.actions;
+export const { logIn, logOut, activate, chooseProfil } = auth.actions;
 export default auth.reducer;

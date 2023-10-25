@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 
 import { useAppSelector } from '@/redux/store'
@@ -33,7 +33,7 @@ const navigation = [
   { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
   { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
   { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
-  { name: 'Events', href: '#', icon: CalendarDaysIcon, current: false },
+  { name: 'Events', href: '/members/events', icon: CalendarDaysIcon, current: false },
 ]
 const teams = [
   { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
@@ -50,12 +50,20 @@ function classNames(...classes: any) {
 }
 
 export default function Dashboard() {
+  
+  const user = useAppSelector((state) => state.authReducer.value)
+  let profilData : any[] = []
+  const getProfilData = async () => {
+    const req = await fetch(`${process.env.backendserver}/profiles/${user.proUid}`)
+    profilData  = await req.json()
+  }
+
+  useEffect(()=>{
+    getProfilData()
+  },[])
 
   const [sidebarOpen, setSidebarOpen] = useState(false)
-
   const dispatch = useDispatch<AppDispatch>();
-
-  const user = useAppSelector((state) => state.authReducer.value)
   const router = useRouter();
 
 
@@ -315,7 +323,7 @@ export default function Dashboard() {
                     />
                     <span className="hidden lg:flex lg:items-center">
                       <span className="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
-                        {/* {email} */}
+                            {profilData[1].displayName}
                       </span>
                       <ChevronDownIcon className="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
                     </span>

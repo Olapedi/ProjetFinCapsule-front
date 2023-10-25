@@ -2,33 +2,38 @@
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { activate } from '../../redux/features/auth-slice'
+import { activate, chooseProfil } from '../../redux/features/auth-slice'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useAppSelector } from '@/redux/store'
 
 export default function Validation() {
     const [displayName, setDisplayName] = useState<string>('')
-    const [validationCode, setValidationCode] = useState<string>('')
+    const [activationCode, setActivationCode] = useState<string>('')
     const [description, setDescription] = useState<string>('')
-    const [avatar, setAvatar] = useState()
-    const [organisation, setOrganisation] = useState<string>('')
+    const [organization, setOrganization] = useState<string>('')
     const [title, setTitle] = useState<string>('')
-    const [jobCategory, setJobCategory] = useState<string>('')
+    const [jobCategories, setJobCategories] = useState<string>('')
     const [jobSubCategories, setJobSubCategories] = useState<string>('')
     const [error, setError] = useState<string>('')
-    const [imageURI, setImageURI] = useState('');
+    const [website, setWebsite] =useState<string>('http://')
+    const [avatarURI, setAvatarURI] = useState<string>('');
+    const [avatarType, setAvatarType] = useState<string>('')
+    const [avatarName, setAvatarName] = useState<string>('')
+
 
     const dispatch = useDispatch()
     const user = useAppSelector((state) => state.authReducer.value)
 
+    //selector for the image
     const handleImageSelect = (event) => {
       const selectedFile = event.target.files?.[0];
   
       if (selectedFile) {
         const uri = URL.createObjectURL(selectedFile);
-        setImageURI(uri);
-        setAvatar(selectedFile)
+        setAvatarURI(uri);
+        setAvatarType(selectedFile.type)
+        setAvatarName(selectedFile.name)
       }
     };
       
@@ -37,34 +42,35 @@ export default function Validation() {
     const handleSubmit = async () =>{
       const req = await fetch(`${process.env.backendserver}/users/${user.usrUid}`)
       const tempRes = await req.json()
-
-        if(displayName && validationCode && description && organisation && jobCategory && jobSubCategories){
+      console.log('tempRes',tempRes)
+        if(displayName && activationCode && description && organization && jobCategories && jobSubCategories){
+          // formData to handle sending file to the backend
+          // const formData = new FormData();
+          //   formData.append('displayName', displayName);
+          //   formData.append('validationCode', validationCode);
+          //   formData.append('description', description);
+          //   formData.append('avatar', {name : avatarName, type : avatarType, uri : avatarURI})
+          //   formData.append('organization', organization);
+          //   formData.append('title', title);
+          //   formData.append('jobCategory', jobCategory);
+          //   formData.append('jobSubCategories', JSON.stringify(jobSubCategories));
+          //   formData.append('usrUid', user.usrUid);
+          //   formData.append('phone', tempRes.phone);
+          //   formData.append('email', tempRes.email);  
+          // console.log(formData)
           
-          const formData = new FormData();
-            formData.append('displayName', displayName);
-            formData.append('validationCode', validationCode);
-            formData.append('description', description);
-            // formData.append('avatar', {name : avatar.name})
-            formData.append('organisation', organisation);
-            formData.append('title', title);
-            formData.append('jobCategory', jobCategory);
-            formData.append('jobSubCategories', JSON.stringify(jobSubCategories));
-            formData.append('usrUid', user.usrUid);
-            formData.append('phone', tempRes.phone);
-            formData.append('email', tempRes.email);  
-
           const data = {
                 displayName,
-                validationCode,
+                activationCode,
                 description,
-                avatar,
-                organisation,
+                organization,
                 title,
-                jobCategory,
+                jobCategories,
                 jobSubCategories,
                 usrUid : user.usrUid,
-                phone: tempRes.phone,
-                email: tempRes.email,
+                website: website,
+                phone: tempRes[1].phone,
+                email: tempRes[1].email,
             }
             console.log('data',data)
 
@@ -75,19 +81,20 @@ export default function Validation() {
             })
     
             const results = await request.json()
-            console.log(results)
+            console.log('result error',results[0].message)
             if(!results[0].result){
-                setError(results[0].error)
+                setError(results[0].message)
             }
             else{
                 dispatch(activate())
+                // dispatch(chooseProfil())
                 console.log('has been dispatched')
             }
         }
-        
     }
-console.log('avatar',avatar)
-console.log('uri',imageURI)
+// console.log('avatarName',avatarName)
+// console.log('avatarType',avatarType)
+// console.log('uri',avatarURI)
   return (
     <div className="items-center" style={{display : "flex", flexDirection : 'column'}}>
         <Link href = "/" > 
@@ -133,8 +140,26 @@ console.log('uri',imageURI)
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder="Code d'activation"
                     required
-                    onChange={(e)=>setValidationCode(e.target.value)}
-                    value={validationCode}
+                    onChange={(e)=>setActivationCode(e.target.value)}
+                    value={activationCode}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="sm:col-span-4">
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                Site web
+              </label>
+              <div className="mt-2">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                  <input
+                    type="text"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    placeholder="Code d'activation"
+                    required
+                    onChange={(e)=>setWebsite(e.target.value)}
+                    value={website}
                   />
                 </div>
               </div>
@@ -169,6 +194,7 @@ console.log('uri',imageURI)
                    accept="image/*"
                    onChange={(e) => {handleImageSelect(e)}}
                    />
+                   {avatarURI && <img src={avatarURI} alt="Selected Image" />}
               </div>
             </div>
 
@@ -203,8 +229,8 @@ console.log('uri',imageURI)
                   type="text"
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  onChange={(e)=>setOrganisation(e.target.value)}
-                  value={organisation}
+                  onChange={(e)=>setOrganization(e.target.value)}
+                  value={organization}
                 />
               </div>
             </div>
@@ -212,22 +238,22 @@ console.log('uri',imageURI)
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 pb-2">
             <div className="sm:col-span-3">
               <label className="block text-sm font-medium leading-6 text-gray-900">
-                Domaine d'activité
+                Catégorie d'emploi
               </label>
               <div className="mt-2">
                 <input
                   type="text"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   required
-                  onChange={(e)=>setJobCategory(e.target.value)}
-                  value={jobCategory}
+                  onChange={(e)=>setJobCategories(e.target.value)}
+                  value={jobCategories}
                 />
               </div>
             </div>
 
             <div className="sm:col-span-3">
               <label className="block text-sm font-medium leading-6 text-gray-900">
-                Profession
+                Sous-Catégorie d'emploi
               </label>
               <div className="mt-2">
                 <input
@@ -244,17 +270,16 @@ console.log('uri',imageURI)
         </div>
       </div>
 
-      <div className="mt-6 flex items-center justify-end gap-x-6">
-
+      <p className="text-red-600 text-sm mt-6"> {error} </p>
+      <div className="mt-4 flex items-center justify-end gap-x-6">
         <button
           className="rounded-md bg-indigo-600 px-5 tracking-wider py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           onClick={()=>handleSubmit()}
         >
           Confirmer
         </button>
-        <p className="text-red-600 text-sm"> {error} </p>
-
       </div>
+
     </div>
   )
 }

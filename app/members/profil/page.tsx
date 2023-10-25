@@ -16,7 +16,7 @@ export default function ProfilUser() {
             </div>
 
             <div>
-                {/* <UserProfilDisplay/> */}
+                <UserProfilDisplay/>
             </div>
             
             <div>

@@ -16,11 +16,15 @@ export default function Test() {
     <main>
 
       <div>
-         <FileInputComponent />
+         {/* <FileInputComponent /> */}
       </div>
 
       <div>
-        <UserProfilDisplayMock/>
+        <Validation/>
+      </div>
+
+      <div>
+        <UserProfilDisplay/>
       </div>
       
     </main>

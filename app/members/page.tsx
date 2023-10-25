@@ -29,6 +29,9 @@ export default function Members() {
   console.log('activ', auth.isActivated)
   console.log('sign', signup)
   console.log('auth', auth.token)
+  console.log('userUid',auth.usrUid)
+  console.log('profilUid',auth.proUid)
+
 
   return (
     
