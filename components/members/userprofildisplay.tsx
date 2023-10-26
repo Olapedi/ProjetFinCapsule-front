@@ -5,15 +5,33 @@ import { useState, useEffect } from 'react'
 import { useAppSelector } from '@/redux/store'
 import { useRouter } from 'next/navigation'
 
+import { Fragment } from 'react'
+import { Menu, Transition } from '@headlessui/react'
+
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
 
 export default function UserProfilDisplay(props:any){
     console.log('props:',props)
-    // return(
-    //     <div></div>
-    // )
     const router = useRouter()
-// 
 
+    //modale pour envoyer une alerte au profil
+    const handleAlert = () => {
+        
+    }
+    //Envoie une demande d'allignement & change l'affichage à allignement en attente jusqu'à validation
+    const handleAlign = () => {
+        
+    }   
+    //modale pour envoyer un boost au profil 
+    const handleBoost = () => {
+        
+    }
+    //modale pour envoyer un message au profil ou redirection vers la page de messagerie en passant le profil cible
+    const handleMessage = () => {
+        
+    }
     //mockData for testing
     // const props:any = [
     //     {
@@ -44,6 +62,109 @@ export default function UserProfilDisplay(props:any){
     //     legalinfos: ['go', 'do', 'this'],
     //     organisation: 'boite X'
     // }]
+    
+    // Affichage du bouton Edition du profil ou menu interaction en fonction d'un props signalant où on invoque le composant
+    let interactions
+    if(props.onPersonnalProfil){
+        interactions=
+        <div>    
+            <button
+            className='ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+            onClick={()=> handleEdit()}>Modifier mon profil</button>
+        </div> 
+    }
+    else{
+    interactions = 
+    <div>
+        <Menu as="div" className="relative ml-3">
+            <div>
+                <Menu.Button className="relative flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <span className="absolute -inset-1.5" />
+                <span className="sr-only">Open interaction menu</span>
+                <Image
+                    className="h-8 w-8 rounded-full"
+                    src="/menuIcon.svg"
+                    alt="open interaction menu icon"
+                    width={50}
+                    height={50}
+                />
+                </Menu.Button>
+            </div>
+        <Transition
+            as={Fragment}
+            enter="transition ease-out duration-200"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+        >
+        <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Item>
+            {({ active }) => (
+                <div className={classNames(active ? 'bg-gray-100 cursor-grab' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
+                    <Image
+                src='/msgIcon.svg'
+                width={20}
+                height={20}
+                alt='message action logo'
+                className='mr-4'
+                onClick={()=>handleMessage()}
+                />
+                <p>Contacter</p>
+                </div>
+            )}
+          </Menu.Item>
+          <Menu.Item>
+            {({ active }) => (
+                <div className={classNames(active ? 'bg-gray-100 cursor-grab' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
+                    <Image
+                src='/circleIcon.svg'
+                width={20}
+                height={20}
+                alt='action alligner logo'
+                className='mr-4'
+                onClick={()=>handleAlign()}
+                />
+                <p>S'alligner</p>
+                </div>
+            )}
+          </Menu.Item>
+          <Menu.Item>
+            {({ active }) => (
+                <div className={classNames(active ? 'bg-gray-100 cursor-grab' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
+                    <Image
+                src='/boostIcon.svg'
+                width={20}
+                height={20}
+                alt='boost action logo'
+                className='mr-4'
+                onClick={()=>handleBoost()}
+                />
+                <p>Booster</p>
+                </div>
+            )}
+          </Menu.Item>
+          <Menu.Item>
+            {({ active }) => (
+                <div className={classNames(active ? 'bg-gray-100 cursor-grab' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
+                    <Image
+                src='/alertIcon.svg'
+                width={20}
+                height={20}
+                alt='boost action logo'
+                className='mr-4'
+                onClick={()=>handleAlert()}
+                />
+                <p>Signaler</p>
+                </div>
+            )}
+          </Menu.Item>
+        </Menu.Items>
+      </Transition>
+    </Menu>
+  </div>
+}
 
     const [contentShown, setContentShown] = useState<string>('Fiche')
 
@@ -72,8 +193,8 @@ export default function UserProfilDisplay(props:any){
         reseaux.push(<Link href={props.profilData.socialLinkedIn}>
             <Image
                 src ='/linkedinIcon.svg'
-                width={15}
-                height={15}
+                width={18}
+                height={18}
                 alt='LinkedIn profile logo'
             />
         </Link>)
@@ -82,8 +203,8 @@ export default function UserProfilDisplay(props:any){
         reseaux.push(<Link href={props.profilData.socialFacebook}>
             <Image
                 src ='/facebookIcon.svg'
-                width={15}
-                height={15}
+                width={18}
+                height={18}
                 alt='Facebook profile logo'
             />
         </Link>)
@@ -92,8 +213,8 @@ export default function UserProfilDisplay(props:any){
         reseaux.push(<Link href={props.profilData.socialInstagram}>
             <Image
                 src ='/public/instagramIcon.svg'
-                width={15}
-                height={15}
+                width={18}
+                height={18}
                 alt='Instagram profile logo'
             />
         </Link>)
@@ -102,8 +223,8 @@ export default function UserProfilDisplay(props:any){
         reseaux.push(<Link href={props.profilData.socialYoutube}>
             <Image
                 src ='/youtubeIcon.svg'
-                width={15}
-                height={15}
+                width={18}
+                height={18}
                 alt='Youtube profile logo'
             />
         </Link>)
@@ -112,8 +233,8 @@ export default function UserProfilDisplay(props:any){
         reseaux.push(<Link href={props.profilData.socialTweeter}>
             <Image
                 src ='/tweetIcon.svg'
-                width={15}
-                height={15}
+                width={18}
+                height={18}
                 alt='Tweeter profile logo'
             />
         </Link>)
@@ -123,7 +244,9 @@ export default function UserProfilDisplay(props:any){
 
     const contactActions = []
     if(props.profilData.cards[0].website){
-        contactActions.push(<button onClick={()=>router.push(`/${props.profilData.cards[0].website}`)}>En savoir plus</button>)
+        contactActions.push(<Link href={props.profilData.cards[0].website}
+            className='ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+        >En savoir plus</Link>)
     }
     // if(props.profilData.agenda){
     //     contactActions.push( <button onClick={()=>handleAppointment()}>Prendre rendez-vous</button> )
@@ -134,7 +257,7 @@ export default function UserProfilDisplay(props:any){
             <div>
                 {reseaux}
             </div>
-            <div>
+            <div className='flex justify-center'>
                 {contactActions}
             </div>
         </div>
@@ -176,7 +299,8 @@ export default function UserProfilDisplay(props:any){
         case 'Legals':
             content = 
             <div  className='text-base leading-7 text-gray-700'>
-                {props.profilData.legalinfos}
+                <h2 className='text-2xl font-bold tracking-wide text-gray-900'>Informations légales</h2>
+                <p className='text-base leading-7 text-gray-700'>{props.profilData.legalinfos}</p>
             </div>
                  
         break;
@@ -226,16 +350,19 @@ export default function UserProfilDisplay(props:any){
 
                     </div>
                     <div className='pr-6 flex flex-col justify-center'>
+                        <div className='flex flex-row items-center'>
+                            <Image
+                            src='/boostIcon.svg'
+                            width={20}
+                            height={20}
+                            alt='boost icon'
+                            className='py-4 mr-2'
+                            />
+                            <p>Boosts : {props.boosts.length}</p>
+                        </div>   
+                        
                         <Image
-                        src='/linkedinIcon.svg'
-                        width={20}
-                        height={20}
-                        alt='boost icon'
-                        />
-                       
-                        {/*  <p>Boosts : {props.profilData.boosts.length}</p> */}
-                        <Image
-                        src='../../public/linkedinIcon.svg'
+                        src='/alertIcon.svg'
                         width={20}
                         height={20}
                         alt='alert icon'
@@ -244,11 +371,9 @@ export default function UserProfilDisplay(props:any){
                         
                     </div>
             </div>
-                <div className='flex space-around flex-col'>
-                    {/* sandwichButton */}
-                    <button
-                     className='ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-                     onClick={()=> handleEdit()}>Editer</button>
+                <div className='flex justify-between flex-col'>
+                {/* Boutons d'interactions si profil d'un autre utilisateur, si espace profil perso, bouton modifier */}
+                    {interactions}
                 </div>
             </div>
 
@@ -264,7 +389,7 @@ export default function UserProfilDisplay(props:any){
                 className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 onClick={()=>setContentShown('Legals')}>Informations légales</button>
             </div>
-            <div>
+            <div className='text-base leading-7 text-gray-700 flex justify-between rounded-md shadow-sm ring-1 ring-inset ring-gray-300 p-10 mb-4'>
                 {content}
             </div>
 

@@ -30,36 +30,39 @@ export default function ProfilUser() {
         setNeo(userData[1].neocode)
     }
   
-    // const getProfilBoosts = async () => {
-    //     const result = await fetch(`/boosts/${user.proUid}`)
-    //     data = await result.json()
-    //     setBoosts(data)
-    // }
+    const getProfilBoosts = async () => {
+        const result = await fetch(`${process.env.backendserver}/boosts/profile/${user.proUid}`)
+        const data = await result.json()
+        if(data[0].result){
+            data.splice(0,1)
+            setBoosts(data)
+        }
+    }
     // const getProfilAlerts = async () => {
-    //     const result = await fetch(`/alerts/${user.proUid}`)
-    //     data = await result.json()
+    //     const result = await fetch(`${process.env.backendserver}/alerts/${user.proUid}`)
+    //     const data = await result.json()
     //     setAlerts(data)
     // }
   
     useEffect(()=>{
-        // dispatch(logIn({userUid:'usr2023102623866', proUid:'pro2023102527605'}))
         getprofilData()
+        getProfilBoosts()
         // getProfilAlerts()
-        // getProfilBoosts()
         getUserNeo()
     },[])
 
-    console.log('profilData : ',profilData)
-    console.log('neoCode : ',neo)
+    console.log('boosts : ',boosts)
 
     let profilDisplay = <></>
 
-    if(profilData.length){
-      console.log("profilD in if", profilData);
+    if(profilData.length && boosts){
       
       profilDisplay =  <UserProfilDisplay
                 profilData={profilData[0]}
                 neo={neo}
+                boosts={boosts}
+                onPersonnalProfil={false}
+                // alerts={alerts}
              />
     }
 
@@ -74,7 +77,9 @@ export default function ProfilUser() {
             </div>
             
             <div>
-                <BoostDisplay/>
+                <BoostDisplay
+                boosts={boosts}
+                />
             </div>
             
             <div>

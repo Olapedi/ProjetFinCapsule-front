@@ -215,8 +215,8 @@ export default function Dashboard() {
             <div className="flex h-16 shrink-0 items-center">
 
               <Image className="h-8 w-auto"
-                      src='/neoney.png' 
-                      width={30} height={30} 
+                      src='/neoneyW.png' 
+                      width={300} height={300} 
                       alt='neoney logo'>
               </Image>
 

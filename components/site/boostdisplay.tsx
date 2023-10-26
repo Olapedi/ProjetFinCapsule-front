@@ -34,7 +34,7 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function BoostDisplay() {
+export default function BoostDisplay(props) {
   return (
     <div className="bg-white">
       <div>
