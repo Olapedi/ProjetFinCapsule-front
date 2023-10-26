@@ -11,6 +11,7 @@ type propsStyle = {
   profileOwner : String,
   sender : String,
   receiver : String,
+  confirmOk: any,
 }
 
 
@@ -27,26 +28,44 @@ function Boost(props: propsStyle) {
     const [category, setCategory] = useState("");
     const [subCategory, setSubCategory] = useState("");
     const [testimonial, setTestimonial] = useState("");
-
-
+    let [boostDelivered, setBoostDelivered] = useState("")
 
     // Soumission du Boost au back
     const handleSubmit = () => {
-        fetch(`${process.env.backendserver}/new`, {
+
+        // console.log("=============================")
+        // console.log("category =>", category)
+        // console.log("subCategory =>", subCategory)
+        // console.log("props.profileOwner =>", props.profileOwner)
+        // console.log("props.sender =>", props.sender)
+        // console.log("props.receiver =>", props.receiver.proUid)
+        // console.log("testimonial =>", testimonial)
+        // console.log("=============================")
+
+        const usrUidMock = "usr2023102552112"
+        const proUidMock = "pro2023102527605"
+
+        // Remplacer les usrUidMock et proUidMock quand l'identificaiton sera active sur le site
+        fetch(`${process.env.backendserver}/boosts/new`, {
+          // fetch(`http://localhost:3000/boosts/new`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
                 category,
                 subCategory,
-                owner: props.profileOwner,
-                sender: props.sender,
+                // owner: props.profileOwner,
+                owner: usrUidMock,
+                // sender: props.sender,
+                sender: proUidMock,
                 receiver: props.receiver,
                 testimonial,
             }),
         })
             .then((response) => response.json())
             .then((data) => {
-                data[0].result && console.log(data);
+                // console.log(data);
+                setBoostDelivered("Votre boost a bien été attribué")
+                props.confirmOk(true)
             });
     };
 
@@ -81,6 +100,7 @@ function Boost(props: propsStyle) {
                 onKeyUp={(e) => e.key === "Enter" && handleSubmit()}
                 placeholder="Informations sur votre Boost"
             />
+            {boostDelivered}
             <div className="flex justify-center">
                 <button
                     className="mr-5 h-8 w-32 rounded-full bg-indigo-600 px-2.5 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

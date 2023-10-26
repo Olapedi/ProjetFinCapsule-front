@@ -22,7 +22,7 @@ type propsStyle = {
     mainPicture: any;
     twitterUrl: any;
     linkedinUrl: any;
-    profileOwner: any;
+    proUid: any;
 };
 
 export default function ProfileCard(props: propsStyle) {
@@ -44,19 +44,26 @@ export default function ProfileCard(props: propsStyle) {
         showBoostModal();
     }
 
+    function confirmOk(boostInDB:Boolean) {
+        if (boostInDB) {
+            setNbBoost(nbBoost+1)
+        }
+    }
+
+
     return (
         <li key={props.key}>
             <Modal
                 onCancel={() => handleCancelBoost()}
-                visible={boostModalVisible}
+                open={boostModalVisible}
                 footer={null}
             >
-                <Boost name={props.displayName} profileOwner={currentUserId} sender={currentUserId} receiver={props.profileOwner}/>
+                <Boost name={props.displayName} profileOwner={currentUserId} sender={currentUserId} receiver={props.proUid} confirmOk={confirmOk}/>
             </Modal>
             
             <Image className="w-full rounded-2xl object-fill" 
                     // className="aspect-[3/2] w-full rounded-2xl object-cover"
-                     src={props.mainPicture} width={30} height={30} alt="Profile's Image"> </Image>
+                     src={props.mainPicture} width={1000} height={1000} alt="Profile's Image"/>
 
             <h3 className="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-900">
                 {props.displayName}
@@ -119,7 +126,7 @@ export default function ProfileCard(props: propsStyle) {
                                 version="1.1"
                                 xmlns="http://www.w3.org/2000/svg"
                                 stroke="#382efa"
-                                stroke-width="1.00032"
+                                strokeWidth="0.10032"
                             >
                                 {/* <g id="SVGRepo_bgCarrier" stroke-width="0"></g> */}
                                 {/* <g
