@@ -16,20 +16,22 @@ import { useAppSelector } from '@/redux/store'
 import { logIn, logOut } from '@/redux/features/auth-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from "@/redux/store";
+import { useRouter } from 'next/navigation'
 
 
 export default function Home() {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const email = useAppSelector((state) => state.authReducer.value.email)
-  const isAuth = useAppSelector((state) => state.authReducer.value.isAuth)
+  const user = useAppSelector((state) => state.authReducer.value)
+  const router = useRouter()
 
+  if(user.token){
+    router.push('/members')  
+  }
   return (
     
     <main>
-
-      {!isAuth && <div>
 
       <div>
 
@@ -48,10 +50,6 @@ export default function Home() {
       <SiteFooter />
 
       </div>
-
-      </div> }
-
-      {isAuth && <Dashboard />}
 
     </main>
   )
