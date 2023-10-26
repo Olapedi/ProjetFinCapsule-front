@@ -6,7 +6,7 @@ import { useState, useId } from "react";
 import countries from "../../neoney_datas/countries.json";
 import Select from "react-select";
 
-import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import { UserGroupIcon } from "@heroicons/react/24/outline";
 import { count } from "console";
 
 export default function EventDisplay(props : any) {
@@ -31,12 +31,10 @@ export default function EventDisplay(props : any) {
                     <div className="lg:pr-4">
                         <div className="relative overflow-hidden rounded-3xl bg-gray-900 px-6 pb-9 pt-96 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10">
                             
-                            <Image  className="absolute inset-0 h-full w-full object-cover"
+                            <Image  className="absolute inset-0 h-full w-full object-cover hover:scale-105 transition duration-500"
                                     src={"https://images.unsplash.com/photo-1697809462690-57bc1601f665?auto=format&fit=crop&q=80&w=1887&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"} 
-                                    width={30} height={30} 
-                                    alt="">
-
-                            </Image>
+                                    width={500} height={500} 
+                                    alt="" />
                             
                         </div>
                     </div>
@@ -90,6 +88,14 @@ export default function EventDisplay(props : any) {
                                 </div>
                             ))}
                         </dl>
+
+                        <button
+                            type="button"
+                            className="mt-10 flex items-center rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            <UserGroupIcon className="h-6 w-6 mr-2" /> Participer
+                        </button>
+
                     </div>
                 </div>
             </div>
