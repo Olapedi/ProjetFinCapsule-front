@@ -123,7 +123,7 @@ export default function ProfilesAll() {
                         placeholder="rechercher un membre"
                         onChange={(e) => {setMessageVisible(false); setSearch(e.target.value)}}
                         onKeyUp={(e) => e.key === 'Enter' && handleClick()}
-                        value={search}
+                        
                     />
                     <button
                         type="button"
