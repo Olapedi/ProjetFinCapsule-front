@@ -6,7 +6,7 @@ import { useState, useId } from "react";
 import countries from "../../neoney_datas/countries.json";
 import Select from "react-select";
 
-import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import { UserGroupIcon } from "@heroicons/react/24/outline";
 import { count } from "console";
 
 export default function EventDisplay(props : any) {
@@ -88,6 +88,14 @@ export default function EventDisplay(props : any) {
                                 </div>
                             ))}
                         </dl>
+
+                        <button
+                            type="button"
+                            className="mt-10 flex items-center rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            <UserGroupIcon className="h-6 w-6 mr-2" /> Participer
+                        </button>
+
                     </div>
                 </div>
             </div>
