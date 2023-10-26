@@ -116,14 +116,19 @@ const handleSignUp = async () => {
     })
 
     const datareceived = await result.json();
-
+    console.log('dataReceived :',datareceived)
     if (datareceived[0].result == true) {
 
             const userSignedIn = datareceived[1];
             
             if (userSignedIn.token !== '') {
-              
-              dispatch(logIn(userSignedIn.email));
+              const data = {
+                token : userSignedIn.token,
+                usrUid: userSignedIn.usrUid,
+                isActivated: userSignedIn.isActivated,
+                isCertified: userSignedIn.isCertified,
+              }
+              dispatch(logIn(data));
               router.push('/members')
             }
 

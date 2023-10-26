@@ -56,7 +56,7 @@ export default function SigninForm() {
                   isCertified: userSignedIn.isCertified,
                 }
                 dispatch(logIn(data));
-                proData[0].result && dispatch(chooseProfil({proUid: proData[1].proUid}))
+                proData[0].result && dispatch(chooseProfil({proUid: proData[1].proUid, displayName : proData[1].cards[0].displayName}))
                 router.push('/members')
               }
 

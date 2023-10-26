@@ -23,6 +23,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { log } from 'console';
 
 
 
@@ -52,26 +53,32 @@ function classNames(...classes: any) {
 export default function Dashboard() {
   
   const user = useAppSelector((state) => state.authReducer.value)
-  let profilData : any[] = []
-  const getProfilData = async () => {
-    const req = await fetch(`${process.env.backendserver}/profiles/${user.proUid}`)
-    profilData  = await req.json()
-  }
+  const [profilData, setProfilData] = useState<any>()
 
-  useEffect(()=>{
-    getProfilData()
-  },[])
+  // const getProfilData = async () => {
+  //   console.log('hello world getProfilData')
+  //   const req = await fetch(`${process.env.backendserver}/profiles/${user.proUid}`)
+  //   const data  = await req.json()
+  //   setProfilData(data)
+  // }
+  
+  // useEffect(()=>{
+  //   fetch(`${process.env.backendserver}/profiles/${user.proUid}`)
+  //   .then(response=>response.json())
+  //   .then((data)=>{
+  //     setProfilData(data)
+  //   })
+  // },[])
 
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
 
-  const handlelogout = () => {
+  const handleLogOut = () => {
     dispatch(logOut());
     router.push('/')
   }
-
   return (
     <main>
       <div>
@@ -323,7 +330,7 @@ export default function Dashboard() {
                     />
                     <span className="hidden lg:flex lg:items-center">
                       <span className="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
-                            {profilData[1].displayName}
+                            {user.displayName}
                       </span>
                       <ChevronDownIcon className="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
                     </span>
@@ -347,7 +354,7 @@ export default function Dashboard() {
                                 active ? 'bg-gray-50' : '',
                                 'block px-3 py-1 text-sm leading-6 text-gray-900'
                               )}
-                              onClick={handlelogout}
+                            // if(item.name === 'Déconnexion'){onClick={handlelogout}}
                             >
                               {item.name}
                             </a>

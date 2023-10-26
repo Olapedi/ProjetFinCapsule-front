@@ -6,7 +6,6 @@ import Validation from "@/components/site/validationform";
 import Example from "@/components/members/membersnavbar";
 import MembersNavBar from "@/components/members/membersnavbar";
 import UserProfilDisplay from "@/components/members/userprofildisplay";
-import UserProfilDisplayMock from "@/components/members/userprofildisplayMockTest";
 import FileInputComponent from "@/components/common/image_test";
 import ProfilesAll from "@/components/site/profilesall";
 import ProfileCard from "@/components/site/profilecard";
@@ -23,7 +22,7 @@ export default function Test() {
       </div>
 
       <div>
-        <UserProfilDisplayMock/>
+        
       </div>
       
     </main>
