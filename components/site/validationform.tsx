@@ -85,6 +85,7 @@ export default function Validation() {
             if(!results[0].result){
                 setError(results[0].message)
             }
+            
             else{
                 dispatch(activate())
                 // dispatch(chooseProfil())

@@ -215,11 +215,9 @@ export default function Dashboard() {
             <div className="flex h-16 shrink-0 items-center">
 
               <Image className="h-8 w-auto"
-                      src={"https://tailwindui.com/img/logos/mark.svg?color=white"} 
+                      src='/neoney.png' 
                       width={30} height={30} 
-                      alt=''>
-
-
+                      alt='neoney logo'>
               </Image>
 
             </div>
