@@ -105,7 +105,7 @@ export default function Validation() {
         <div className="border-b border-gray-900/10 pb-8">
           <h2 className="text-base font-semibold leading-7 text-gray-900">Renseignez votre profil</h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
-          Vous avez reçu un mail avec le code de validation à l'adresse email que vous avez renseigné précédemment.
+          Vous avez reçu un mail avec le code de validation à l&apos;adresse email que vous avez renseigné précédemment.
             <br/>
             Veuillez remplir les informations nécessaire à la finalisation de votre inscription.
           </p>
@@ -113,7 +113,7 @@ export default function Validation() {
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-4">
               <label className="block text-sm font-medium leading-6 text-gray-900">
-                Nom d'utilisateur
+                Nom d&apos;utilisateur
               </label>
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
@@ -131,7 +131,7 @@ export default function Validation() {
 
             <div className="sm:col-span-4">
               <label className="block text-sm font-medium leading-6 text-gray-900">
-                Code d'activation
+                Code d&apos;activation
               </label>
               <div className="mt-2">
                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
@@ -194,7 +194,8 @@ export default function Validation() {
                    accept="image/*"
                    onChange={(e) => {handleImageSelect(e)}}
                    />
-                   {avatarURI && <img src={avatarURI} alt="Selected Image" />}
+                   {avatarURI && <Image src = {avatarURI} width={20} height={20} alt="Selected Image"> </Image>}
+
               </div>
             </div>
 
@@ -238,7 +239,7 @@ export default function Validation() {
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 pb-2">
             <div className="sm:col-span-3">
               <label className="block text-sm font-medium leading-6 text-gray-900">
-                Catégorie d'emploi
+                Catégorie d&apos;emploi
               </label>
               <div className="mt-2">
                 <input
@@ -253,7 +254,7 @@ export default function Validation() {
 
             <div className="sm:col-span-3">
               <label className="block text-sm font-medium leading-6 text-gray-900">
-                Sous-Catégorie d'emploi
+                Sous-Catégorie d&apos;emploi
               </label>
               <div className="mt-2">
                 <input

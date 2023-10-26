@@ -1,5 +1,6 @@
 
 import { StarIcon } from '@heroicons/react/20/solid'
+import Image from 'next/image'
 
 const reviews = [
   {
@@ -29,7 +30,7 @@ const reviews = [
   // More reviews...
 ]
 
-function classNames(...classes) {
+function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
@@ -43,7 +44,15 @@ export default function BoostDisplay() {
           {reviews.map((review, reviewIdx) => (
             <div key={review.id} className="flex space-x-4 text-sm text-gray-500">
               <div className="flex-none py-10">
-                <img src={review.avatarSrc} alt="" className="h-10 w-10 rounded-full bg-gray-100" />
+
+              <Image className="h-10 w-10 rounded-full bg-gray-100"
+                      src={review.avatarSrc} 
+                      width={30} height={30} 
+                      alt=''>
+
+
+              </Image>
+              
               </div>
               <div className={classNames(reviewIdx === 0 ? '' : 'border-t border-gray-200', 'flex-1 py-10')}>
                 <h3 className="font-medium text-gray-900">{review.author}</h3>
