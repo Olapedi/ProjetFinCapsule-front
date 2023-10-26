@@ -78,6 +78,7 @@ export default function ProfilesAll() {
         for (let card of prof.cards) {
             if (card.isMain) {
                 mainCard = card;
+                mainCard.owner = prof.owner
             }
         }
         let mainPicture: String =
@@ -99,6 +100,7 @@ export default function ProfilesAll() {
                 linkedinUrl="#"
                 // mainPicture="Generic_Image_Missing-Profile.jpg"
                 mainPicture={mainPicture} // dans l'attente d'avoir les vraies photos
+                profileOwner={mainCard.owner}
             />
         );
     });
