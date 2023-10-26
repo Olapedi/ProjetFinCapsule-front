@@ -6,6 +6,9 @@ import { useState, useEffect } from "react";
 export default function ProfilesAll() {
     // Etat pour contenir les profils
     let [profiles, setProfiles] = useState<string[]>([]);
+    let [messageVisible, setMessageVisible] = useState<Boolean>(false);
+    let [search, setSearch] = useState<String>("");
+    const message = "Pas de profil trouvé pour cette recherche";
 
     // Récupération des données au mount du composant
     useEffect(() => {
@@ -18,7 +21,14 @@ export default function ProfilesAll() {
         fetchData();
     }, []);
 
-    // Tableau de test - uniquement conservé pour l'instant pour récupérer les adresses des photos 
+    // Fonction gérant la recherche (onClick)
+    function handleClick() {
+        // console.log("coucou");
+        setMessageVisible(true);
+        setSearch('')
+    }
+
+    // Tableau de test - uniquement conservé pour l'instant pour récupérer les adresses des photos
     const people = [
         {
             name: "Kodzo",
@@ -103,10 +113,33 @@ export default function ProfilesAll() {
                 <p className="mt-6 text-lg leading-8 text-gray-600">
                     Retrouvez les entrepreneurs avec lesquels vous connecter
                 </p>
+                <div className="flex items-center">
+                    <input
+                        type="text"
+                        className="w-10/12 rounded-2xl mt-5"
+                        placeholder="rechercher un membre"
+                        onChange={(e) => {setMessageVisible(false); setSearch(e.target.value)}}
+                        value={search}
+                    />
+                    <button
+                        type="button"
+                        onClick={handleClick}
+                        className="ml-10 mt-5 h-10 rounded-full bg-indigo-600 px-2.5 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        // className="mr-5 rounded bg-indigo-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                        Rechercher
+                    </button>
+                </div>
+                <div className="h-12">
+                    {/* {search} */}
+                    {messageVisible && (
+                        <div className="mt-3 text-red-500">{message}</div>
+                    )}
+                </div>
                 <div>
                     <ul
                         role="list"
-                        className="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+                        className="mx-auto mt-5 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-4"
                     >
                         {profilesJSX}
                     </ul>
