@@ -7,69 +7,46 @@ import { useAppSelector } from '@/redux/store'
 import { useRouter } from 'next/navigation'
 
 
-export default function UserProfilDisplay(){
-
-    const user = useAppSelector((state)=>state.authReducer.value)
+export default function UserProfilDisplay(props:any){
+    // console.log('props:',props)
+    return(
+        <div>
+            {props.neo}
+        </div>
+    )
     const router = useRouter()
-    // let profilData = []
-    // let boosts = []
-    // let alerts = []
-    let neo = ''
-    // const getprofilData = async () => {
-    //     const result = await fetch (`/profiles/${user.proUid}`)
-    //     profilData = await result.json()
-    // }
-    // const getUserNeo = async () => {
-    //     const result = await fetch(`/users/${user.usrUid}`)
-    //     const userData = await result.json()
-    //     neo = userData.neoCode
-    // }
-    // const getProfilBoosts = async () => {
-    //     const result = await fetch(`/boosts/${user.proUid}`)
-    //     boosts = await result.json()
-    // }
-    // const getProfilAlerts = async () => {
-    //     const result = await fetch(`/alerts/${user.proUid}`)
-    //     alerts = await result.json()
-    // }
 
-    // useEffect(()=>{
-    //     getprofilData()
-    //     getProfilAlerts()
-    //     getProfilBoosts()
-        // getUserNeo()
-    // },[]) 
 
     //mockData for testing
-    const profilData:any = [
-        {
-            result : true,
-            message: 'tout roule'
-        },
+    // const props:any = [
+    //     {
+    //         result : true,
+    //         message: 'tout roule'
+    //     },
         
-        {
-        displayName : 'Its Me',
-        avatar : 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        mainVideo : 'https://www.youtube.com/watch?v=YBCCGV_9le0',
-        title: 'Boulot boulot',
-        neocode : 'codeNeo',
-        city: 'Ville',
-        country: 'Pays',
-        boosts: ['Super', 'Top', 'Pro'],
-        alerts: ['trop cher','arnaqueur'],
-        strengths: ['rapide', 'Since 1480', 'Do the job'],
-        description : 'description description description description',
-        socialLinkedIn : 'https://chat.openai.com/',
-        socialFacebook : 'https://www.google.fr/maps/preview',
-        socialYoutube : 'https://www.youtube.com/',
-        socialInstagram : 'https://www.instagram.com/',
-        socialTweeter : 'https://twitter.com/tweeter',
-        website : 'https://www.figma.com',
-        agenda: 'https://workspace.google.com/intl/fr/products/calendar/',
-        about: 'about about about about about about about about about about about about about about',
-        legalinfos: ['go', 'do', 'this'],
-        organisation: 'boite X'
-    }]
+    //     {
+    //     displayName : 'Its Me',
+    //     avatar : 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    //     mainVideo : 'https://www.youtube.com/watch?v=YBCCGV_9le0',
+    //     title: 'Boulot boulot',
+    //     neocode : 'codeNeo',
+    //     city: 'Ville',
+    //     country: 'Pays',
+    //     boosts: ['Super', 'Top', 'Pro'],
+    //     alerts: ['trop cher','arnaqueur'],
+    //     strengths: ['rapide', 'Since 1480', 'Do the job'],
+    //     description : 'description description description description',
+    //     socialLinkedIn : 'https://chat.openai.com/',
+    //     socialFacebook : 'https://www.google.fr/maps/preview',
+    //     socialYoutube : 'https://www.youtube.com/',
+    //     socialInstagram : 'https://www.instagram.com/',
+    //     socialTweeter : 'https://twitter.com/tweeter',
+    //     website : 'https://www.figma.com',
+    //     agenda: 'https://workspace.google.com/intl/fr/products/calendar/',
+    //     about: 'about about about about about about about about about about about about about about',
+    //     legalinfos: ['go', 'do', 'this'],
+    //     organisation: 'boite X'
+    // }]
 
     const [contentShown, setContentShown] = useState<string>('Fiche')
 
@@ -81,21 +58,21 @@ export default function UserProfilDisplay(){
     //Partie concernant le content Fiche
     //Afficher la liste des strengths renseignés mis à part pour possible futur ajout d'icone
     let strengths
-    if(profilData[1].strengths){
-        strengths = profilData[1].strengths
+    if(props.strengths){
+        strengths = props.strengths
     }
 
 
     //afficher la section video uniquement si uploadée
     let video
-    if(profilData[1].mainVideo){
-        video = <video src={profilData[1].mainVideo}></video>    
+    if(props.mainVideo){
+        video = <video src={props.mainVideo}></video>    
     }
 
     //affichage des réseaux remplis par l'utilisateur uniquement
     const reseaux = []
-    if(profilData[1].socialLinkedIn){
-        reseaux.push(<Link href={profilData[1].socialLinkedIn}>
+    if(props.socialLinkedIn){
+        reseaux.push(<Link href={props.socialLinkedIn}>
             <Image
                 src ={require('../../public/linkedinIcon.svg')}
                 width={15}
@@ -104,8 +81,8 @@ export default function UserProfilDisplay(){
             />
         </Link>)
     }
-    if(profilData[1].socialFacebook){
-        reseaux.push(<Link href={profilData[1].socialFacebook}>
+    if(props.socialFacebook){
+        reseaux.push(<Link href={props.socialFacebook}>
             <Image
                 src ={require('../../public/facebookIcon.svg')}
                 width={15}
@@ -114,8 +91,8 @@ export default function UserProfilDisplay(){
             />
         </Link>)
     }
-    if(profilData[1].socialInstagram){
-        reseaux.push(<Link href={profilData[1].socialInstagram}>
+    if(props.socialInstagram){
+        reseaux.push(<Link href={props.socialInstagram}>
             <Image
                 src ={require('../../public/instagramIcon.svg')}
                 width={15}
@@ -124,8 +101,8 @@ export default function UserProfilDisplay(){
             />
         </Link>)
     }
-    if(profilData[1].socialYoutube){
-        reseaux.push(<Link href={profilData[1].socialYoutube}>
+    if(props.socialYoutube){
+        reseaux.push(<Link href={props.socialYoutube}>
             <Image
                 src ={require('../../public/youtubeIcon.svg')}
                 width={15}
@@ -134,8 +111,8 @@ export default function UserProfilDisplay(){
             />
         </Link>)
     }
-    if(profilData[1].socialTweeter){
-        reseaux.push(<Link href={profilData[1].socialTweeter}>
+    if(props.socialTweeter){
+        reseaux.push(<Link href={props.socialTweeter}>
             <Image
                 src ={require('../../public/tweetIcon.svg')}
                 width={15}
@@ -148,10 +125,10 @@ export default function UserProfilDisplay(){
     //Affichage des boutons si les actions sont possibles
 
     const contactActions = []
-    if(profilData[1].cards[0].website){
-        contactActions.push(<button onClick={()=>router.push(`/${profilData[1].cards[0].website}`)}>En savoir plus</button>)
+    if(props.cards[0].website){
+        contactActions.push(<button onClick={()=>router.push(`/${props.cards[0].website}`)}>En savoir plus</button>)
     }
-    // if(profilData[1].agenda){
+    // if(props.agenda){
     //     contactActions.push( <button onClick={()=>handleAppointment()}>Prendre rendez-vous</button> )
     // }
 
@@ -180,7 +157,7 @@ export default function UserProfilDisplay(){
 
                         <div>
                             <h2 className='text-2xl font-bold tracking-wide text-gray-900'>Présentation</h2>
-                            <p className='text-base leading-7 text-gray-700'>{profilData[1].cards[0].description}</p>
+                            <p className='text-base leading-7 text-gray-700'>{props.cards[0].description}</p>
                         </div>
                     </div>
                 
@@ -193,8 +170,8 @@ export default function UserProfilDisplay(){
         case 'About':
             content = 
                  <div>
-                    <h2 className='text-2xl font-bold tracking-wide text-gray-900'>À propos de {profilData[1].cards[0].displayName}</h2>
-                    <p className='text-base leading-7 text-gray-700'>{profilData[1].about}</p>
+                    <h2 className='text-2xl font-bold tracking-wide text-gray-900'>À propos de {props.cards[0].displayName}</h2>
+                    <p className='text-base leading-7 text-gray-700'>{props.about}</p>
                  </div>
         break;
 
@@ -202,7 +179,7 @@ export default function UserProfilDisplay(){
         case 'Legals':
             content = 
             <div  className='text-base leading-7 text-gray-700'>
-                {profilData[1].legalinfos}
+                {props.legalinfos}
             </div>
                  
         break;
@@ -215,7 +192,7 @@ export default function UserProfilDisplay(){
 
                         <div>
                             <h2 className='text-2xl font-bold tracking-wide text-gray-900'>Présentation</h2>
-                            <p className='text-base leading-7 text-gray-700'>{profilData[1].cards[0].description}</p>
+                            <p className='text-base leading-7 text-gray-700'>{props.cards[0].description}</p>
                         </div>
                     </div>
                 
@@ -226,15 +203,15 @@ export default function UserProfilDisplay(){
             break;
     }
 
-    console.log('profile',profilData)
 
+    console.log(props)
     return (
         <div className='m-12' >
             <div className='text-base leading-7 text-gray-700 flex justify-between rounded-md shadow-sm ring-1 ring-inset ring-gray-300 p-10 mb-4'>
                 <div className='flex'>
                     <div className='pr-6'>
                         <Image
-                        src={profilData[1].mainPicture}
+                        src={props.mainPicture}
                         width={80}
                         height={80}
                         alt='photo of the profile'
@@ -243,12 +220,12 @@ export default function UserProfilDisplay(){
                     </div>
                         
                     <div className='pr-6'>
-                        <h2 className='text-2xl font-bold tracking-wide text-gray-900'>{profilData[1].cards[0].displayName}</h2>
-                        <p>{profilData[1].cards[0].title}</p>
-                        <p>{profilData[1].cards[0].organisation}</p>
-                        <p>{profilData[1].jobCategories} {profilData[1].jobSubCategories}</p>
-                        <p>{profilData[1].countries} {profilData[1].cities}</p>
-                        <p>Code Neo : {neo}</p>
+                        <h2 className='text-2xl font-bold tracking-wide text-gray-900'>{props.cards[0].displayName}</h2>
+                        <p>{props.cards[0].title}</p>
+                        <p>{props.cards[0].organisation}</p>
+                        <p>{props.jobCategories} {props.jobSubCategories}</p>
+                        <p>{props.countries} {props.cities}</p>
+                        <p>Code Neo : {props.neo}</p>
 
                     </div>
                     <div className='pr-6 flex flex-col justify-center'>
@@ -258,14 +235,14 @@ export default function UserProfilDisplay(){
                         height={20}
                         alt='boost icon'
                         />
-                        <p>Boosts : {boosts.length}</p>
+                        <p>Boosts : {props.boosts.length}</p>
                         {/*  */}
                         <Image
                         src={require('../../public/linkedinIcon.svg')}
                         width={20}
                         height={20}
                         alt='alert icon'
-                        /><p>Signalements : {alerts.length}</p>
+                        /><p>Signalements : {props.alerts.length}</p>
                         
                     </div>
             </div>
@@ -289,10 +266,10 @@ export default function UserProfilDisplay(){
                 className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 onClick={()=>setContentShown('Legals')}>Informations légales</button>
             </div>
+            <div>
+                {content}
+            </div>
 
-            {content}
-
-            <BoostDisplay/>
         </div>
     )
 }

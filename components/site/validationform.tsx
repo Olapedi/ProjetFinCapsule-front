@@ -26,7 +26,7 @@ export default function Validation() {
     const user = useAppSelector((state) => state.authReducer.value)
 
     //selector for the image
-    const handleImageSelect = (event) => {
+    const handleImageSelect = (event:any) => {
       const selectedFile = event.target.files?.[0];
   
       if (selectedFile) {
