@@ -4,6 +4,9 @@ import { useState } from "react";
 import { Modal } from "antd";
 import Boost from "./boost";
 
+import Image from "next/image";
+import Link from "next/link";
+
 type propsStyle = {
     key: any;
     displayName: String;
@@ -46,13 +49,11 @@ export default function ProfileCard(props: propsStyle) {
             >
                 <Boost name={props.displayName}/>
             </Modal>
+            
+            <Image className="w-full rounded-2xl object-fill" 
+                    // className="aspect-[3/2] w-full rounded-2xl object-cover"
+                     src={props.mainPicture} width={30} height={30} alt="Profile's Image"> </Image>
 
-            <img
-                className="w-full rounded-2xl object-fill"
-                // className="aspect-[3/2] w-full rounded-2xl object-cover"
-                src={props.mainPicture}
-                alt="Profile's Image"
-            />
             <h3 className="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-900">
                 {props.displayName}
             </h3>

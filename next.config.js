@@ -4,12 +4,14 @@ const nextConfig = {
 
     // CDN à rajouter pour les images en https
     images: {
-        domains: ["images.unsplash.com", "pexels.com", "lacapsule.academy", "ieminc.org"],
+        domains: ["images.unsplash.com", "pexels.com", "lacapsule.academy", "ieminc.org", "tailwindui.com"],
     },
 
     env: {
         backendserver: "https://neoneydev1-backend.vercel.app",
-        //  backendserver: 'http://localhost:3000',
+        // backendserver: "http://localhost:3000",
+
+
     },
 };
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 
 
@@ -19,7 +20,7 @@ export default function FileInputComponent() {
     return (
       <div>
         <input type="file" onChange={handleFileChange} />
-        {fileUri && <img src={fileUri} alt="Uploaded File" />}
+        {fileUri && <Image src={fileUri} width={30} height={30} alt='Uploaded File'></Image>}
       </div>
     );
   }

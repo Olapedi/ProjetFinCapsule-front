@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import Image from 'next/image';
 // import styles from '../styles/SignUp.module.css';
 
-function Boost(props) {
+function Boost(props : any) {
     // const dispatch = useDispatch();
     // const user = useSelector((state) => state.user.value);
 

@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from "@/redux/store";
 import { useRouter } from 'next/navigation';
 
+import Image from 'next/image';
+
 import {
   Bars3Icon,
   BellIcon,
@@ -53,7 +55,6 @@ function classNames(...classes: any) {
 export default function Dashboard() {
   
   const user = useAppSelector((state) => state.authReducer.value)
-  const [profilData, setProfilData] = useState<any>()
 
   // const getProfilData = async () => {
   //   console.log('hello world getProfilData')
@@ -126,11 +127,14 @@ export default function Dashboard() {
                   {/* Sidebar component, swap this element with another sidebar if you like */}
                   <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
                     <div className="flex h-16 shrink-0 items-center">
-                      <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=white"
-                        alt="Your Company"
-                      />
+                      
+                      <Image className="h-8 w-auto"
+                              src={"https://tailwindui.com/img/logos/mark.svg?color=white"} 
+                              width={30} height={30} 
+                              alt='Your Company'>
+
+                      </Image>
+                      
                     </div>
                     <nav className="flex flex-1 flex-col">
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -209,11 +213,15 @@ export default function Dashboard() {
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=white"
-                alt="Your Company"
-              />
+
+              <Image className="h-8 w-auto"
+                      src={"https://tailwindui.com/img/logos/mark.svg?color=white"} 
+                      width={30} height={30} 
+                      alt=''>
+
+
+              </Image>
+
             </div>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -323,11 +331,14 @@ export default function Dashboard() {
                 <Menu as="div" className="relative">
                   <Menu.Button className="-m-1.5 flex items-center p-1.5">
                     <span className="sr-only">Open user menu</span>
-                    <img
-                      className="h-8 w-8 rounded-full bg-gray-50"
-                      src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                      alt=""
-                    />
+
+                    <Image className="h-8 w-8 rounded-full bg-gray-50"
+                            src={"https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"} 
+                            width={30} height={30} 
+                            alt=''>
+
+                    </Image>
+
                     <span className="hidden lg:flex lg:items-center">
                       <span className="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
                             {user.displayName}
@@ -350,11 +361,15 @@ export default function Dashboard() {
                           {({ active }) => (
                             <a
                               href={item.href}
+                              onClick={() => {
+                                if (item.name === "Déconnexion") {
+                                  handleLogOut();
+                                }
+                              }}
                               className={classNames(
                                 active ? 'bg-gray-50' : '',
                                 'block px-3 py-1 text-sm leading-6 text-gray-900'
                               )}
-                            // if(item.name === 'Déconnexion'){onClick={handlelogout}}
                             >
                               {item.name}
                             </a>

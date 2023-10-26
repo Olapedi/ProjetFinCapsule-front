@@ -40,6 +40,8 @@ export default function SigninForm() {
 
       const datareceived = await result.json();
 
+      console.log(datareceived);
+
       if (datareceived[0].result == true) {
               const userSignedIn = datareceived[1];
               console.log('userSignedIn',userSignedIn)
