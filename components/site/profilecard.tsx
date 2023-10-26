@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { Modal } from "antd";
 import Boost from "./boost";
+import { useAppSelector } from '@/redux/store'
+
+
 
 type propsStyle = {
     key: any;
@@ -16,12 +19,14 @@ type propsStyle = {
     mainPicture: any;
     twitterUrl: any;
     linkedinUrl: any;
+    profileOwner: any;
 };
 
 export default function ProfileCard(props: propsStyle) {
     let [nbBoost, setNbBoost] = useState(150);
-
     const [boostModalVisible, setBoostModalVisible] = useState(false);
+    const currentUserId = useAppSelector(state => state.authReducer.value.usrUid)
+
 
     const showBoostModal = () => {
         setBoostModalVisible(true);
@@ -33,7 +38,6 @@ export default function ProfileCard(props: propsStyle) {
 
     // Relier le handleBoost avec la gestion des boosts
     function handleBoost() {
-        console.log("coucou");
         showBoostModal();
     }
 
@@ -44,7 +48,7 @@ export default function ProfileCard(props: propsStyle) {
                 visible={boostModalVisible}
                 footer={null}
             >
-                <Boost name={props.displayName}/>
+                <Boost name={props.displayName} profileOwner={currentUserId} sender={currentUserId} receiver={props.profileOwner}/>
             </Modal>
 
             <img
