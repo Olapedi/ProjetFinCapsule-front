@@ -3,6 +3,8 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const user = {
   name: 'Tom Cook',
@@ -22,7 +24,7 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ]
 
-function classNames(...classes) {
+function classNames(...classes : any) {
   return classes.filter(Boolean).join(' ')
 }
 
@@ -35,11 +37,15 @@ export default function MembersNavBar() {
             <div className="relative flex h-16 justify-between">
               <div className="relative z-10 flex px-2 lg:px-0">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt="Your Company"
-                  />
+
+                  <Image className="h-8 w-auto"
+                          src={"https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"} 
+                          width={30} height={30} 
+                          alt='Your Company'>
+
+
+                  </Image>
+
                 </div>
               </div>
               <div className="relative z-0 flex flex-1 items-center justify-center px-2 sm:absolute sm:inset-0">
@@ -89,8 +95,16 @@ export default function MembersNavBar() {
                     <Menu.Button className="relative flex rounded-full bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
-                      <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="User's Avatar Image" />
+
+                      <Image className="h-8 w-8 rounded-full"
+                        src={user.imageUrl}
+                        width={30} height={30}
+                        alt='' >
+
+                      </Image>
+                     
                     </Menu.Button>
+
                   </div>
                   <Transition
                     as={Fragment}
@@ -159,7 +173,15 @@ export default function MembersNavBar() {
             <div className="border-t border-gray-200 pb-3 pt-4">
               <div className="flex items-center px-4">
                 <div className="flex-shrink-0">
-                  <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+
+                  <Image className="h-10 w-10 rounded-full" 
+                          src={user.imageUrl}
+                          width={30}
+                          height={30}
+                          alt='' >
+
+                    </Image>
+
                 </div>
                 <div className="ml-3">
                   <div className="text-base font-medium text-gray-800">{user.name}</div>

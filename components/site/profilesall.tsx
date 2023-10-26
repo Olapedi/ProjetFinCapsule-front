@@ -3,6 +3,7 @@
 import ProfileCard from "./profilecard";
 import { useState, useEffect } from "react";
 
+
 export default function ProfilesAll() {
     // Etat pour contenir les profils
     let [profiles, setProfiles] = useState<string[]>([]);
@@ -119,7 +120,8 @@ export default function ProfilesAll() {
                         className="w-10/12 rounded-2xl mt-5"
                         placeholder="rechercher un membre"
                         onChange={(e) => {setMessageVisible(false); setSearch(e.target.value)}}
-                        value={search}
+                        onKeyUp={(e) => e.key === 'Enter' && handleClick()}
+                        
                     />
                     <button
                         type="button"

@@ -1,6 +1,11 @@
 "use client";
 
-import {useState} from 'react'
+import { useState } from "react";
+import { Modal } from "antd";
+import Boost from "./boost";
+
+import Image from "next/image";
+import Link from "next/link";
 
 type propsStyle = {
     key: any;
@@ -17,21 +22,38 @@ type propsStyle = {
 };
 
 export default function ProfileCard(props: propsStyle) {
-    let [nbBoost, setNbBoost] = useState(150)
+    let [nbBoost, setNbBoost] = useState(150);
+
+    const [boostModalVisible, setBoostModalVisible] = useState(false);
+
+    const showBoostModal = () => {
+        setBoostModalVisible(true);
+    };
+
+    const handleCancelBoost = () => {
+        setBoostModalVisible(false);
+    };
 
     // Relier le handleBoost avec la gestion des boosts
     function handleBoost() {
-        
+        console.log("coucou");
+        showBoostModal();
     }
 
     return (
         <li key={props.key}>
-            <img
-                className="w-full rounded-2xl object-fill"
-                // className="aspect-[3/2] w-full rounded-2xl object-cover"
-                src={props.mainPicture}
-                alt="Profile's Image"
-            />
+            <Modal
+                onCancel={() => handleCancelBoost()}
+                visible={boostModalVisible}
+                footer={null}
+            >
+                <Boost name={props.displayName}/>
+            </Modal>
+            
+            <Image className="w-full rounded-2xl object-fill" 
+                    // className="aspect-[3/2] w-full rounded-2xl object-cover"
+                     src={props.mainPicture} width={30} height={30} alt="Profile's Image"> </Image>
+
             <h3 className="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-900">
                 {props.displayName}
             </h3>
@@ -81,6 +103,7 @@ export default function ProfileCard(props: propsStyle) {
                     <div className="flex">
                         <div
                             className="hover:bg-gray-200 p-1 space-x-2 rounded-lg cursor-pointer"
+                            onClick={handleBoost}
                         >
                             <svg
                                 // className="cursor-auto"

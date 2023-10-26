@@ -7,13 +7,11 @@ import Validation from "@/components/site/validationform";
 import Example from "@/components/members/membersnavbar";
 import MembersNavBar from "@/components/members/membersnavbar";
 import UserProfilDisplay from "@/components/members/userprofildisplay";
+// import UserProfilDisplayMock from "@/components/members/userprofildisplayMockTest";
 import FileInputComponent from "@/components/common/image_test";
 import ProfilesAll from "@/components/site/profilesall";
-import ProfileCard from "@/components/site/profilecard";
-import { useAppSelector } from "@/redux/store";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { logIn } from "@/redux/features/auth-slice";
+// import Example from "@/components/members/membersnavbar";
+import Dashboard from "@/components/members/dashboard";
 
 export default function Test() {
 
@@ -73,11 +71,11 @@ if(profilData.length){
     <main>
       
       <div>
-        {userCard}
+         <FileInputComponent />
       </div>
 
       <div>
-
+        
       </div>
       
     </main>
