@@ -2,20 +2,17 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState, useEffect } from 'react'
-import BoostDisplay from '../site/boostdisplay'
 import { useAppSelector } from '@/redux/store'
 import { useRouter } from 'next/navigation'
 
 
 export default function UserProfilDisplay(props:any){
-    // console.log('props:',props)
-    return(
-        <div>
-            {props.neo}
-        </div>
-    )
+    console.log('props:',props)
+    // return(
+    //     <div></div>
+    // )
     const router = useRouter()
-
+// 
 
     //mockData for testing
     // const props:any = [
@@ -58,63 +55,63 @@ export default function UserProfilDisplay(props:any){
     //Partie concernant le content Fiche
     //Afficher la liste des strengths renseignés mis à part pour possible futur ajout d'icone
     let strengths
-    if(props.strengths){
-        strengths = props.strengths
+    if(props.profilData.strengths){
+        strengths = props.profilData.strengths
     }
 
 
     //afficher la section video uniquement si uploadée
     let video
-    if(props.mainVideo){
-        video = <video src={props.mainVideo}></video>    
+    if(props.profilData.mainVideo){
+        video = <video src={props.profilData.mainVideo}></video>    
     }
 
     //affichage des réseaux remplis par l'utilisateur uniquement
     const reseaux = []
-    if(props.socialLinkedIn){
-        reseaux.push(<Link href={props.socialLinkedIn}>
+    if(props.profilData.socialLinkedIn){
+        reseaux.push(<Link href={props.profilData.socialLinkedIn}>
             <Image
-                src ={require('../../public/linkedinIcon.svg')}
+                src ='/linkedinIcon.svg'
                 width={15}
                 height={15}
                 alt='LinkedIn profile logo'
             />
         </Link>)
     }
-    if(props.socialFacebook){
-        reseaux.push(<Link href={props.socialFacebook}>
+    if(props.profilData.socialFacebook){
+        reseaux.push(<Link href={props.profilData.socialFacebook}>
             <Image
-                src ={require('../../public/facebookIcon.svg')}
+                src ='/facebookIcon.svg'
                 width={15}
                 height={15}
                 alt='Facebook profile logo'
             />
         </Link>)
     }
-    if(props.socialInstagram){
-        reseaux.push(<Link href={props.socialInstagram}>
+    if(props.profilData.socialInstagram){
+        reseaux.push(<Link href={props.profilData.socialInstagram}>
             <Image
-                src ={require('../../public/instagramIcon.svg')}
+                src ='/public/instagramIcon.svg'
                 width={15}
                 height={15}
                 alt='Instagram profile logo'
             />
         </Link>)
     }
-    if(props.socialYoutube){
-        reseaux.push(<Link href={props.socialYoutube}>
+    if(props.profilData.socialYoutube){
+        reseaux.push(<Link href={props.profilData.socialYoutube}>
             <Image
-                src ={require('../../public/youtubeIcon.svg')}
+                src ='/youtubeIcon.svg'
                 width={15}
                 height={15}
                 alt='Youtube profile logo'
             />
         </Link>)
     }
-    if(props.socialTweeter){
-        reseaux.push(<Link href={props.socialTweeter}>
+    if(props.profilData.socialTweeter){
+        reseaux.push(<Link href={props.profilData.socialTweeter}>
             <Image
-                src ={require('../../public/tweetIcon.svg')}
+                src ='/tweetIcon.svg'
                 width={15}
                 height={15}
                 alt='Tweeter profile logo'
@@ -125,10 +122,10 @@ export default function UserProfilDisplay(props:any){
     //Affichage des boutons si les actions sont possibles
 
     const contactActions = []
-    if(props.cards[0].website){
-        contactActions.push(<button onClick={()=>router.push(`/${props.cards[0].website}`)}>En savoir plus</button>)
+    if(props.profilData.cards[0].website){
+        contactActions.push(<button onClick={()=>router.push(`/${props.profilData.cards[0].website}`)}>En savoir plus</button>)
     }
-    // if(props.agenda){
+    // if(props.profilData.agenda){
     //     contactActions.push( <button onClick={()=>handleAppointment()}>Prendre rendez-vous</button> )
     // }
 
@@ -157,7 +154,7 @@ export default function UserProfilDisplay(props:any){
 
                         <div>
                             <h2 className='text-2xl font-bold tracking-wide text-gray-900'>Présentation</h2>
-                            <p className='text-base leading-7 text-gray-700'>{props.cards[0].description}</p>
+                            <p className='text-base leading-7 text-gray-700'>{props.profilData.cards[0].description}</p>
                         </div>
                     </div>
                 
@@ -170,8 +167,8 @@ export default function UserProfilDisplay(props:any){
         case 'About':
             content = 
                  <div>
-                    <h2 className='text-2xl font-bold tracking-wide text-gray-900'>À propos de {props.cards[0].displayName}</h2>
-                    <p className='text-base leading-7 text-gray-700'>{props.about}</p>
+                    <h2 className='text-2xl font-bold tracking-wide text-gray-900'>À propos de {props.profilData.cards[0].displayName}</h2>
+                    <p className='text-base leading-7 text-gray-700'>{props.profilData.about}</p>
                  </div>
         break;
 
@@ -179,7 +176,7 @@ export default function UserProfilDisplay(props:any){
         case 'Legals':
             content = 
             <div  className='text-base leading-7 text-gray-700'>
-                {props.legalinfos}
+                {props.profilData.legalinfos}
             </div>
                  
         break;
@@ -192,7 +189,7 @@ export default function UserProfilDisplay(props:any){
 
                         <div>
                             <h2 className='text-2xl font-bold tracking-wide text-gray-900'>Présentation</h2>
-                            <p className='text-base leading-7 text-gray-700'>{props.cards[0].description}</p>
+                            <p className='text-base leading-7 text-gray-700'>{props.profilData.cards[0].description}</p>
                         </div>
                     </div>
                 
@@ -211,7 +208,7 @@ export default function UserProfilDisplay(props:any){
                 <div className='flex'>
                     <div className='pr-6'>
                         <Image
-                        src={props.mainPicture}
+                        src={props.profilData.mainPicture}
                         width={80}
                         height={80}
                         alt='photo of the profile'
@@ -220,29 +217,30 @@ export default function UserProfilDisplay(props:any){
                     </div>
                         
                     <div className='pr-6'>
-                        <h2 className='text-2xl font-bold tracking-wide text-gray-900'>{props.cards[0].displayName}</h2>
-                        <p>{props.cards[0].title}</p>
-                        <p>{props.cards[0].organisation}</p>
-                        <p>{props.jobCategories} {props.jobSubCategories}</p>
-                        <p>{props.countries} {props.cities}</p>
+                        <h2 className='text-2xl font-bold tracking-wide text-gray-900'>{props.profilData.cards[0].displayName}</h2>
+                        <p>{props.profilData.cards[0].title}</p>
+                        <p>{props.profilData.cards[0].organisation}</p>
+                        <p>{props.profilData.jobCategories} {props.profilData.jobSubCategories}</p>
+                        <p>{props.profilData.countries} {props.profilData.cities}</p>
                         <p>Code Neo : {props.neo}</p>
 
                     </div>
                     <div className='pr-6 flex flex-col justify-center'>
                         <Image
-                        src={require('../../public/linkedinIcon.svg')}
+                        src='/linkedinIcon.svg'
                         width={20}
                         height={20}
                         alt='boost icon'
                         />
-                        <p>Boosts : {props.boosts.length}</p>
-                        {/*  */}
+                       
+                        {/*  <p>Boosts : {props.profilData.boosts.length}</p> */}
                         <Image
-                        src={require('../../public/linkedinIcon.svg')}
+                        src='../../public/linkedinIcon.svg'
                         width={20}
                         height={20}
                         alt='alert icon'
-                        /><p>Signalements : {props.alerts.length}</p>
+                        />
+                        {/* <p>Signalements : {props.profilData.alerts.length}</p> */}
                         
                     </div>
             </div>
@@ -255,7 +253,7 @@ export default function UserProfilDisplay(props:any){
             </div>
 
             {/* Fiche / A propos / Info légales */}
-            <div>
+            <div className='pb-6'>
                 <button 
                 className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 onClick={()=>setContentShown('Fiche')}>Présentation</button>

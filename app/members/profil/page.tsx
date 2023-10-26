@@ -12,25 +12,24 @@ export default function ProfilUser() {
 
     const user = useAppSelector((state)=>state.authReducer.value)
 
-    let [profilData,setProfilData] = useState([])
+    const [profilData,setProfilData] = useState([])
     const [neo,setNeo] =useState('')
     const [boosts,setBoosts] = useState([])
     const [alerts,setAlerts] = useState([])
-
+  
     const getprofilData = async () => {
-        const result = await fetch (`/profiles/${user.proUid}`)
+        const result = await fetch (`${process.env.backendserver}/profiles/${user.proUid}`)
         const data = await result.json()
-        console.log('profilData : ',data)
+        data.splice(0,1)
         setProfilData(data)
     }
-
+  
     const getUserNeo = async () => {
-        const result = await fetch(`/users/${user.usrUid}`)
+        const result = await fetch(`${process.env.backendserver}/users/${user.usrUid}`)
         const userData = await result.json()
-        console.log('userData : ',userData)
-        setNeo(userData.neoCode)
+        setNeo(userData[1].neocode)
     }
-
+  
     // const getProfilBoosts = async () => {
     //     const result = await fetch(`/boosts/${user.proUid}`)
     //     data = await result.json()
@@ -41,8 +40,9 @@ export default function ProfilUser() {
     //     data = await result.json()
     //     setAlerts(data)
     // }
-
+  
     useEffect(()=>{
+        // dispatch(logIn({userUid:'usr2023102623866', proUid:'pro2023102527605'}))
         getprofilData()
         // getProfilAlerts()
         // getProfilBoosts()
@@ -52,6 +52,17 @@ export default function ProfilUser() {
     console.log('profilData : ',profilData)
     console.log('neoCode : ',neo)
 
+    let profilDisplay = <></>
+
+    if(profilData.length){
+      console.log("profilD in if", profilData);
+      
+      profilDisplay =  <UserProfilDisplay
+                profilData={profilData[0]}
+                neo={neo}
+             />
+    }
+
     return (
         <main>
             <div>
@@ -59,10 +70,7 @@ export default function ProfilUser() {
             </div>
 
             <div>
-                <UserProfilDisplay
-                profilData={profilData}
-                neo={neo}
-                />
+                {profilDisplay}
             </div>
             
             <div>
