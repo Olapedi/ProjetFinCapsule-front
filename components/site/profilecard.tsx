@@ -44,7 +44,7 @@ export default function ProfileCard(props: propsStyle) {
                 visible={boostModalVisible}
                 footer={null}
             >
-                <Boost />
+                <Boost name={props.displayName}/>
             </Modal>
 
             <img

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import Image from 'next/image';
 // import styles from '../styles/SignUp.module.css';
 
-function Boost() {
+function Boost(props) {
     // const dispatch = useDispatch();
     // const user = useSelector((state) => state.user.value);
 
@@ -15,9 +15,9 @@ function Boost() {
     //   router.push('/home');
     // }
 
-    // const [firstName, setFirstName] = useState('');
-    // const [username, setUsername] = useState('');
-    // const [password, setPassword] = useState('');
+    const [category, setCategory] = useState('');
+    const [subCategory, setSubCategory] = useState('');
+    const [boostDescription, setBoostDescription] = useState('');
 
     // const handleSubmit = () => {
     //   fetch('http://localhost:3000/users/signup', {
@@ -34,7 +34,7 @@ function Boost() {
         <div className="flex flex-col space-y-3">
             {/* <Image src="/logo.png" alt="Logo" width={50} height={50} /> */}
             <h3 className="text-lg font-semibold leading-8 tracking-tight text-gray-900">
-                Vous avez ajouté un Boost
+                Ajoutez un Boost à {props.name}
             </h3>
             <h2 className="text-base leading-7 text-gray-600">
                 Donnez-nous un peu de contexte
@@ -42,22 +42,22 @@ function Boost() {
             <input
                 type="text"
                 className=""
-                onChange={(e) => console.log(e)}
-                value={""}
+                onChange={(e) => setCategory(e.target.value)}
+                value={category}
                 placeholder="Catégorie"
             />
             <input
                 type="text"
                 className=""
-                onChange={(e) => console.log(e)}
-                value={""}
+                onChange={(e) => setSubCategory(e.target.value)}
+                value={subCategory}
                 placeholder="Sous-catégorie"
             />
             <input
                 type="text"
-                className="h-40 align-top"
-                onChange={(e) => console.log(e)}
-                value={""}
+                className="h-40 align-top "
+                onChange={(e) => setBoostDescription(e.target.value)}
+                value={boostDescription}
                 placeholder="Informations sur votre Boost"
             />
             <div className="flex justify-center">
