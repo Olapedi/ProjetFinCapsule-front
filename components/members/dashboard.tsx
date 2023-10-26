@@ -55,7 +55,6 @@ function classNames(...classes: any) {
 export default function Dashboard() {
   
   const user = useAppSelector((state) => state.authReducer.value)
-  const [profilData, setProfilData] = useState<any>()
 
   // const getProfilData = async () => {
   //   console.log('hello world getProfilData')
@@ -362,11 +361,15 @@ export default function Dashboard() {
                           {({ active }) => (
                             <a
                               href={item.href}
+                              onClick={() => {
+                                if (item.name === "Déconnexion") {
+                                  handleLogOut();
+                                }
+                              }}
                               className={classNames(
                                 active ? 'bg-gray-50' : '',
                                 'block px-3 py-1 text-sm leading-6 text-gray-900'
                               )}
-                            // if(item.name === 'Déconnexion'){onClick={handlelogout}}
                             >
                               {item.name}
                             </a>
