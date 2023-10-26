@@ -1,19 +1,18 @@
-import { useState } from "react";
+import { useState, useId } from "react";
 import { useRouter } from "next/router";
 // import { useDispatch, useSelector } from "react-redux";
 // import { login } from '../reducers/user';
 // import Image from 'next/image';
 // import styles from '../styles/SignUp.module.css';
-
+import Select from "react-select";
 
 type propsStyle = {
-  name: String,
-  profileOwner : String,
-  sender : String,
-  receiver : String,
-  confirmOk: any,
-}
-
+    name: String;
+    profileOwner: String;
+    sender: String;
+    receiver: String;
+    confirmOk: any;
+};
 
 function Boost(props: propsStyle) {
     // const dispatch = useDispatch();
@@ -28,11 +27,31 @@ function Boost(props: propsStyle) {
     const [category, setCategory] = useState("");
     const [subCategory, setSubCategory] = useState("");
     const [testimonial, setTestimonial] = useState("");
-    let [boostDelivered, setBoostDelivered] = useState("")
+    let [boostDelivered, setBoostDelivered] = useState("");
+
+    const categoryOptions = [
+        { label: "collaborateur", value: "collaborateur" },
+        { label: "fournisseur", value: "fournisseur" },
+        { label: "client", value: "client" },
+        { label: "autre", value: "autre" },
+    ];
+
+    const subCategoryOptions = [
+      { label: "sous-catégorie 1", value: "sous-catégorie 1" },
+      { label: "sous-catégorie 2", value: "sous-catégorie 2" },
+      { label: "sous-catégorie 3", value: "sous-catégorie 3" },
+  ]
+
+    const handleCategoryChange = (selection: any) => {
+        setCategory(selection.value);
+    };
+
+    const handleSubCategoryChange = (selection: any) => {
+        setSubCategory(selection.value);
+    };
 
     // Soumission du Boost au back
     const handleSubmit = () => {
-
         // console.log("=============================")
         // console.log("category =>", category)
         // console.log("subCategory =>", subCategory)
@@ -41,13 +60,14 @@ function Boost(props: propsStyle) {
         // console.log("props.receiver =>", props.receiver.proUid)
         // console.log("testimonial =>", testimonial)
         // console.log("=============================")
+        // setBoostDelivered(category)
 
-        const usrUidMock = "usr2023102552112"
-        const proUidMock = "pro2023102527605"
+        const usrUidMock = "usr2023102552112";
+        const proUidMock = "pro2023102527605";
 
         // Remplacer les usrUidMock et proUidMock quand l'identificaiton sera active sur le site
         fetch(`${process.env.backendserver}/boosts/new`, {
-          // fetch(`http://localhost:3000/boosts/new`, {
+            // fetch(`http://localhost:3000/boosts/new`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -64,8 +84,14 @@ function Boost(props: propsStyle) {
             .then((response) => response.json())
             .then((data) => {
                 // console.log(data);
-                setBoostDelivered("Votre boost a bien été attribué")
-                props.confirmOk(true)
+                if (data[0].result) {
+                    setBoostDelivered("Votre boost a bien été attribué");
+                    props.confirmOk(true);
+                } else {
+                    setBoostDelivered(
+                        "Votre boost n'a pas pu être attribué - Vérifiez que tous les champs sont remplis ou contactez le support"
+                    );
+                }
             });
     };
 
@@ -79,20 +105,39 @@ function Boost(props: propsStyle) {
             <h2 className="text-base leading-7 text-gray-600">
                 Donnez-nous un peu de contexte
             </h2>
-            <input
+            <Select
+                options={categoryOptions}
+                placeholder={`Catégorie`}
+                autoFocus={true}
+                onChange={handleCategoryChange}
+                instanceId={useId()}
+                // value={category}
+            />
+            {/* {category} */}
+            {/* <Select options={countriesoptions} onChange={handelCountryChange} value={country} instanceId={useId()}/> */}
+            {/* <input
                 type="text"
                 className=""
                 onChange={(e) => setCategory(e.target.value)}
                 value={category}
                 placeholder="Catégorie"
+            /> */}
+            <Select
+                options={subCategoryOptions}
+                placeholder={`Sous-catégorie`}
+                autoFocus={false}
+                onChange={handleSubCategoryChange}
+                instanceId={useId()}
+                // value={subCategory}
             />
-            <input
+
+            {/* <input
                 type="text"
                 className=""
                 onChange={(e) => setSubCategory(e.target.value)}
                 value={subCategory}
                 placeholder="Sous-catégorie"
-            />
+            /> */}
             <textarea
                 className="h-40 align-top"
                 onChange={(e) => setTestimonial(e.target.value)}
