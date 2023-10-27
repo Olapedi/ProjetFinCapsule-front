@@ -7,7 +7,6 @@ import countries from "../../neoney_datas/countries.json";
 import Select from "react-select";
 import { useRouter } from "next/navigation";
 
-
 export default function EventForm() {
     //Date de maintenant
     let date = new Date();
@@ -101,16 +100,16 @@ export default function EventForm() {
             // dateBegin !== ""
             true
         ) {
-            // const event = {
-            //     token: 'tT0nqgfZNInZV7bAcwFuF9-A7tTaIsln',
-            //     title: title,
-            //     shortDescription: preview,
-            //     longDescription: description,
-            //     startDate: dateBegin,
-            //     endDate: dateEnd,
-            //     country: country.value,
-            //     city: city.value
-            // }
+            const event:any = {
+                token: "tT0nqgfZNInZV7bAcwFuF9-A7tTaIsln",
+                title: title,
+                shortDescription: preview,
+                longDescription: description,
+                startDate: dateBegin,
+                endDate: dateEnd,
+                country: country.value,
+                city: city.value,
+            };
 
             // const result = await fetch(`${process.env.backendserver}/events/new`, {
             //     method: 'POST',
@@ -121,13 +120,19 @@ export default function EventForm() {
             // })
 
             newForm.append("picture", image, image.name);
-            newForm.append("text", text);
+            for (let prop in event) {
+                newForm.append(prop, event[prop]);
+            }
+            // newForm.append("text", text);
             // const response = await fetch(`${process.env.backendserver}/upload`, {
             // const response = await fetch(`http://localhost:3000/upload`, {
-            const response = await fetch(`http://localhost:3000/events/newformdata`, {
-                method: "POST",
-                body: newForm,
-            });
+            const response = await fetch(
+                `http://localhost:3000/events/newformdata`,
+                {
+                    method: "POST",
+                    body: newForm,
+                }
+            );
             const photoUri = await response.json();
             console.log(photoUri);
 
@@ -137,7 +142,7 @@ export default function EventForm() {
             // if (datareceived[0].result == true) {
             //     const eventCreate = datareceived[1];
 
-            //     setEventId(eventCreate.evtUid);
+            // setEventId(eventCreate.evtUid);
             // } else {
             //     setError(datareceived[0].message);
             // }
