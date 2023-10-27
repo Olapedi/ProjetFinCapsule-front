@@ -7,6 +7,7 @@ import countries from "../../neoney_datas/countries.json";
 import Select from "react-select";
 import { useRouter } from "next/navigation";
 
+
 export default function EventForm() {
     //Date de maintenant
     let date = new Date();
@@ -122,7 +123,8 @@ export default function EventForm() {
             newForm.append("picture", image, image.name);
             newForm.append("text", text);
             // const response = await fetch(`${process.env.backendserver}/upload`, {
-            const response = await fetch(`http://localhost:3000/upload`, {
+            // const response = await fetch(`http://localhost:3000/upload`, {
+            const response = await fetch(`http://localhost:3000/events/newformdata`, {
                 method: "POST",
                 body: newForm,
             });
