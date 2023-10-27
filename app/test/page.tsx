@@ -12,6 +12,8 @@ import ProfilesAll from "@/components/site/profilesall";
 import Example from "@/components/site/testDropdownMenu";
 import Dashboard from "@/components/members/dashboard";
 import FileInputComponent from "@/components/common/image_test";
+import EventForm_formData from "@/components/site/eventform_formData";
+import EventForm from "@/components/site/eventform";
 
 export default function Test() {
 
@@ -21,7 +23,7 @@ export default function Test() {
     <main>
       
       <div>
-         <FileInputComponent />
+         <EventForm_formData />
       </div>
 
       <div>

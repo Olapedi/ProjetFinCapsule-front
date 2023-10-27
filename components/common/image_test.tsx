@@ -35,7 +35,7 @@ export default function FileInputComponent() {
 
     console.log('img',image)
     const  handlePost = async () =>{
-        newForm.append('mainPicture',image , image.name)
+        newForm.append('picture',image , image.name)
         newForm.append('text', text)
         // const response = await fetch(`${process.env.backendserver}/upload`, {
             const response = await fetch(`http://localhost:3000/upload`, {
