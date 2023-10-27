@@ -14,8 +14,8 @@ export default function FileInputComponent() {
             formData.append('photoFromFront', selectedFile, selectedFile.name);
             console.log(formData)
 
-            // const response = await fetch(`${process.env.backendserver}/upload`, {
-            const response = await fetch(`http://localhost:3000/upload`, {
+            const response = await fetch(`${process.env.backendserver}/upload`, {
+            // const response = await fetch(`http://localhost:3000/upload`, {
                 method: "POST",
                 body: formData,
             });
