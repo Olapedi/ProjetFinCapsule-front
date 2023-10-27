@@ -17,62 +17,57 @@ export default function Validation() {
     const [jobSubCategories, setJobSubCategories] = useState<string>('')
     const [error, setError] = useState<string>('')
     const [website, setWebsite] =useState<string>('http://')
-    const [avatarURI, setAvatarURI] = useState<string>('');
-    const [avatarType, setAvatarType] = useState<string>('')
-    const [avatarName, setAvatarName] = useState<string>('')
-
+    const [picture, setPicture] = useState();
 
     const dispatch = useDispatch()
     const user = useAppSelector((state) => state.authReducer.value)
+    const formData = new FormData();
 
     //selector for the image
-    const handleImageSelect = (event:any) => {
-      const selectedFile = event.target.files?.[0];
-  
+    async function handleImageSelect(e: any) {
+      const selectedFile = await e.target.files[0];
+      console.log(selectedFile);
       if (selectedFile) {
-        const uri = URL.createObjectURL(selectedFile);
-        setAvatarURI(uri);
-        setAvatarType(selectedFile.type)
-        setAvatarName(selectedFile.name)
+          formData.append('photoFromFront', selectedFile, selectedFile.name);
+          setPicture(selectedFile)
       }
-    };
+  }
       
-
-    // form submit to modify the profile in DB
+    //button action form submit to modify the profile in DB
     const handleSubmit = async () =>{
       const req = await fetch(`${process.env.backendserver}/users/${user.usrUid}`)
       const tempRes = await req.json()
-      console.log('tempRes',tempRes)
-        if(displayName && activationCode && description && organization && jobCategories && jobSubCategories){
+
+      if(displayName && activationCode && description && organization && jobCategories && jobSubCategories){
           // formData to handle sending file to the backend
-          // const formData = new FormData();
-          //   formData.append('displayName', displayName);
-          //   formData.append('validationCode', validationCode);
-          //   formData.append('description', description);
-          //   formData.append('avatar', {name : avatarName, type : avatarType, uri : avatarURI})
-          //   formData.append('organization', organization);
-          //   formData.append('title', title);
-          //   formData.append('jobCategory', jobCategory);
-          //   formData.append('jobSubCategories', JSON.stringify(jobSubCategories));
-          //   formData.append('usrUid', user.usrUid);
-          //   formData.append('phone', tempRes.phone);
-          //   formData.append('email', tempRes.email);  
+            formData.append('displayName', displayName);
+            formData.append('activationCode', activationCode);
+            formData.append('description', description);
+            formData.append('picture', picture, picture.name)
+            formData.append('organization', organization);
+            formData.append('title', title);
+            formData.append('jobCategories', jobCategories);
+            formData.append('jobSubCategories', JSON.stringify(jobSubCategories));
+            formData.append('website', website)
+            formData.append('usrUid', user.usrUid);
+            formData.append('phone', tempRes.phone);
+            formData.append('email', tempRes.email);  
           // console.log(formData)
           
-          const data = {
-                displayName,
-                activationCode,
-                description,
-                organization,
-                title,
-                jobCategories,
-                jobSubCategories,
-                usrUid : user.usrUid,
-                website: website,
-                phone: tempRes[1].phone,
-                email: tempRes[1].email,
-            }
-            console.log('data',data)
+          // const data = {
+          //       displayName,
+          //       activationCode,
+          //       description,
+          //       organization,
+          //       title,
+          //       jobCategories,
+          //       jobSubCategories,
+          //       usrUid : user.usrUid,
+          //       website: website,
+          //       phone: tempRes[1].phone,
+          //       email: tempRes[1].email,
+          //   }
+            console.log('data',formData)
 
             const request = await fetch(`${process.env.backendserver}/users/activate`, {
                 method: 'POST',
@@ -189,14 +184,10 @@ export default function Validation() {
               <div className="mt-2 flex items-center gap-x-3">
                 <UserCircleIcon className="h-12 w-12 text-gray-300" aria-hidden="true" />
                 <input 
-                  type="file"
-                   id="fileInput"
-                   className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                   accept="image/*"
-                   onChange={(e) => {handleImageSelect(e)}}
-                   />
-                   {avatarURI && <Image src = {avatarURI} width={20} height={20} alt="Selected Image"> </Image>}
-
+                type="file"
+                className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                onChange={handleImageSelect} />
+                
               </div>
             </div>
 

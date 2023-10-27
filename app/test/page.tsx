@@ -21,7 +21,7 @@ export default function Test() {
     <main>
       
       <div>
-         <FileInputComponent />
+         <Validation />
       </div>
 
       <div>
