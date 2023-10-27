@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Modal } from "antd";
 import Boost from "./boost";
 import { useAppSelector } from '@/redux/store'
+import { useRouter } from "next/navigation";
+
 
 
 
@@ -29,6 +31,7 @@ export default function ProfileCard(props: propsStyle) {
     let [nbBoost, setNbBoost] = useState(150);
     const [boostModalVisible, setBoostModalVisible] = useState(false);
     const currentUserId = useAppSelector(state => state.authReducer.value.usrUid)
+    const router = useRouter();
 
 
     const showBoostModal = () => {
@@ -42,6 +45,10 @@ export default function ProfileCard(props: propsStyle) {
     // Relier le handleBoost avec la gestion des boosts
     function handleBoost() {
         showBoostModal();
+    }
+
+    function handleConsult() {
+        router.push(`/profiles/${props.proUid}`)
     }
 
     function confirmOk(boostInDB:Boolean) {
@@ -150,6 +157,7 @@ export default function ProfileCard(props: propsStyle) {
                     <button
                         type="button"
                         className="mr-5 h-8 rounded-full bg-indigo-600 px-2.5 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        onClick={handleConsult}
                         // className="mr-5 rounded bg-indigo-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                         consulter
