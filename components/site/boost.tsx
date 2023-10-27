@@ -87,6 +87,9 @@ function Boost(props: propsStyle) {
                 if (data[0].result) {
                     setBoostDelivered("Votre boost a bien été attribué");
                     props.confirmOk(true);
+                    setCategory("")
+                    setSubCategory("")
+                    setTestimonial("")
                 } else {
                     setBoostDelivered(
                         "Votre boost n'a pas pu être attribué - Vérifiez que tous les champs sont remplis ou contactez le support"
@@ -113,8 +116,6 @@ function Boost(props: propsStyle) {
                 instanceId={useId()}
                 // value={category}
             />
-            {/* {category} */}
-            {/* <Select options={countriesoptions} onChange={handelCountryChange} value={country} instanceId={useId()}/> */}
             {/* <input
                 type="text"
                 className=""
@@ -130,7 +131,6 @@ function Boost(props: propsStyle) {
                 instanceId={useId()}
                 // value={subCategory}
             />
-
             {/* <input
                 type="text"
                 className=""

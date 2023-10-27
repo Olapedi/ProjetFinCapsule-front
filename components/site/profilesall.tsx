@@ -3,13 +3,12 @@
 import ProfileCard from "./profilecard";
 import { useState, useEffect } from "react";
 
-
 export default function ProfilesAll() {
     // Etat pour contenir les profils
     let [profiles, setProfiles] = useState<string[]>([]);
     let [messageVisible, setMessageVisible] = useState<Boolean>(false);
     let [search, setSearch] = useState<String>("");
-    const message = "Pas de profil trouvé pour cette recherche";
+    const message = "Aucun profil trouvé pour cette recherche";
 
     // Récupération des données au mount du composant
     useEffect(() => {
@@ -23,10 +22,27 @@ export default function ProfilesAll() {
     }, []);
 
     // Fonction gérant la recherche (onClick)
-    function handleClick() {
-        // console.log("coucou");
-        setMessageVisible(true);
-        setSearch('')
+    async function handleClick() {
+        if (search) {
+            const resp = await fetch(
+                `${process.env.backendserver}/profiles/displayname/${search}`
+            );
+            let data = await resp.json();
+            if (!data[0].result) {
+                setMessageVisible(true);
+                setProfiles([]);
+            } else {
+                data = data[1];
+                console.log(data);
+                setProfiles(data);
+            }
+            setSearch("");
+        } else {
+            const resp = await fetch(`${process.env.backendserver}/profiles`);
+            let data = await resp.json();
+            data = data.splice(1);
+            setProfiles(data);
+        }
     }
 
     // Tableau de test - uniquement conservé pour l'instant pour récupérer les adresses des photos
@@ -78,14 +94,20 @@ export default function ProfilesAll() {
         for (let card of prof.cards) {
             if (card.isMain) {
                 mainCard = card;
-                mainCard.proUid = prof.proUid
+                mainCard.proUid = prof.proUid;
+
+                // gestion des images... - dans l'attente d'avoir les vraies photos
+                if (prof.mainPicture) {
+                    mainCard.mainPicture = prof.mainPicture;
+                } else if (i < 4) {
+                    mainCard.mainPicture = people[i].imageUrl;
+                } else {
+                    mainCard.mainPicture =
+                        "https://ieminc.org/wp-content/uploads/2016/11/Generic_Image_Missing-Profile.jpg";
+                }
             }
         }
-        let mainPicture: String =
-            "https://ieminc.org/wp-content/uploads/2016/11/Generic_Image_Missing-Profile.jpg";
-        if (i < 4) {
-            mainPicture = people[i].imageUrl;
-        }
+
         return (
             <ProfileCard
                 key={i}
@@ -99,14 +121,15 @@ export default function ProfilesAll() {
                 twitterUrl="#"
                 linkedinUrl="#"
                 // mainPicture="Generic_Image_Missing-Profile.jpg"
-                mainPicture={mainPicture} // dans l'attente d'avoir les vraies photos
+                mainPicture={mainCard.mainPicture}
                 proUid={mainCard.proUid}
             />
         );
     });
 
     return (
-        <div className="bg-white py-24 sm:py-32">
+        // <div className="bg-white py-24 sm:py-32">
+        <div className="bg-white py-6">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl lg:mx-0">
                     <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -121,9 +144,11 @@ export default function ProfilesAll() {
                         type="text"
                         className="w-10/12 rounded-2xl mt-5"
                         placeholder="rechercher un membre"
-                        onChange={(e) => {setMessageVisible(false); setSearch(e.target.value)}}
-                        onKeyUp={(e) => e.key === 'Enter' && handleClick()}
-                        
+                        onChange={(e) => {
+                            setMessageVisible(false);
+                            setSearch(e.target.value);
+                        }}
+                        onKeyUp={(e) => e.key === "Enter" && handleClick()}
                     />
                     <button
                         type="button"

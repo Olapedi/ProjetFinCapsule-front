@@ -8,10 +8,10 @@ import Validation from "@/components/site/validationform";
 import MembersNavBar from "@/components/members/membersnavbar";
 import UserProfilDisplay from "@/components/members/userprofildisplay";
 // import UserProfilDisplayMock from "@/components/members/userprofildisplayMockTest";
-import FileInputComponent from "@/components/common/image_test";
 import ProfilesAll from "@/components/site/profilesall";
 import Example from "@/components/site/testDropdownMenu";
 import Dashboard from "@/components/members/dashboard";
+import FileInputComponent from "@/components/common/image_test";
 
 export default function Test() {
 
@@ -21,7 +21,7 @@ export default function Test() {
     <main>
       
       <div>
-         <Example />
+         <FileInputComponent />
       </div>
 
       <div>
