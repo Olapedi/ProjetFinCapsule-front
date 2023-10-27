@@ -30,11 +30,8 @@ export default function SigninForm() {
       const result = await fetch(`${process.env.backendserver}/users/signin`, {
           method : 'POST', 
           headers : {
-
               'Content-Type':'application/json',
-
-          }, 
-          
+          },   
           body : JSON.stringify(user)
       })
 

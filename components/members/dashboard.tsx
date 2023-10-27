@@ -10,6 +10,7 @@ import { AppDispatch } from "@/redux/store";
 import { useRouter } from 'next/navigation';
 
 import Image from 'next/image';
+import Link from 'next/image';
 
 import {
   Bars3Icon,
@@ -25,24 +26,22 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import { log } from 'console';
-
 
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
-  { name: 'Events', href: '/members/events', icon: CalendarDaysIcon, current: false },
+  { name: 'Dashboard', href: '/members', icon: HomeIcon, current: true },
+  { name: 'Utilisateurs', href: '/members/all', icon: UsersIcon, current: false },
+  // { name: 'Projects', href: '#', icon: FolderIcon, current: false },
+  // { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
+  // { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
+  // { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+  { name: 'Évenements', href: '/events', icon: CalendarDaysIcon, current: false },
 ]
-const teams = [
-  { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-  { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-  { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
-]
+// const teams = [
+//   { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
+//   { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
+//   { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
+// ]
 const userNavigation = [
   { name: 'Mon profil', href: '/members/profil' },
   { name: 'Déconnexion', href: '#' },
@@ -164,7 +163,7 @@ export default function Dashboard() {
                             ))}
                           </ul>
                         </li>
-                        <li>
+                        {/* <li>
                           <div className="text-xs font-semibold leading-6 text-indigo-200">Your teams</div>
                           <ul role="list" className="-mx-2 mt-2 space-y-1">
                             {teams.map((team) => (
@@ -186,7 +185,7 @@ export default function Dashboard() {
                               </li>
                             ))}
                           </ul>
-                        </li>
+                        </li> */}
                         <li className="mt-auto">
                           <a
                             href="#"
@@ -212,14 +211,14 @@ export default function Dashboard() {
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
-            <div className="flex h-16 shrink-0 items-center">
-
-              <Image className="h-8 w-auto"
-                      src='/neoneyW.png' 
-                      width={300} height={300} 
-                      alt='neoney logo'>
-              </Image>
-
+            <div className="flex h-16 shrink-0 items-center justify-center">
+                <a href='/'>
+                  <Image className="h-12 w-auto"
+                          src='/neoneyW.png' 
+                          width={300} height={300} 
+                          alt='neoney logo'
+                    />
+                </a>
             </div>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -249,7 +248,7 @@ export default function Dashboard() {
                     ))}
                   </ul>
                 </li>
-                <li>
+                {/* <li>
                   <div className="text-xs font-semibold leading-6 text-indigo-200">Your teams</div>
                   <ul role="list" className="-mx-2 mt-2 space-y-1">
                     {teams.map((team) => (
@@ -271,8 +270,8 @@ export default function Dashboard() {
                       </li>
                     ))}
                   </ul>
-                </li>
-                <li className="mt-auto">
+                </li> */}
+                {/* <li className="mt-auto">
                   <a
                     href="#"
                     className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white"
@@ -283,7 +282,7 @@ export default function Dashboard() {
                     />
                     Settings
                   </a>
-                </li>
+                </li> */}
               </ul>
             </nav>
           </div>

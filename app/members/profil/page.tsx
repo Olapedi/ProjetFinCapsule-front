@@ -7,6 +7,7 @@ import MembersNavBar from "@/components/members/membersnavbar";
 import UserProfilDisplay from "@/components/members/userprofildisplay";
 import BoostDisplay from "@/components/site/boostdisplay";
 import { useAppSelector } from "@/redux/store";
+import SiteNavbar from "@/components/site/sitenavbar";
 
 export default function ProfilUser() {
 
@@ -69,7 +70,7 @@ export default function ProfilUser() {
     return (
         <main>
             <div>
-                <MembersNavBar />
+                <SiteNavbar />
             </div>
 
             <div>

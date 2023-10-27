@@ -11,7 +11,6 @@ const nextConfig = {
         backendserver: "https://neoneydev1-backend.vercel.app",
         // backendserver: "http://localhost:3000",
 
-
     },
 };
 

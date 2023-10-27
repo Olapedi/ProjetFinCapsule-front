@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import { useAppSelector } from '@/redux/store'
 import { useRouter } from 'next/navigation'
+import { Modal } from "antd";
 
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
@@ -328,11 +329,34 @@ export default function UserProfilDisplay(props:any){
     console.log(props)
     return (
         <div className='m-12' >
+            {/* <Modal
+                onCancel={() => handleCancelBoost()}
+                open={boostModalVisible}
+                footer={null}
+            >
+                <Boost name={props.displayName} profileOwner={currentUserId} sender={currentUserId} receiver={props.proUid} confirmOk={confirmOk}/>
+            </Modal>
+            <Modal
+                onCancel={() => handleCancelBoost()}
+                open={boostModalVisible}
+                footer={null}
+            >
+                <Boost name={props.displayName} profileOwner={currentUserId} sender={currentUserId} receiver={props.proUid} confirmOk={confirmOk}/>
+            </Modal>
+            <Modal
+                onCancel={() => handleCancelBoost()}
+                open={boostModalVisible}
+                footer={null}
+            >
+                <Boost name={props.displayName} profileOwner={currentUserId} sender={currentUserId} receiver={props.proUid} confirmOk={confirmOk}/>
+            </Modal> */}
+
             <div className='text-base leading-7 text-gray-700 flex justify-between rounded-md shadow-sm ring-1 ring-inset ring-gray-300 p-10 mb-4'>
                 <div className='flex'>
                     <div className='pr-6'>
                         <Image
-                        src={props.profilData.mainPicture}
+                        src={'https://static.lacapsule.academy/avatar/64e5dae107f71b001adb6c77.jpg'}
+                        // src={props.profilData.mainPicture}
                         width={80}
                         height={80}
                         alt='photo of the profile'
