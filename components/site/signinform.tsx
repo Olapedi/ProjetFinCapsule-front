@@ -37,26 +37,49 @@ export default function SigninForm() {
 
       const datareceived = await result.json();
 
-      console.log(datareceived);
-
-      if (datareceived[0].result == true) {
+      if (datareceived[0].result) {
+        
               const userSignedIn = datareceived[1];
-              console.log('userSignedIn',userSignedIn)
-              if (userSignedIn.token !== '') {
-                console.log('userUid',userSignedIn.usrUid)
-                const proResult = await fetch(`${process.env.backendserver}/profiles/user/${userSignedIn.usrUid}`)
-                const proData = await proResult.json()
-                console.log('proUid', proData)
 
-                const data = {
-                  token : userSignedIn.token,
-                  usrUid: userSignedIn.usrUid,
-                  isActivated: userSignedIn.isActivated,
-                  isCertified: userSignedIn.isCertified,
+              if (userSignedIn.token !== '') {
+
+                if (userSignedIn.profile.result) {
+
+                  const data = {
+
+                    token : userSignedIn.token,
+                    usrUid : userSignedIn.usrUid,
+                    proUid : userSignedIn.profile.proUid,
+                    displayName : userSignedIn.profile.cards[0].displayName,
+                    isActivated: userSignedIn.isActivated,
+                    isCertified: userSignedIn.isCertified,
+
+                  }
+
+                  dispatch(logIn(data));
+                  console.log(data);
+
+                } else {
+
+                  const data = {
+
+                    token : userSignedIn.token,
+                    usrUid : userSignedIn.usrUid,
+                    proUid : '',
+                    displayName : '',
+                    isActivated: userSignedIn.isActivated,
+                    isCertified: userSignedIn.isCertified,
+
+                  }
+                  
+                  dispatch(logIn(data));
+                  console.log(data);
+
                 }
-                dispatch(logIn(data));
-                proData[0].result && dispatch(chooseProfil({proUid: proData[1].proUid, displayName : proData[1].cards[0].displayName}))
-                router.push('/members')
+
+
+              router.push('/members')
+
               }
 
       } else {

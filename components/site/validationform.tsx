@@ -1,4 +1,5 @@
 'use client'
+
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -6,8 +7,10 @@ import { activate, chooseProfil } from '../../redux/features/auth-slice'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useAppSelector } from '@/redux/store'
+import SiteNavbar from './sitenavbar'
 
 export default function Validation() {
+
     const [displayName, setDisplayName] = useState<string>('')
     const [activationCode, setActivationCode] = useState<string>('')
     const [description, setDescription] = useState<string>('')
@@ -24,21 +27,30 @@ export default function Validation() {
     const formData = new FormData();
 
     //selector for the image
+
     async function handleImageSelect(e: any) {
+
       const selectedFile = await e.target.files[0];
+
       console.log(selectedFile);
+
       if (selectedFile) {
+
           formData.append('photoFromFront', selectedFile, selectedFile.name);
           setPicture(selectedFile)
+
       }
   }
       
     //button action form submit to modify the profile in DB
+
     const handleSubmit = async () =>{
+
       const req = await fetch(`${process.env.backendserver}/users/${user.usrUid}`)
       const tempRes = await req.json()
 
       if(displayName && activationCode && description && organization && jobCategories && jobSubCategories){
+
           // formData to handle sending file to the backend
             formData.append('displayName', displayName);
             formData.append('activationCode', activationCode);
@@ -52,6 +64,7 @@ export default function Validation() {
             formData.append('usrUid', user.usrUid);
             formData.append('phone', tempRes.phone);
             formData.append('email', tempRes.email);  
+
           // console.log(formData)
           
           // const data = {
@@ -67,12 +80,15 @@ export default function Validation() {
           //       phone: tempRes[1].phone,
           //       email: tempRes[1].email,
           //   }
+
             console.log('data',formData)
 
             const request = await fetch(`${process.env.backendserver}/users/activate`, {
+
                 method: 'POST',
                 headers: {'Content-Type' : 'application/json'},
                 body: JSON.stringify(data)
+
             })
     
             const results = await request.json()
@@ -93,13 +109,13 @@ export default function Validation() {
 // console.log('uri',avatarURI)
   return (
     <div className="items-center" style={{display : "flex", flexDirection : 'column'}}>
-        <Link href = "/" > 
-            <span className="sr-only">Neoney</span>
-            <Image src = '/neoney.png' width={200} height={50} alt='Logo Neoney'></Image>
-        </Link>
-      <div className="space-y-8">
+
+            <SiteNavbar />
+            <h1 className="space-y-8 mt-20"> <b> Activez votre compte </b> </h1>
+
+      <div className="space-y-8 mt-20">
         <div className="border-b border-gray-900/10 pb-8">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">Renseignez votre profil</h2>
+          <h2 className="text-base font-semibold leading-7 text-gray-900 mb-10">Renseignez votre profil</h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
           Vous avez reçu un mail avec le code de validation à l&apos;adresse email que vous avez renseigné précédemment.
             <br/>

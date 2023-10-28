@@ -10,9 +10,9 @@ type AuthState = {
 
     token: string,
     usrUid: string,
+    proUid: string, 
     isActivated: boolean,
     isCertified: boolean,
-    proUid: string, 
     displayName: string,
     // plan: string,
 }
@@ -52,8 +52,12 @@ export const auth = createSlice({
                     usrUid: action.payload.usrUid,
                     isActivated : action.payload.isActivated,
                     isCertified: action.payload.isCertified,
-                    proUid: state.value.proUid,
-                    displayName: state.value.displayName,
+                    proUid: action.payload.proUid,
+                    displayName: action.payload.displayName,
+
+                 //   proUid: state.value.proUid,
+                 //   displayName: state.value.displayName,
+                 
                 }
             }
         },

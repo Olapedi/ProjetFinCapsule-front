@@ -24,13 +24,8 @@ export default function Members() {
 
     const dispatch = useDispatch<AppDispatch>();
     const [signup, SetSignup] = useState(false);
-    const auth = useAppSelector((state) => state.authReducer.value)
 
-  console.log('activ', auth.isActivated)
-  console.log('sign', signup)
-  console.log('auth', auth.token)
-  console.log('userUid',auth.usrUid)
-  console.log('profilUid',auth.proUid)
+    const auth = useAppSelector((state) => state.authReducer.value)
 
 
   return (
@@ -40,31 +35,34 @@ export default function Members() {
       
       <div>
 
-        {auth.token && !auth.isActivated && <Validation /> }
+        {(auth.token !== '') && !auth.isActivated && <Validation /> }
 
-        {auth.token && auth.isActivated && <Dashboard /> }
-
+        {(auth.token !== '') && auth.isActivated && <Dashboard /> }
        
         {/*  Partie Formulaire Sign in*/}
 
-        {(((!auth.token) && (signup == false)) && 
+        {(((auth.token == '') && (signup == false)) && 
 
           <div> 
+
             <SigninForm />
+          
           </div>
 
           )}
 
-        {(((!auth.token) && (signup == false)) && 
+        {(((auth.token == '') && (signup == false)) && 
 
+          <div>
           <p className="mt-10 text-center text-sm text-gray-500"> Pas encore de compte ? <span onClick={(e) =>{SetSignup(true);}}>
           <a href = '#' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> S&apos;inscrire </a> </span> </p>
+          </div>
 
           )}
 
       {/* Partie Sign up form */}
 
-        {((!auth.token) && (signup == true) && 
+        {((auth.token == '') && (signup == true) && 
 
           <div>
             <SignupForm />
@@ -72,7 +70,7 @@ export default function Members() {
 
           )}
 
-        {((!auth.token) && (signup == true) && 
+        {((auth.token == '') && (signup == true) && 
 
             <p className="mt-10 text-center text-sm text-gray-500"> Déjà inscrit ? <span onClick={(e) => 
               {

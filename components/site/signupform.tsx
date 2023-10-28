@@ -37,7 +37,7 @@ countries.map((item) => {
 
   countriesoptions.push({
 
-      value: item.iso3, 
+      value: item.name, 
       label : item.name
     
     })
@@ -53,7 +53,7 @@ let cityArray: any = [];
 
 await countries.map((item) => {
 
-  if (item.iso3 == countrySelected.value) {
+  if (item.name == countrySelected.value) {
 
     item.cities.map((item2) => {
 
@@ -116,20 +116,31 @@ const handleSignUp = async () => {
     })
 
     const datareceived = await result.json();
-    console.log('dataReceived :',datareceived)
+
+    console.log('dataReceived :', datareceived)
+    
     if (datareceived[0].result == true) {
 
             const userSignedIn = datareceived[1];
             
             if (userSignedIn.token !== '') {
+
               const data = {
+
                 token : userSignedIn.token,
                 usrUid: userSignedIn.usrUid,
+                proUid: '',
+                displayName : '',
                 isActivated: userSignedIn.isActivated,
                 isCertified: userSignedIn.isCertified,
+                //plan : userSignedIn.plan.plnUid
+
               }
+
               dispatch(logIn(data));
+
               router.push('/members')
+              
             }
 
     } else {
