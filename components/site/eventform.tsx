@@ -7,7 +7,7 @@ import countries from "../../neoney_datas/countries.json";
 import Select from "react-select";
 import { useRouter } from "next/navigation";
 
-export default function EventForm(props) {
+export default function EventForm(props:any) {
     //Date de maintenant
     let date = new Date();
     let year = date.getFullYear();
@@ -36,7 +36,9 @@ export default function EventForm(props) {
     useEffect(() => {
         console.log("eventId =>", eventId)
         if (eventId !== "") {
-            router.push(`/members/events?eventid=${eventId}`);
+            // router.push(`/members/events?eventid=${eventId}`);
+            console.log("From composant EventsForm - eventId =>", eventId)
+            props.displayCreatedEvent(eventId)
         } else if (error === "Token non valide") {
             // console.log(error)
             router.push(`/members`);
@@ -51,7 +53,7 @@ export default function EventForm(props) {
 
     function classNames(...classes: any) {
         let filteredClasses = classes.filter(Boolean).join(' ')
-        console.log("filteredClasses => ", filteredClasses)
+        // console.log("filteredClasses => ", filteredClasses)
         return filteredClasses
       }
       
@@ -91,18 +93,18 @@ export default function EventForm(props) {
     // que le date de fin n'est pas avant la date de début
     function checkAndSetDateEnd(value:String): any {
         let newDateEnd:any = value;
-        console.log("date End =>", value)
+        // console.log("date End =>", value)
         let dE:any = new Date(newDateEnd);
         let dB:any = new Date(dateBegin);
-        console.log("dateEnd - dateBegin =>", dE-dB)
+        // console.log("dateEnd - dateBegin =>", dE-dB)
         if ((dE - dB) <= 0) {
             setDateEnd(newDateEnd);
             messageDateEndVisible.current = true;
-            console.log("messageDateEndVisible.current (true) =>", messageDateEndVisible.current)
+            // console.log("messageDateEndVisible.current (true) =>", messageDateEndVisible.current)
         } else {
             setDateEnd(newDateEnd);
             messageDateEndVisible.current = false;
-            console.log("messageDateEndVisible.current (false) =>", messageDateEndVisible.current)
+            // console.log("messageDateEndVisible.current (false) =>", messageDateEndVisible.current)
         }
     }
 
@@ -150,7 +152,7 @@ export default function EventForm(props) {
         }
     };
 
-    console.log("messageDateEndVisible.current (onMount) =>", messageDateEndVisible.current)
+    // console.log("messageDateEndVisible.current (onMount) =>", messageDateEndVisible.current)
 
     return (
         <div className="mx-auto max-w-2xl">
@@ -324,12 +326,12 @@ export default function EventForm(props) {
             </div>
 
             <div className="mt-6 flex items-center justify-end gap-x-6">
-                <button
+                {/* <button
                     type="button"
                     className="text-sm font-semibold leading-6 text-gray-900"
                 >
                     Annuler
-                </button>
+                </button> */}
                 <button
                     type="submit"
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

@@ -24,14 +24,15 @@ const people = [
   },
 
   {
-    name: 'Jane Cooper',
+    name: 'Mickey',
     key : '3',
-    title: 'Paradigm Representative',
+    title: 'Eastern Egg',
     role: 'Admin',
-    email: 'janecooper3@example.com',
+    email: 'mickey@lacapsule.com',
     telephone: '+1-202-555-0170',
     imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+    'https://3.bp.blogspot.com/-0AM-0MyQTzM/VwvY2yW7hlI/AAAAAAAAHaQ/M8J7igpDPWkoAcCU4zNre5UNhcsDv-q3w/s1600/mikey_mouse.png'
+      // 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
   },
 
 
