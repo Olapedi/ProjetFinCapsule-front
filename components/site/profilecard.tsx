@@ -3,11 +3,8 @@
 import { useState } from "react";
 import { Modal } from "antd";
 import Boost from "./boost";
-import { useAppSelector } from '@/redux/store'
+import { useAppSelector } from "@/redux/store";
 import { useRouter } from "next/navigation";
-
-
-
 
 import Image from "next/image";
 import Link from "next/link";
@@ -30,9 +27,10 @@ type propsStyle = {
 export default function ProfileCard(props: propsStyle) {
     let [nbBoost, setNbBoost] = useState(150);
     const [boostModalVisible, setBoostModalVisible] = useState(false);
-    const currentUserId = useAppSelector(state => state.authReducer.value.usrUid)
+    const currentUserId = useAppSelector(
+        (state) => state.authReducer.value.usrUid
+    );
     const router = useRouter();
-
 
     const showBoostModal = () => {
         setBoostModalVisible(true);
@@ -48,16 +46,15 @@ export default function ProfileCard(props: propsStyle) {
     }
 
     function handleConsult() {
-        router.push(`/profiles/${props.proUid}`)
+        router.push(`/profiles/${props.proUid}`);
     }
 
-    function confirmOk(boostInDB:Boolean) {
+    function confirmOk(boostInDB: Boolean) {
         if (boostInDB) {
-            setNbBoost(nbBoost+1)
-            setTimeout(() => setBoostModalVisible(false), 1500)
+            setNbBoost(nbBoost + 1);
+            setTimeout(() => setBoostModalVisible(false), 1000);
         }
     }
-
 
     return (
         <li key={props.key}>
@@ -66,20 +63,31 @@ export default function ProfileCard(props: propsStyle) {
                 open={boostModalVisible}
                 footer={null}
             >
-                <Boost name={props.displayName} profileOwner={currentUserId} sender={currentUserId} receiver={props.proUid} confirmOk={confirmOk}/>
+                <Boost
+                    name={props.displayName}
+                    profileOwner={currentUserId}
+                    sender={currentUserId}
+                    receiver={props.proUid}
+                    confirmOk={confirmOk}
+                />
             </Modal>
-            
-            <Image className="w-full rounded-2xl object-fill" 
-                    // className="aspect-[3/2] w-full rounded-2xl object-cover"
-                     src={props.mainPicture} width={1000} height={1000} alt="Profile's Image"/>
+
+            <Image
+                className="w-full rounded-2xl object-fill"
+                // className="aspect-[3/2] w-full rounded-2xl object-cover"
+                src={props.mainPicture}
+                width={1000}
+                height={1000}
+                alt="Profile's Image"
+            />
 
             <h3 className="mt-6 text-lg font-semibold leading-8 tracking-tight text-gray-900">
                 {props.displayName}
             </h3>
             <p className="text-base leading-7 text-gray-600">{props.title}</p>
-            <div className="flex justify-between border-black items-end">
+            <div className="flex justify-start border-black items-end">
                 <div>
-                    <ul role="list" className="mt-6 flex gap-x-6">
+                    {/* <ul role="list" className="mt-6 flex gap-x-6">
                         <li>
                             <a
                                 href={props.twitterUrl}
@@ -116,9 +124,9 @@ export default function ProfileCard(props: propsStyle) {
                                 </svg>
                             </a>
                         </li>
-                    </ul>
+                    </ul> */}
                 </div>
-                <div className="flex w-100 space-x-3 mr-3 items-center">
+                <div className="flex w-90 space-x-3 items-center">
                     <div className="flex">
                         <div
                             className="hover:bg-gray-200 p-1 space-x-2 rounded-lg cursor-pointer"
@@ -161,7 +169,7 @@ export default function ProfileCard(props: propsStyle) {
                         onClick={handleConsult}
                         // className="mr-5 rounded bg-indigo-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
-                        consulter
+                        voir
                     </button>
                 </div>
             </div>
