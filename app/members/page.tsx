@@ -19,6 +19,7 @@ import { logIn, logOut } from '@/redux/features/auth-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from "@/redux/store";
 import  Validation from '../../components/site/validationform'
+import MemberDashboard from '@/components/members/memberdashboard'
 
 export default function Members() {
 
@@ -37,7 +38,15 @@ export default function Members() {
 
         {(auth.token !== '') && !auth.isActivated && <Validation /> }
 
-        {(auth.token !== '') && auth.isActivated && <Dashboard /> }
+        {(auth.token !== '') && auth.isActivated && 
+        
+        <div> 
+          
+          <MemberDashboard /> 
+          
+        </div> 
+
+        }
        
         {/*  Partie Formulaire Sign in*/}
 

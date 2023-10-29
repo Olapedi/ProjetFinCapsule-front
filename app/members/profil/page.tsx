@@ -3,7 +3,7 @@
 
 import SiteFooter from "@/components/site/sitefooter";
 import {useEffect, useState} from 'react'
-import MembersNavBar from "@/components/members/membersnavbar";
+import MembersNavBar from "@/components/members/membernavbar";
 import UserProfilDisplay from "@/components/members/userprofildisplay";
 import BoostDisplay from "@/components/site/boostdisplay";
 import { useAppSelector } from "@/redux/store";

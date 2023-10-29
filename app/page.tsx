@@ -26,9 +26,6 @@ export default function Home() {
   const user = useAppSelector((state) => state.authReducer.value)
   const router = useRouter()
 
-  if(user.token){
-    router.push('/members')  
-  }
   return (
     
     <main>
