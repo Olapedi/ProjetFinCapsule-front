@@ -27,7 +27,7 @@ const navigation = [
   { name: 'Home', href: '1', current: true },
   { name: 'Membres', href: '2', current: false },
   { name: 'Événements', href: '3', current: false },
-  
+
 ]
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -141,7 +141,7 @@ console.log('Events => ' + showEvents)
                             <Menu.Item key={item.name}>
                               {({ active }) => (
 
-                                <p onClick = {() => {
+                                <button onClick = {() => {
                                     
                                     handleshowMenu(item.href)
                                     
@@ -153,7 +153,7 @@ console.log('Events => ' + showEvents)
                                   )}
                                 >
                                   {item.name}
-                                </p>
+                                </button>
                               )}
 
                             </Menu.Item>
@@ -203,7 +203,7 @@ console.log('Events => ' + showEvents)
                     <div className="col-span-2">
                       <nav className="flex space-x-4">
                         {navigation.map((item) => (
-                          <p
+                          <button
                             key={item.name}
                             onClick={() => {
 
@@ -218,7 +218,7 @@ console.log('Events => ' + showEvents)
                             aria-current={item.current ? 'page' : undefined}
                           >
                             {item.name}
-                          </p>
+                          </button>
                         ))}
                       </nav>
                     </div>
