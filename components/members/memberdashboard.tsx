@@ -103,9 +103,9 @@ console.log('Events => ' + showEvents)
                     <a href="#">
                       <span className="sr-only">Your Company</span>
                       <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=300"
-                        alt="Your Company"
+                        className="h-20 w-auto"
+                        src="/neoneyW.png"
+                        alt="Neoney Logo"
                       />
                     </a>
                   </div>

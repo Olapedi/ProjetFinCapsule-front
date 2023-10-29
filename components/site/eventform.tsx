@@ -7,7 +7,7 @@ import countries from "../../neoney_datas/countries.json";
 import Select from "react-select";
 import { useRouter } from "next/navigation";
 
-export default function EventForm() {
+export default function EventForm(props) {
     //Date de maintenant
     let date = new Date();
     let year = date.getFullYear();
@@ -34,19 +34,27 @@ export default function EventForm() {
     const messageDateEndVisible = useRef(false);
 
     useEffect(() => {
+        console.log("eventId =>", eventId)
         if (eventId !== "") {
             router.push(`/members/events?eventid=${eventId}`);
         } else if (error === "Token non valide") {
             // console.log(error)
             router.push(`/members`);
         } else {
-            console.log(error);
+            console.log("error dans le useEffect =>", error);
         }
     }, [router, eventId, error]);
 
     // Country selector
     let countriesoptions: any = [];
     let [citiesoptions, setCityoptions] = useState([]);
+
+    function classNames(...classes: any) {
+        let filteredClasses = classes.filter(Boolean).join(' ')
+        console.log("filteredClasses => ", filteredClasses)
+        return filteredClasses
+      }
+      
 
     countries.map((item) => {
         countriesoptions.push({
@@ -81,15 +89,20 @@ export default function EventForm() {
 
     // Fonction englobant pour le setDateEnd afin de vérifier
     // que le date de fin n'est pas avant la date de début
-    function checkAndSetDateEnd(e: Event): any {
-        let newDateEnd = e.target.value;
-        let dE = new Date(newDateEnd);
-        let dB = new Date(dateBegin);
-        if (dE - dB <= 0) {
-            messageDateEndVisible.current = true;
-        } else {
+    function checkAndSetDateEnd(value:String): any {
+        let newDateEnd:any = value;
+        console.log("date End =>", value)
+        let dE:any = new Date(newDateEnd);
+        let dB:any = new Date(dateBegin);
+        console.log("dateEnd - dateBegin =>", dE-dB)
+        if ((dE - dB) <= 0) {
             setDateEnd(newDateEnd);
             messageDateEndVisible.current = true;
+            console.log("messageDateEndVisible.current (true) =>", messageDateEndVisible.current)
+        } else {
+            setDateEnd(newDateEnd);
+            messageDateEndVisible.current = false;
+            console.log("messageDateEndVisible.current (false) =>", messageDateEndVisible.current)
         }
     }
 
@@ -136,6 +149,8 @@ export default function EventForm() {
             }
         }
     };
+
+    console.log("messageDateEndVisible.current (onMount) =>", messageDateEndVisible.current)
 
     return (
         <div className="mx-auto max-w-2xl">
@@ -227,7 +242,8 @@ export default function EventForm() {
                             </label>
                             <div className="mt-2">
                                 <input
-                                    type="datetime-local"
+                                    // type="datetime-local"
+                                    type="date"
                                     name="event-begin"
                                     id="event-begin"
                                     autoComplete="given-begin"
@@ -249,17 +265,18 @@ export default function EventForm() {
                             </label>
                             <div className="mt-2">
                                 <input
-                                    type="datetime-local"
+                                    // type="datetime-local"
+                                    type="date"
                                     name="event-end"
                                     id="event-end"
                                     autoComplete="given-end"
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     value={dateEnd}
                                     // onChange={(e) => setDateEnd(e.target.value)}
-                                    onChange={(e) => checkAndSetDateEnd(e)}
+                                    onChange={(e) => checkAndSetDateEnd(e.target.value)}
                                 />
-                                <p className="mt-3 text-sm leading-6 text-gray-600"
-                                style={{"display": messageDateEndVisible.current ? "inline": "none"}}>
+                                <p className={classNames(
+                                    messageDateEndVisible.current ? 'bg-gray-100' : 'hidden', "mt-3 text-sm leading-6 text-gray-600")}>
                                     {messageDateEnd}
                                 </p>
                             </div>
