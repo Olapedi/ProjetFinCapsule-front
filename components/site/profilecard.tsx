@@ -54,9 +54,7 @@ export default function ProfileCard(props: propsStyle) {
     function confirmOk(boostInDB:Boolean) {
         if (boostInDB) {
             setNbBoost(nbBoost+1)
-            setTimeout(() => setBoostModalVisible(false), 2000)
-            // clearInterval(intervalID)
-            // confirmOk(false)
+            setTimeout(() => setBoostModalVisible(false), 1500)
         }
     }
 

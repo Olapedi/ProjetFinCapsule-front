@@ -23,7 +23,7 @@ export default function Test() {
     <main>
       
       <div>
-         <EventForm_formData />
+         <EventForm />
       </div>
 
       <div>
