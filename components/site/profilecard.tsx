@@ -48,7 +48,7 @@ export default function ProfileCard(props: propsStyle) {
     }
 
     function handleConsult() {
-        router.push(`/profiles/${props.proUid}`)
+        router.push(`/members/profile/`)
     }
 
     function confirmOk(boostInDB:Boolean) {
@@ -154,6 +154,8 @@ export default function ProfileCard(props: propsStyle) {
                             <div className="text-blue-800">{nbBoost}</div>
                         </div>
                     </div>
+                
+                    <Link href={`/members/profile?search=${props.proUid}`}>
 
                     <button
                         type="button"
@@ -163,6 +165,9 @@ export default function ProfileCard(props: propsStyle) {
                     >
                         consulter
                     </button>
+
+                    </Link>
+                    
                 </div>
             </div>
         </li>
