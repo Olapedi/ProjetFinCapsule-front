@@ -3,43 +3,96 @@
 import Image from 'next/image'
 
 import { useState, useEffect } from 'react';
+import Eventheader from './eventheader';
 
   
 export default function EventsAll() {
 
+
+    // Déclaration des états d'affichage des contenus
+
+    const [showAll, setShowall] = useState(true);
+    const [showEvtUid, setShowevtUid] = useState('all');
     const [events, setEvents] = useState<any[]>([]);
 
-    useEffect(() => {
-        fetch(`${process.env.backendserver}/events`)
-            .then(response => response.json())
-            .then(data => {
-                data.shift()
-                data = data.map((e : any) => e.occurences)
+    const handleshowEvent = (evtUid: any) => {
 
-                let ndata: Array<any> = []
+        setShowall(false);
+        setShowevtUid(evtUid);    
 
-                for(const tab of data) {
-                    ndata.push(...tab)
-                }
-                
-                setEvents(ndata)
-            })
-        }, [])
-        
-        
+            async function fetchData() {
+
+                const resp = await fetch(`${process.env.backendserver}/events/test/1/${evtUid}`);
+
+                let data = await resp.json();
+                data = data.splice(1);
+
+            }
+
+           fetchData();
+
+    
+        }
+    
+        // UseEffect de récupération des events en fonction de l'état
+
+            // Récupération des données au mount du composant
+
+                useEffect(() => {
+
+                    async function fetchData() {
+
+                        const resp = await fetch(`${process.env.backendserver}/events/test/1`);
+
+                        let data = await resp.json();
+                        data = data.splice(1);
+                        setEvents(data);
+
+                    }
+
+                   fetchData();
+
+                }, []);
+
+            console.log(showAll);
+
+
     return (
         <div className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Événements</h2>
             <p className="mt-2 text-lg leading-8 text-gray-600">
-                Développer votre entreprenariat grâce aux rencontres.
+                Développer votre entreprise grâce aux rencontres. 
             </p>
+
+            <p> Retour </p>
+
             </div>
-            <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+
+            <div>
+
+
+            </div>
+
+            {/* Affichange de l'ensemble des événements */}
+
+            { ({showAll}) && <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
 
                 {events.map((event : any) => (
-                    <a href="http://localhost:3000/members/events?eventid=evt2023102530533" key={event.uid} className='hover:scale-105 transition duration-500'>
+
+
+                    <button 
+                    onClick={() => {
+                        
+                        handleshowEvent(event.evtUid);
+                    
+                    }}
+
+                     key={event.evtUid} 
+                     className='hover:scale-105 transition duration-500'
+                     >
+
                         <article className="flex flex-col items-start justify-between">
                         <div className="relative w-full">
 
@@ -91,10 +144,29 @@ export default function EventsAll() {
                             </div>
                         </div>
                         </article>
-                    </a>
+                    </button>
+
+
                 ))}
 
             </div>
+
+            }
+
+
+            {/* Affichage d'un événement */}
+
+
+            {(!{showAll}) && <div> 
+
+                <Eventheader />
+
+                </div>
+                
+        }
+
+
+
         </div>
         </div>
     )

@@ -14,6 +14,7 @@ import PostCardSimple from './postcardsimple'
 
 import { useState, useEffect, useRef } from 'react'
 import EventsAll from '../site/eventsall'
+import Eventsdirectory from './eventsdirectory'
 
 
 
@@ -81,10 +82,6 @@ const handleshowMenu = (href: any) => {
 
 
   }
-
-console.log('Feed => ' + showFeed)
-console.log('Members => ' + showMembers);
-console.log('Events => ' + showEvents)
 
 // Fin de la déclaration des états 
 
