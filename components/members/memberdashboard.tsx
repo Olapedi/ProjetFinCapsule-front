@@ -13,8 +13,11 @@ import PostCard from "./postcard";
 import PostCardSimple from "./postcardsimple";
 import EventDisplay from "../site/eventdisplay";
 
-import { useState, useEffect, useRef } from "react";
-import EventsAll from "../site/eventsall";
+import { useState, useEffect, useRef } from 'react'
+import EventsAll from '../site/eventsall'
+import Eventsdirectory from './eventsdirectory'
+
+
 
 const user = {
     name: "Tom Cook",
@@ -557,9 +560,9 @@ export default function MemberDashboard() {
                                                 <div className="overflow-hidden rounded-lg bg-gray-100 shadow">
                                                     <div className="p-6">
                                                         {/* <ProfilesAll /> */}
-                                                        {eventDisplay || (
-                                                            <ProfilesAll />
-                                                        )}
+                                                        {/* {eventDisplay || (
+                                                          )} */}
+                                                          <ProfilesAll />
                                                     </div>
                                                 </div>
                                             </section>
