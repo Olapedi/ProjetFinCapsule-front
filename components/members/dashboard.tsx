@@ -8,6 +8,8 @@ import { logIn, logOut } from '@/redux/features/auth-slice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from "@/redux/store";
 import { useRouter } from 'next/navigation';
+import Usersdirectory from './usercard';
+import ProfilesAll from '../site/profilesall';
 
 import Image from 'next/image';
 import Link from 'next/image';
@@ -26,6 +28,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import UserProfilDisplay from './userprofildisplay';
 
 
 const navigation = [
@@ -384,7 +387,13 @@ export default function Dashboard() {
           </div>
 
           <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">{/* Your content */}</div>
+            <div className="px-4 sm:px-6 lg:px-8">{/* Your content */}
+            
+            <ProfilesAll />
+            
+            
+            
+            </div>
           </main>
         </div>
       </div>
