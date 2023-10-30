@@ -74,7 +74,7 @@ export default function SiteNavbar() {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div> */}
-        <Popover.Group className="hidden lg:flex lg:gap-x-12">
+        {/* <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
               Rechercher
@@ -137,17 +137,17 @@ export default function SiteNavbar() {
                 </div>
               </Popover.Panel>
             </Transition>
-          </Popover>
+          </Popover> */}
 
-          <Link href="/" className="text-sm font-semibold leading-6 text-gray-900"> Accueil </Link>
+          {/* <Link href="/" className="text-sm font-semibold leading-6 text-gray-900"> Accueil </Link>
 
           <Link href="/events" className="text-sm font-semibold leading-6 text-gray-900"> Événements </Link>
 
           <Link href="/plans" className="text-sm font-semibold leading-6 text-gray-900"> Plans </Link>
           
-          <Link href="/contact" className="text-sm font-semibold leading-6 text-gray-900"> Contact </Link>
+          <Link href="/contact" className="text-sm font-semibold leading-6 text-gray-900"> Contact </Link> */}
           
-        </Popover.Group>
+        {/* </Popover.Group> */}
         {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
         
         { token && <Link 
