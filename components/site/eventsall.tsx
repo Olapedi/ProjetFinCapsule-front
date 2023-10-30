@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Modal } from "antd";
 import EventForm from "./eventform";
+import Link from "next/link";
 
 import { useState, useEffect } from 'react';
 
@@ -55,7 +56,9 @@ export default function EventsAll() {
                 <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
 
                     {events.map((event : any) => (
-                        <a href="http://localhost:3000/members/events?eventid=evt2023102530533" key={event.evtUid} className='hover:scale-105 transition duration-500'>
+
+                        <Link href={`/meet?search=${event.evtUid}`} key={event.evtUid} className='hover:scale-105 transition duration-500'>
+
                             <article className="flex flex-col items-start justify-between">
                             <div className="relative w-full">
 
@@ -109,7 +112,7 @@ export default function EventsAll() {
                                 </div>
                             </div>
                             </article>
-                        </a>
+                        </Link>
                     ))}
 
                 </div>

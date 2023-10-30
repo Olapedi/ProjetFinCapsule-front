@@ -80,8 +80,18 @@ export default function PeopleContainer() {
 
     useEffect(() => {
 
+    if (proUid !== 'all') { // Si le paramètre de la barre est différent de 'all' alors on n'affiche que le profil 
+
+        setShowall(false);
+
+    } else { //Si le paramètre est 'all', on affiche l'ensemble des profils
+
+        setShowall(true);
+
+    }
 
     async function fetchData() {
+
         try {
 
             const resp = await fetch(`${process.env.backendserver}/profiles/${proUid}`);
@@ -136,6 +146,7 @@ export default function PeopleContainer() {
     }
 
 
+    console.log('showAll : ' + showAll);
 
   return (
     
