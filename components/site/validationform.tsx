@@ -87,7 +87,8 @@ export default function Validation() {
 
                 method: 'POST',
                 headers: {'Content-Type' : 'application/json'},
-                body: JSON.stringify(data)
+                // body: JSON.stringify(data),
+                body: formData,
 
             })
     
@@ -203,7 +204,6 @@ export default function Validation() {
                 type="file"
                 className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 onChange={handleImageSelect} />
-                
               </div>
             </div>
 

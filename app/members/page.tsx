@@ -42,7 +42,7 @@ export default function Members() {
         
         <div> 
           
-          <MemberDashboard /> 
+          <MemberDashboard/> 
           
         </div> 
 
