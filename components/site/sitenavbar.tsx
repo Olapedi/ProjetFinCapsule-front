@@ -64,7 +64,7 @@ export default function SiteNavbar() {
           </Link>
 
         </div>
-        <div className="flex lg:hidden">
+        {/* <div className="flex lg:hidden">
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
@@ -73,15 +73,15 @@ export default function SiteNavbar() {
             <span className="sr-only">Open main menu</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
-        </div>
-        <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <Popover className="relative">
-            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+        </div> */}
+        {/* <Popover.Group className="hidden lg:flex lg:gap-x-12">
+          <Popover className="relative"> */}
+            {/* <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
               Rechercher
               <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
-            </Popover.Button>
+            </Popover.Button> */}
 
-            <Transition
+            {/* <Transition
               as={Fragment}
               enter="transition ease-out duration-200"
               enterFrom="opacity-0 translate-y-1"
@@ -89,66 +89,66 @@ export default function SiteNavbar() {
               leave="transition ease-in duration-150"
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
-            >
-              <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                <div className="p-4">
-                  {products.map((item) => (
-                    <div
+            > */}
+              {/* <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"> */}
+                {/* <div className="p-4"> */}
+                  {/* {products.map((item) => ( */}
+                    {/* <div
                       key={item.name}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
-                    >
-                      <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                        <item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
-                      </div>
-                      <div className="flex-auto">
+                    > */}
+                      {/* <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white"> */}
+                        {/* <item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" /> */}
+                      {/* </div> */}
+                      {/* <div className="flex-auto"> */}
 
-                        <Link href = {item.href} 
-                        className='block font-semibold text-gray-900'> 
+                        {/* <Link href = {item.href} 
+                        className='block font-semibold text-gray-900'>  */}
                         
-                        {item.name} 
-                        <span className='absolute inset-0'> </span>
+                        {/* {item.name}  */}
+                        {/* <span className='absolute inset-0'> </span> */}
                         
-                        </Link>
+                        {/* </Link> */}
 
-                        <p className="mt-1 text-gray-600">{item.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                  {callsToAction.map((item) => (
+                        {/* <p className="mt-1 text-gray-600">{item.description}</p> */}
+                      {/* </div> */}
+                    {/* </div> */}
+                  {/* ))} */}
+                {/* </div> */}
+                {/* <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50"> */}
+                  {/* {callsToAction.map((item) => ( */}
                     
-                    <Link 
+                    {/* <Link 
 
                     key={item.name}
                     href = {item.href} 
                     className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-                    > 
+                    >  */}
                     
-                    {item.name} 
+                    {/* {item.name}  */}
 
-                    <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
+                    {/* <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" /> */}
                       {/* {item.name} */}
 
-                    </Link>
+                    {/* </Link> */}
 
-                  ))}
+                  {/* ))} */}
                   
-                </div>
-              </Popover.Panel>
+                {/* </div> */}
+              {/* </Popover.Panel>
             </Transition>
-          </Popover>
+          </Popover> */}
 
-          <Link href="/" className="text-sm font-semibold leading-6 text-gray-900"> Accueil </Link>
+          {/* <Link href="/" className="text-sm font-semibold leading-6 text-gray-900"> Accueil </Link>
 
           <Link href="/events" className="text-sm font-semibold leading-6 text-gray-900"> Événements </Link>
 
           <Link href="/plans" className="text-sm font-semibold leading-6 text-gray-900"> Plans </Link>
           
-          <Link href="/contact" className="text-sm font-semibold leading-6 text-gray-900"> Contact </Link>
+          <Link href="/contact" className="text-sm font-semibold leading-6 text-gray-900"> Contact </Link> */}
           
-        </Popover.Group>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        {/* </Popover.Group> */}
+        {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
         
         { token && <Link 
                     href = "/" 
@@ -161,9 +161,9 @@ export default function SiteNavbar() {
 
         { !token && <Link href = "/members" className="text-sm font-semibold leading-6 text-gray-900"> Se connecter <span aria-hidden="true">&rarr;</span></Link> }
 
-        </div>
+        </div> */}
       </nav>
-      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+      {/* <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
@@ -233,7 +233,7 @@ export default function SiteNavbar() {
             </div>
           </div>
         </Dialog.Panel>
-      </Dialog>
+      </Dialog> */}
     </header>
   )
 }
