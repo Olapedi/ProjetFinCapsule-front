@@ -17,6 +17,10 @@ import { useState, useEffect, useRef } from 'react'
 import EventsAll from '../site/eventsall'
 import Eventsdirectory from './eventsdirectory'
 
+import { logOut } from "@/redux/features/auth-slice";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+
 
 
 const user = {
@@ -31,10 +35,10 @@ const navigation = [
     { name: "Événements", href: "3", current: false },
 ];
 const userNavigation = [
-    { name: "Your Profile", href: "#" },
-    { name: "Settings", href: "#" },
-    { name: "Sign out", href: "#" },
+    { name: "Mon profil", href: "#" },
+    { name: "Déconnexion", href: "#" },
 ];
+
 
 function classNames(...classes: any) {
     return classes.filter(Boolean).join(" ");
@@ -50,6 +54,13 @@ export default function MemberDashboard() {
     let [dataNewEvent, setDataNewEvent] = useState<any>();
     // let [eventDisplay, setEventDisplay] = useState(null);
     let [evtUid, setEvtUid] = useState()
+    const dispatch = useDispatch()
+    const router = useRouter()
+
+    const handleLogOut = () => {
+        dispatch(logOut());
+        router.push('/')
+      }
 
     const handleshowMenu = (href: any) => {
         switch (href) {
@@ -181,23 +192,15 @@ export default function MemberDashboard() {
                                                 <Menu.Items className="absolute -right-2 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                     {userNavigation.map(
                                                         (item) => (
-                                                            <Menu.Item
-                                                                key={item.name}
-                                                            >
-                                                                {({
-                                                                    active,
-                                                                }) => (
+                                                            <Menu.Item key={item.name}>
+                                                                {({active,}) => (
                                                                     <button
                                                                         onClick={() => {
-                                                                            handleshowMenu(
-                                                                                item.href
-                                                                            );
+                                                                            if (item.name === "Déconnexion") {
+                                                                            handleLogOut();
+                                                                            }
                                                                         }}
-                                                                        className={classNames(
-                                                                            active
-                                                                                ? "bg-gray-100"
-                                                                                : "",
-                                                                            "block px-4 py-2 text-sm text-gray-700"
+                                                                        className={classNames(active? "bg-gray-100": "","block px-4 py-2 text-sm text-gray-700"
                                                                         )}
                                                                     >
                                                                         {
@@ -441,11 +444,11 @@ export default function MemberDashboard() {
                                                         {userNavigation.map(
                                                             (item) => (
                                                                 <p
-                                                                    onClick={() => {
-                                                                        handleshowMenu(
-                                                                            item.href
-                                                                        );
-                                                                    }}
+                                                                onClick={() => {
+                                                                    handleshowMenu(
+                                                                        item.href
+                                                                    );
+                                                                }}
                                                                     key={
                                                                         item.name
                                                                     }
