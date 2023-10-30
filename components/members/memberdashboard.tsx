@@ -19,6 +19,11 @@ import { useState, useEffect, useRef } from 'react'
 import EventsAll from '../site/eventsall'
 import EventForm from '../site/eventform'
 import Eventsdirectory from './eventsdirectory'
+import { useAppSelector } from '@/redux/store'
+
+import { logOut } from "@/redux/features/auth-slice";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 
 
 
@@ -48,15 +53,28 @@ function classNames(...classes: any) {
 }
 
 export default function MemberDashboard() {
+
+    const auth = useAppSelector((state) => state.authReducer.value)
+    const userNavigation = [
+        { name: "Mon profil", href: `/members/profile?search=${user.proUid}` },
+        { name: "Déconnexion", href: "#" },
+    ];
     // # Déclaration des états pour l'affichage des contenus
 
     const [showFeed, setShowfeed] = useState(true);
-    const [showMembers, setShowmembers] = useState(false);
+    const [showMembers, setShowmembers] = useState(false);  
     const [showEvents, setShowevents] = useState(false);
     const [showOneEvent, setShowOneevent] = useState(false);
     let [dataNewEvent, setDataNewEvent] = useState<any>();
     // let [eventDisplay, setEventDisplay] = useState(null);
     let [evtUid, setEvtUid] = useState()
+    const dispatch = useDispatch()
+    const router = useRouter()
+
+    const handleLogOut = () => {
+        dispatch(logOut());
+        router.push('/')
+      }
     const [eventModalVisible, setEventModalVisible] = useState(false);
 
     const handleshowMenu = (href: any) => {
@@ -194,23 +212,19 @@ export default function MemberDashboard() {
                                                 <Menu.Items className="absolute -right-2 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                                     {userNavigation.map(
                                                         (item) => (
-                                                            <Menu.Item
-                                                                key={item.name}
-                                                            >
-                                                                {({
-                                                                    active,
-                                                                }) => (
+                                                            <Menu.Item key={item.name}>
+                                                                {({active,}) => (
                                                                     <button
                                                                         onClick={() => {
-                                                                            handleshowMenu(
-                                                                                item.href
-                                                                            );
+                                                                            if (item.name === "Déconnexion") {
+                                                                                handleLogOut();
+                                                                            }
+                                                                            if(item.name === 'Mon profil')
+                                                                            {
+                                                                                handleShowUserProfil();
+                                                                            }
                                                                         }}
-                                                                        className={classNames(
-                                                                            active
-                                                                                ? "bg-gray-100"
-                                                                                : "",
-                                                                            "block px-4 py-2 text-sm text-gray-700"
+                                                                        className={classNames(active? "bg-gray-100": "","block px-4 py-2 text-sm text-gray-700"
                                                                         )}
                                                                     >
                                                                         {
@@ -454,11 +468,11 @@ export default function MemberDashboard() {
                                                         {userNavigation.map(
                                                             (item) => (
                                                                 <p
-                                                                    onClick={() => {
-                                                                        handleshowMenu(
-                                                                            item.href
-                                                                        );
-                                                                    }}
+                                                                onClick={() => {
+                                                                    handleshowMenu(
+                                                                        item.href
+                                                                    );
+                                                                }}
                                                                     key={
                                                                         item.name
                                                                     }
@@ -629,13 +643,14 @@ export default function MemberDashboard() {
                                                     <div className="p-6">
                                                       {/* {eventDisplay} */}
                                                     <EventDisplay
-                evtUid={evtUid}
-                title={dataNewEvent.title}
-                longDescription={dataNewEvent.longDescription}
-                country={dataNewEvent.countries}
-                city={dataNewEvent.cities}
-                />
-                );
+                                                        evtUid={evtUid}
+                                                        title={dataNewEvent.title}
+                                                        longDescription={dataNewEvent.longDescription}
+                                                        country={dataNewEvent.countries}
+                                                        city={dataNewEvent.cities}
+                                                        bannerPicture={dataNewEvent.bannerPicture}
+                                                        />
+                                                        );
                                                         {/* <div>Je suis un Seul Evénement</div> */}
                                                     </div>
                                                 </div>

@@ -30,7 +30,7 @@ export default function EventView() {
             <div>
                 {/* {`le numéro de l'événement est ${eventid}\n`}
                 {JSON.stringify(data, null, 2)} */}
-                <EventDisplay evtUid={eventid} title={data.title} longDescription={data.longDescription} country={data.countries} city={data.cities} />
+                <EventDisplay evtUid={eventid} title={data.title} longDescription={data.longDescription} country={data.countries} city={data.cities} bannerPicture={data.bannerPicture} />
             </div>
 
             <div>

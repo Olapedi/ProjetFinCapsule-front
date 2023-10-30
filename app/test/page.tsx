@@ -15,16 +15,19 @@ import FileInputComponent from "@/components/common/image_test";
 import EventForm_formData from "@/components/site/eventform_formData";
 import EventForm from "@/components/site/eventform";
 import MemberDashboard from "@/components/members/memberdashboard";
+import EventDisplay from "@/components/site/eventdisplay";
+import {useEffect, useState} from 'react'
+import EventsAll from "@/components/site/eventsall";
+
 
 export default function Test() {
-
 
   return (
     
     <main>
       
       <div>
-         <MemberDashboard />
+        <EventsAll/>
       </div>
 
       <div>

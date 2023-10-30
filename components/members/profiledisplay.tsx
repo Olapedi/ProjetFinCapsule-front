@@ -328,7 +328,6 @@ export default function ProfileDisplay() {
             <div>
 
                 <ProfileHeader 
-                
                 displayName = {profile[0].cards[0].displayName}
                 neocode = {profile[0].neocode}
                 email = {profile[0].cards[0].email}
@@ -339,10 +338,7 @@ export default function ProfileDisplay() {
                 country = {profile[0].countries[0]}
                 city = {profile[0].cities[0]}
                 proUid = {profile[0].proUid}
-
                 />
-
-
             </div>
             
             

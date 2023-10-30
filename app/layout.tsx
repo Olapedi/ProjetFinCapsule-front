@@ -2,6 +2,7 @@ import { ReduxProvider } from '@/redux/provider'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import GlobalNavbar from '@/components/common/globalnavbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
           <ReduxProvider>
+            <GlobalNavbar />
             {children}
           </ReduxProvider>
         </body>
