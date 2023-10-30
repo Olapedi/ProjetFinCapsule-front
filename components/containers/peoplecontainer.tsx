@@ -1,5 +1,8 @@
 'use client'
 
+import GlobalModal from '../modals/globalmodal'
+import GlobalNavbar from '../common/globalnavbar'
+
 import Image from 'next/image'
 
 import { useRouter } from 'next/navigation'
@@ -30,6 +33,7 @@ import PostCardSimple from '../members/postcardsimple'
 import PostCard from '../members/postcard'
 import Newpost from '../members/newpost'
 import ProfilesAll from '../site/profilesall'
+
 
 const tabs = [
     { name: 'Actualités', href: '#', current: true },
@@ -71,7 +75,6 @@ export default function PeopleContainer() {
     let [profile, setProfile] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [showAll, setShowall] = useState(true);
-
 
     // Récupération des données au mount du composant
 
@@ -118,9 +121,26 @@ export default function PeopleContainer() {
 
     console.log(profile);
 
+    if (userState.token !== '') {
+
+        if (!userState.isActivated) {
+
+            router.push('/activate')
+    
+        }
+
+    } else {
+
+        router.push('/')
+
+    }
+
+
 
   return (
     
+    <> 
+
     <main>
 
       <div>
@@ -254,10 +274,6 @@ export default function PeopleContainer() {
 
                             </div>
 
-
-
-
-
                     </div> 
 
 
@@ -337,6 +353,9 @@ export default function PeopleContainer() {
       }   
   
 
+
     </main>
+
+    </>
   )
 }

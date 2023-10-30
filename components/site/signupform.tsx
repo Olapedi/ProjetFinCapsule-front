@@ -139,7 +139,7 @@ const handleSignUp = async () => {
 
               dispatch(logIn(data));
 
-              router.push('/members')
+              router.push('/activate')
               
             }
 

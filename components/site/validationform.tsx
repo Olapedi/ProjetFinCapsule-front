@@ -111,7 +111,6 @@ export default function Validation() {
   return (
     <div className="items-center" style={{display : "flex", flexDirection : 'column'}}>
 
-            <SiteNavbar />
             <h1 className="space-y-8 mt-20"> <b> Activez votre compte </b> </h1>
 
       <div className="space-y-8 mt-20">

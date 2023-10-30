@@ -78,7 +78,7 @@ export default function SigninForm() {
                 }
 
 
-              router.push('/members')
+              router.push(`/feed?search=${userSignedIn.profile.proUid}`)
 
               }
 
