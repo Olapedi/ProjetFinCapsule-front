@@ -45,10 +45,7 @@ const navigation = [
 //   { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
 //   { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
 // ]
-const userNavigation = [
-  { name: 'Mon profil', href: '/members/profil' },
-  { name: 'Déconnexion', href: '#' },
-]
+
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -58,6 +55,10 @@ export default function Dashboard() {
   
   const user = useAppSelector((state) => state.authReducer.value)
 
+  const userNavigation = [
+    { name: 'Mon profil', href: `/members/profile?search=${user.proUid}` },
+    { name: 'Déconnexion', href: '#' },
+  ]
   // const getProfilData = async () => {
   //   console.log('hello world getProfilData')
   //   const req = await fetch(`${process.env.backendserver}/profiles/${user.proUid}`)
@@ -361,6 +362,7 @@ export default function Dashboard() {
                           {({ active }) => (
                             <a
                               href={item.href}
+                              
                               onClick={() => {
                                 if (item.name === "Déconnexion") {
                                   handleLogOut();

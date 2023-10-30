@@ -16,6 +16,7 @@ import EventDisplay from "../site/eventdisplay";
 import { useState, useEffect, useRef } from 'react'
 import EventsAll from '../site/eventsall'
 import Eventsdirectory from './eventsdirectory'
+import { useAppSelector } from '@/redux/store'
 
 import { logOut } from "@/redux/features/auth-slice";
 import { useDispatch } from "react-redux";
@@ -34,10 +35,7 @@ const navigation = [
     { name: "Membres", href: "2", current: false },
     { name: "Événements", href: "3", current: false },
 ];
-const userNavigation = [
-    { name: "Mon profil", href: "#" },
-    { name: "Déconnexion", href: "#" },
-];
+
 
 
 function classNames(...classes: any) {
@@ -45,10 +43,16 @@ function classNames(...classes: any) {
 }
 
 export default function MemberDashboard() {
+
+    const auth = useAppSelector((state) => state.authReducer.value)
+    const userNavigation = [
+        { name: "Mon profil", href: `/members/profile?search=${user.proUid}` },
+        { name: "Déconnexion", href: "#" },
+    ];
     // # Déclaration des états pour l'affichage des contenus
 
     const [showFeed, setShowfeed] = useState(true);
-    const [showMembers, setShowmembers] = useState(false);
+    const [showMembers, setShowmembers] = useState(false);  
     const [showEvents, setShowevents] = useState(false);
     const [showOneEvent, setShowOneevent] = useState(false);
     let [dataNewEvent, setDataNewEvent] = useState<any>();
@@ -706,3 +710,27 @@ export default function MemberDashboard() {
         </>
     );
 }
+
+// {userNavigation.map(
+//     (item) => (
+//         if(item.name='Mon Profil'){
+//             <Menu.Item key={item.name}>
+//             {({active,}) => (
+//                 <Link href={`/members/profile?search=${auth.proUid}`}>
+//                     <button className={classNames(active? "bg-gray-100": "","block px-4 py-2 text-sm text-gray-700">
+//                     item.name
+//                     </button>
+//                 </Link>
+//                 <button
+//                     onClick={() => {
+//                         if (item.name === "Déconnexion") {
+//                         handleLogOut();
+//                         }
+//                     }}
+//                     className={classNames(active? "bg-gray-100": "","block px-4 py-2 text-sm text-gray-700"
+//                     )}
+//                 >
+//                     {
+//                         item.name
+//                     }
+//                 </button>
