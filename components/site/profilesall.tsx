@@ -2,6 +2,8 @@
 
 import ProfileCard from "./profilecard";
 import { useState, useEffect } from "react";
+import {useAppSelector} from '@/redux/store'
+import {useSelector} from 'react-redux'
 
 export default function ProfilesAll() {
     // Etat pour contenir les profils
@@ -9,6 +11,8 @@ export default function ProfilesAll() {
     let [messageVisible, setMessageVisible] = useState<Boolean>(false);
     let [search, setSearch] = useState<String>("");
     const message = "Aucun profil trouvé pour cette recherche";
+
+    const proUid = useAppSelector(state => state.authReducer.value.proUid);
 
     // Récupération des données au mount du composant
     useEffect(() => {
@@ -33,7 +37,9 @@ export default function ProfilesAll() {
                 setProfiles([]);
             } else {
                 data = data[1];
-                console.log(data);
+                // console.log(data);
+                // const proUid = useAppSelector(state => state.authReducer.value.proUid);
+                console.log("From profilesall - au moment de la Search - proUid => ", proUid)
                 setProfiles(data);
             }
             setSearch("");
