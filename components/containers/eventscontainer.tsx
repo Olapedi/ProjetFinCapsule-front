@@ -33,6 +33,7 @@ import PostCardSimple from '../members/postcardsimple'
 import PostCard from '../members/postcard'
 import Newpost from '../members/newpost'
 import ProfilesAll from '../site/profilesall'
+import EventsAll from '../site/eventsall'
 
 
 const tabs = [
@@ -145,7 +146,7 @@ export default function EventsContainer() {
 
       <div>
 
-      {(showAll) && <ProfilesAll /> }
+      {(showAll) && <EventsAll/> }
 
       </div>
 

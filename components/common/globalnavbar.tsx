@@ -134,7 +134,7 @@ export default function GlobalNavbar() {
                     </Link>
 
                     <Link
-                        href="/events?search=all"
+                        href="/meet?search=all"
                         className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-white hover:border-gray-300 hover:text-indigo-400"
                     >
                         Rencontres
