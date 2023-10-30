@@ -64,7 +64,7 @@ export default function SiteNavbar() {
           </Link>
 
         </div>
-        <div className="flex lg:hidden">
+        {/* <div className="flex lg:hidden">
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
@@ -73,7 +73,7 @@ export default function SiteNavbar() {
             <span className="sr-only">Open main menu</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
-        </div>
+        </div> */}
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
@@ -103,7 +103,7 @@ export default function SiteNavbar() {
                       <div className="flex-auto">
 
                         <Link href = {item.href} 
-                        className='block font-semibold text-gray-900'> 
+                        className='block font-semibold text-gray-900'>
                         
                         {item.name} 
                         <span className='absolute inset-0'> </span>
@@ -123,12 +123,12 @@ export default function SiteNavbar() {
                     key={item.name}
                     href = {item.href} 
                     className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-                    > 
+                    >
                     
-                    {item.name} 
+                    {item.name}
 
                     <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
-                      {/* {item.name} */}
+                      {item.name}
 
                     </Link>
 
@@ -148,7 +148,7 @@ export default function SiteNavbar() {
           <Link href="/contact" className="text-sm font-semibold leading-6 text-gray-900"> Contact </Link>
           
         </Popover.Group>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+        {/* <div className="hidden lg:flex lg:flex-1 lg:justify-end">
         
         { token && <Link 
                     href = "/" 
@@ -161,9 +161,9 @@ export default function SiteNavbar() {
 
         { !token && <Link href = "/members" className="text-sm font-semibold leading-6 text-gray-900"> Se connecter <span aria-hidden="true">&rarr;</span></Link> }
 
-        </div>
+        </div> */}
       </nav>
-      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+      {/* <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
@@ -233,7 +233,7 @@ export default function SiteNavbar() {
             </div>
           </div>
         </Dialog.Panel>
-      </Dialog>
+      </Dialog> */}
     </header>
   )
 }
