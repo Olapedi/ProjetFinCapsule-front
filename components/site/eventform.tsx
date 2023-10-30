@@ -27,7 +27,7 @@ export default function EventForm(props:any) {
     const [city, setCity] = useState({ value: "", label: "" });
     const [error, setError] = useState("");
     const [eventId, setEventId] = useState("");
-
+    const [picture, setPicture] = useState<any>()
     const router = useRouter();
 
     const messageDateEnd = "Date de fin incompatible avec celle de début";
@@ -107,6 +107,15 @@ export default function EventForm(props:any) {
             // console.log("messageDateEndVisible.current (false) =>", messageDateEndVisible.current)
         }
     }
+    const formData = new FormData()
+    //handle Image selection
+
+    async function handleImageSelect(e: any) {
+        const selectedFile = await e.target.files[0];  
+        if (selectedFile) {
+              setPicture(selectedFile)
+        }
+    }
 
     //handle submit form
 
@@ -117,25 +126,37 @@ export default function EventForm(props:any) {
             description !== "" &&
             dateBegin !== ""
         ) {
-            const event = {
-                token: "tT0nqgfZNInZV7bAcwFuF9-A7tTaIsln",
-                title: title,
-                shortDescription: preview,
-                longDescription: description,
-                startDate: dateBegin,
-                endDate: dateEnd,
-                country: country.value,
-                city: city.value,
-            };
+            formData.append('token', 'tT0nqgfZNInZV7bAcwFuF9-A7tTaIsln');
+            formData.append('title', title);
+            formData.append('shortDescription', preview);
+            formData.append('longDescription', description);
+            formData.append('startDate', dateBegin);
+            formData.append('endDate', dateEnd);
+            formData.append('country', country.value);
+            formData.append('city', city.value);
+            formData.append('picture', picture, picture.name)
+
+            // const event = {
+            //     token: "tT0nqgfZNInZV7bAcwFuF9-A7tTaIsln",
+            //     title: title,
+            //     shortDescription: preview,
+            //     longDescription: description,
+            //     startDate: dateBegin,
+            //     endDate: dateEnd,
+            //     country: country.value,
+            //     city: city.value,
+            // };
+
 
             const result = await fetch(
-                `${process.env.backendserver}/events/new`,
+                `http://localhost:3000/events/new`,
                 {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(event),
+                    // headers: {
+                    //     "Content-Type": "application/json",
+                    // },
+                    // body: JSON.stringify(event),
+                    body: formData,
                 }
             );
 
@@ -228,6 +249,24 @@ export default function EventForm(props:any) {
                                     onChange={(e) =>
                                         setDescription(e.target.value)
                                     }
+                                />
+                            </div>
+                            <p className="mt-3 text-sm leading-6 text-gray-600">
+                                Écrivez quelques phrases sur votre événement..
+                            </p>
+                        </div>
+
+                        <div className="col-span-full">
+                            <label
+                                className="block text-sm font-medium leading-6 text-gray-900"
+                            >
+                                Bannière
+                            </label>
+                            <div className="mt-2">
+                                <input 
+                                type="file"
+                                onChange={handleImageSelect}
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                             <p className="mt-3 text-sm leading-6 text-gray-600">
@@ -335,7 +374,7 @@ export default function EventForm(props:any) {
                 <button
                     type="submit"
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    onClick={handleEvent}
+                    onClick={()=>handleEvent()}
                 >
                     Enregistrer
                 </button>

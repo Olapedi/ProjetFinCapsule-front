@@ -201,7 +201,11 @@ export default function MemberDashboard() {
                                                                     <button
                                                                         onClick={() => {
                                                                             if (item.name === "Déconnexion") {
-                                                                            handleLogOut();
+                                                                                handleLogOut();
+                                                                            }
+                                                                            if(item.name === 'Mon profil')
+                                                                            {
+                                                                                handleShowUserProfil();
                                                                             }
                                                                         }}
                                                                         className={classNames(active? "bg-gray-100": "","block px-4 py-2 text-sm text-gray-700"
@@ -623,13 +627,14 @@ export default function MemberDashboard() {
                                                     <div className="p-6">
                                                       {/* {eventDisplay} */}
                                                     <EventDisplay
-                evtUid={evtUid}
-                title={dataNewEvent.title}
-                longDescription={dataNewEvent.longDescription}
-                country={dataNewEvent.countries}
-                city={dataNewEvent.cities}
-                />
-                );
+                                                        evtUid={evtUid}
+                                                        title={dataNewEvent.title}
+                                                        longDescription={dataNewEvent.longDescription}
+                                                        country={dataNewEvent.countries}
+                                                        city={dataNewEvent.cities}
+                                                        bannerPicture={dataNewEvent.bannerPicture}
+                                                        />
+                                                        );
                                                         {/* <div>Je suis un Seul Evénement</div> */}
                                                     </div>
                                                 </div>
@@ -710,27 +715,3 @@ export default function MemberDashboard() {
         </>
     );
 }
-
-// {userNavigation.map(
-//     (item) => (
-//         if(item.name='Mon Profil'){
-//             <Menu.Item key={item.name}>
-//             {({active,}) => (
-//                 <Link href={`/members/profile?search=${auth.proUid}`}>
-//                     <button className={classNames(active? "bg-gray-100": "","block px-4 py-2 text-sm text-gray-700">
-//                     item.name
-//                     </button>
-//                 </Link>
-//                 <button
-//                     onClick={() => {
-//                         if (item.name === "Déconnexion") {
-//                         handleLogOut();
-//                         }
-//                     }}
-//                     className={classNames(active? "bg-gray-100": "","block px-4 py-2 text-sm text-gray-700"
-//                     )}
-//                 >
-//                     {
-//                         item.name
-//                     }
-//                 </button>
