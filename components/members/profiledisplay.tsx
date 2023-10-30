@@ -4,6 +4,20 @@ import { Fragment, useEffect, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useRouter } from "next/navigation";
+import { useSearchParams } from 'next/navigation'
+import Link from 'next/link'
+
+
+// Import du redux
+
+import { useAppSelector } from '@/redux/store'
+import { logIn, logOut } from '@/redux/features/auth-slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from "@/redux/store";
+
+// Import des composants Neoney 
+
 import ProfileHeader from './profileheader'
 import EventCard from './eventcard'
 import ProfileCard from '../site/profilecard'
@@ -12,14 +26,12 @@ import UserCard from './usercard'
 import PostCardSimple from './postcardsimple'
 import PostCard from './postcard'
 import Newpost from './newpost'
-import { useRouter } from "next/navigation";
-import { useSearchParams } from 'next/navigation'
 
 const tabs = [
-    { name: 'My Account', href: '#', current: false },
-    { name: 'Company', href: '#', current: false },
-    { name: 'Team Members', href: '#', current: true },
-    { name: 'Billing', href: '#', current: false },
+    { name: 'Actualités', href: '#', current: true },
+    { name: 'Présentation', href: '#', current: false },
+    { name: 'Infos légales', href: '#', current: false },
+    { name: 'Contact', href: '#', current: false },
   ]
   
 const user = {
@@ -31,16 +43,12 @@ const user = {
 
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Reports', href: '#', current: false },
+  { name: '<-- Retour au Dashboard', href: '/members', current: true },
+
 ]
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
+  { name: 'Mon profil', href: '0' },
+  { name: 'Se déconnecter', href: '1' },
 ]
 
 function classNames(...classes: any) {
@@ -49,6 +57,37 @@ function classNames(...classes: any) {
 
 export default function ProfileDisplay() {
 
+        // Gestion du menu User
+
+        const userState = useAppSelector((state) => state.authReducer.value)
+  
+        const dispatch = useDispatch<AppDispatch>();
+        const router = useRouter();
+
+        const handelUserMenu = (href: any) => {
+
+         console.log(href);
+
+         const userProUid = userState.proUid;
+
+         switch (href) {
+
+            case '1':
+            
+            dispatch(logOut());
+            router.push('/');
+
+            break;
+
+            default:
+
+                router.push(`/members/profile?search=${userProUid}`)
+
+          }
+        
+        }
+    
+        
     const searchParams = useSearchParams()
     const proUid = searchParams.get('search')
     let [profile, setProfile] = useState<any[]>([]);
@@ -97,9 +136,7 @@ export default function ProfileDisplay() {
   }
 
 
-
     console.log(profile);
-
 
 
   return (
@@ -123,7 +160,7 @@ export default function ProfileDisplay() {
                       <div className="hidden lg:ml-10 lg:block">
                         <div className="flex space-x-4">
                           {navigation.map((item) => (
-                            <a
+                            <Link
                               key={item.name}
                               href={item.href}
                               className={classNames(
@@ -135,7 +172,7 @@ export default function ProfileDisplay() {
                               aria-current={item.current ? 'page' : undefined}
                             >
                               {item.name}
-                            </a>
+                            </Link>
                           ))}
                         </div>
                       </div>
@@ -204,15 +241,16 @@ export default function ProfileDisplay() {
                               {userNavigation.map((item) => (
                                 <Menu.Item key={item.name}>
                                   {({ active }) => (
-                                    <a
-                                      href={item.href}
+                                    <button
+                                      onClick = {() => handelUserMenu (item.href)}
+
                                       className={classNames(
                                         active ? 'bg-gray-100' : '',
                                         'block px-4 py-2 text-sm text-gray-700'
                                       )}
                                     >
                                       {item.name}
-                                    </a>
+                                    </button>
                                   )}
                                 </Menu.Item>
                               ))}
