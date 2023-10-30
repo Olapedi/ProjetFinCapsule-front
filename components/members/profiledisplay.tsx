@@ -50,29 +50,52 @@ function classNames(...classes: any) {
 export default function ProfileDisplay() {
 
     const searchParams = useSearchParams()
-
-    const router = useRouter();
     const proUid = searchParams.get('search')
-
     let [profile, setProfile] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
 
-    // Récupération des données au mount du composant
+       // Récupération des données au mount du composant
 
-    useEffect(() => {
+       useEffect(() => {
 
-        async function fetchData() 
-        {
-            const resp = await fetch(`${process.env.backendserver}/profiles/${proUid}`);
-            let data = await resp.json();
-            data = data.splice(1);
+        async function fetchData() {
+            try {
 
-            setProfile(data);
+                const resp = await fetch(`${process.env.backendserver}/profiles/${proUid}`);
+                let data = await resp.json();
+                data = data.splice(1);
+
+                // Vérifier que les données ne sont pas vides
+
+                if (data && data.length > 0) {
+                    setProfile(data);
+                    setLoading(false);
+
+                    setProfile(data);
+
+                  }
+    
+            } catch (error) {
+                console.error('Erreur lors de la récupération des données du profil :', error);
+              }
 
         }
 
         fetchData();
-        
-    }, []);
+
+    }, [proUid]);
+
+  // Afficher des valeurs par défaut tant que les données ne sont pas disponibles
+  
+  if (loading) {
+
+    return (
+      <div className="min-h-full">
+        <p>Chargement en cours...</p>
+      </div>
+    );
+  }
+
 
 
     console.log(profile);
@@ -263,6 +286,7 @@ export default function ProfileDisplay() {
           <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
             <div className="rounded-lg bg-white px-5 py-6 shadow sm:px-6">{/* Your content */}
             
+    
             <div>
 
                 <ProfileHeader 
@@ -279,6 +303,7 @@ export default function ProfileDisplay() {
                 proUid = {profile[0].proUid}
 
                 />
+
 
             </div>
             

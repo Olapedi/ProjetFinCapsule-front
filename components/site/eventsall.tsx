@@ -99,7 +99,7 @@ export default function EventsAll() {
                                 </div>
                             </div>
                             </article>
-                        </div>
+                        </a>
                     ))}
 
                 </div>
