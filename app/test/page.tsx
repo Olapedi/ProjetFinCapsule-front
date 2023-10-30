@@ -15,6 +15,7 @@ import FileInputComponent from "@/components/common/image_test";
 import EventForm_formData from "@/components/site/eventform_formData";
 import EventForm from "@/components/site/eventform";
 import MemberDashboard from "@/components/members/memberdashboard";
+import EventDisplay from "@/components/site/eventdisplay"
 
 export default function Test() {
 
@@ -24,7 +25,7 @@ export default function Test() {
     <main>
       
       <div>
-         <MemberDashboard />
+         <EventDisplay />
       </div>
 
       <div>
