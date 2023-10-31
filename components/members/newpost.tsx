@@ -1,29 +1,27 @@
 'use client'
 
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CalendarIcon, PaperClipIcon, TagIcon, UserCircleIcon } from '@heroicons/react/20/solid'
+import { InformationCircleIcon } from '@heroicons/react/20/solid'
+
+import Link from 'next/link'
+import { useRouter } from "next/navigation";
+
+// Import du redux
+
+import { useAppSelector } from '@/redux/store'
+import { logIn, logOut } from '@/redux/features/auth-slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from "@/redux/store";
+
 
 const assignees = [
 
   { name: 'Régionale', value: null },
-  { name: 'Nationale', value: 'country'},
-  { name: 'Internationale', value: 'worldwide'},
-  { name: 'Cercle privé', value: 'circle'},
+  { name: 'Nationale', value: 'Nationale'},
+  { name: 'Internationale', value: 'Internationale'},
+  { name: 'Cercle privé', value: 'Cercle privé'},
 
   // More items...
 ]
@@ -31,20 +29,20 @@ const assignees = [
 const labels = [
 
   { name: 'Générale', value: null },
-  { name: 'Lead qualifié', value: 'lead' },
-  { name: "Offre spéciale", value: 'deal' },
-  { name: 'Besoin de prestation', value: 'need' },
-  { name: 'Financement', value: 'finance' },
+  { name: 'Lead qualifié', value: 'Lead qualifié' },
+  { name: "Offre spéciale", value: 'Offre spéciale' },
+  { name: 'Besoin de prestation', value: 'Besoin de prestation' },
+  { name: 'Besoin de recommandation', value: 'Besoin de recommandation' },
 
   // More items...
 
 ]
 const dueDates = [
   { name: 'Non urgent', value: null },
-  { name: "Moins d'une semaine", value: 'today' },
-  { name: 'Moins de 30 jours', value: 'today' },
-  { name: 'Entre 1 et 3 mois', value: 'today' },
-  { name: 'Plus de 3 mois', value: 'today' },
+  { name: "Moins d'une semaine", value: "Moins d'une semaine" },
+  { name: 'Moins de 30 jours', value: 'Moins de 30 jours' },
+  { name: 'Entre 1 et 3 mois', value: 'Entre 1 et 3 mois' },
+  { name: 'Plus de 3 mois', value: 'Plus de 3 mois' },
 
 
   // More items...
@@ -55,13 +53,131 @@ function classNames(...classes: any) {
 }
 
 export default function Newpost() {
-  const [assigned, setAssigned] = useState(assignees[0])
-  const [labelled, setLabelled] = useState(labels[0])
-  const [dated, setDated] = useState(dueDates[0])
+
+
+    // Récupération des états du Redux 
+
+    const userState = useAppSelector((state) => state.authReducer.value)
+    const dispatch = useDispatch<AppDispatch>();
+    const router = useRouter();
+
+    const sender = userState.proUid;
+    const owner = userState.usrUid;
+
+    // Déclaration des états pour les forms
+
+    const [assigned, setAssigned] = useState(assignees[0])
+    const [labelled, setLabelled] = useState(labels[0])
+    const [dated, setDated] = useState(dueDates[0])
+
+    const [title, setTitle] = useState('');
+    const [text, setText] = useState('');
+  //  const [privacy, setPrivacy] = useState('');
+  //  const [category, setCategory] = useState('');
+  // const [deadline, setDeadline] = useState('');
+    const [mainPicture, SetMainPicture] = useState('https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80');
+    const [error, setError] = useState('');
+
+
+  let privacy = assigned.value;
+  let category = labelled.value;
+  let deadline = dated.value;
+
+
+    // handle submit form
+
+const handleSubmitPost = async () => {
+
+  if ( (text !== '') 
+      && (title !== '') 
+      && (privacy !== '') 
+      && (category !== '')
+      && (deadline !== '')
+      && (mainPicture !== '')
+      ){
+
+    const post = {
+
+        owner : owner,
+        sender : sender,      
+        text: text,
+        title: title,
+        privacy : privacy,
+        category : category,
+        deadline : deadline,
+        mainPicture : mainPicture
+
+    }
+
+    console.log(post);
+
+    const result = await fetch(`${process.env.backendserver}/contributions/new`, {
+        method : 'POST', 
+        headers : {
+            'Content-Type':'application/json',
+        }, 
+        body : JSON.stringify(post)
+    })
+
+    const datareceived = await result.json();
+    
+    if (datareceived[0].result == true) {
+
+          const post = datareceived[1];
+
+          setAssigned(assignees[0]);
+          setLabelled(labels[0]);
+          setDated(dueDates[0]);
+          setTitle('');
+          setText('');
+              
+        } else {
+
+    } 
+
+    setError(datareceived[0].message);
+
+    setTimeout(() => {
+
+      setError('');
+
+    }, 3000);
+
+    
+  }
+}
+
 
   return (
+
+  
     <form action="#" className="relative">
+
+      {/*  Affichage des messages d'erreur */ }
+
+          {(error !== '') && <div className="rounded-md bg-blue-50 p-4 mb-5">
+            <div className="flex">
+
+                <div className="flex-shrink-0">
+                  <InformationCircleIcon className="h-5 w-5 text-blue-400" aria-hidden="true" />
+                </div>
+
+                <div className="ml-3 flex-1 md:flex md:justify-between">
+                  <p className="text-sm text-blue-700"> {error} </p>
+                  {/*}
+                  <p className="mt-3 text-sm md:ml-6 md:mt-0">
+                    <p className="whitespace-nowrap font-medium text-blue-700 hover:text-blue-600">
+                      Details
+                      <span aria-hidden="true"> &rarr;</span>
+                    </p>
+                  </p>
+                */}
+                </div>
+            </div>
+         </div> }
+
       <div className="overflow-hidden rounded-lg border border-gray-300 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
+        
         <label htmlFor="title" className="sr-only">
           Titre
         </label>
@@ -71,6 +187,9 @@ export default function Newpost() {
           id="title"
           className="block w-full border-0 pt-2.5 text-lg font-medium placeholder:text-gray-400 focus:ring-0"
           placeholder="Titre du contenu"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+
         />
         <label htmlFor="description" className="sr-only">
           Description
@@ -81,7 +200,8 @@ export default function Newpost() {
           id="description"
           className="block w-full resize-none border-0 py-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
           placeholder="Rédigez votre contenu..."
-          defaultValue={''}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
         />
 
         {/* Spacer element to match the height of the toolbar */}
@@ -281,8 +401,10 @@ export default function Newpost() {
           </div>
           <div className="flex-shrink-0">
             <button
-              type="submit"
+              type="button"
               className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            
+              onClick={handleSubmitPost}
             >
               Ajouter
             </button>
