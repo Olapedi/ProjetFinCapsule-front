@@ -24,6 +24,7 @@ import { useAppSelector } from '@/redux/store'
 import { logOut } from "@/redux/features/auth-slice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
+import Image from 'next/image';
 
 
 
@@ -160,10 +161,12 @@ export default function MemberDashboard() {
                                             <span className="sr-only">
                                                 Your Company
                                             </span>
-                                            <img
+                                            <Image
                                                 className="h-20 w-auto"
                                                 src="/neoneyW.png"
                                                 alt="Neoney Logo"
+                                                width={200}
+                                                height={200}
                                             />
                                         </a>
                                     </div>
@@ -195,10 +198,12 @@ export default function MemberDashboard() {
                                                     <span className="sr-only">
                                                         Open user menu
                                                     </span>
-                                                    <img
+                                                    <Image
                                                         className="h-8 w-8 rounded-full"
                                                         src={user.imageUrl}
                                                         alt=""
+                                                        width={200}
+                                                        height={200}
                                                     />
                                                 </Menu.Button>
                                             </div>
@@ -377,10 +382,12 @@ export default function MemberDashboard() {
                                                 <div className="pb-2 pt-3">
                                                     <div className="flex items-center justify-between px-4">
                                                         <div>
-                                                            <img
+                                                            <Image
                                                                 className="h-8 w-auto"
                                                                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                                                                 alt="Your Company"
+                                                                width={200}
+                                                                height={200}
                                                             />
                                                         </div>
                                                         <div className="-mr-2">

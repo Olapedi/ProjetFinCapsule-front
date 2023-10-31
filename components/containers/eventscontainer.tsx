@@ -120,8 +120,7 @@ export default function EventContainer() {
     );
     }
 
-    console.log(profile);
-
+    
     if (userState.token !== '') {
 
         if (!userState.isActivated) {

@@ -33,6 +33,28 @@ export default function UserProfilDisplay(props:any){
     const handleMessage = () => {
         
     }
+    //récupération du code néo de l'utilisateur du profil // n'ai pas accès à l'userUid si ce n'est pas le profil de l'utilisateur
+    // const [neo,setNeo] = useState('')
+    // const getUserNeo = async () => {
+    //     const result = await fetch(`${process.env.backendserver}/users/${user.usrUid}`)
+    //     const userData = await result.json()
+    //     setNeo(userData[1].neocode)
+    // }
+
+    //récupération des boosts du profil
+    const [boosts, setBoosts] = useState([])
+    const getProfilBoosts = async () => {
+        const result = await fetch(`${process.env.backendserver}/boosts/profile/${props}`)
+        const data = await result.json()
+        if(data[0].result){
+            data.splice(0,1)
+            setBoosts(data)
+        }
+    }
+    useEffect(()=>{
+        getProfilBoosts()
+    },[])
+
     //mockData for testing
     // const props:any = [
     //     {
@@ -64,7 +86,7 @@ export default function UserProfilDisplay(props:any){
     //     organisation: 'boite X'
     // }]
     
-    // Affichage du bouton Edition du profil ou menu interaction en fonction d'un props signalant où on invoque le composant
+    // Affichage du bouton Edition du profil ou menu interaction en fonction d'un props (booleen) signalant si on instancie le profil de l'utilisateur ou d'un autre utilisateur
     let interactions
     if(props.onPersonnalProfil){
         interactions=
@@ -355,8 +377,8 @@ export default function UserProfilDisplay(props:any){
                 <div className='flex'>
                     <div className='pr-6'>
                         <Image
-                        src={'https://static.lacapsule.academy/avatar/64e5dae107f71b001adb6c77.jpg'}
-                        // src={props.profilData.mainPicture}
+                        // src={'https://static.lacapsule.academy/avatar/64e5dae107f71b001adb6c77.jpg'}
+                        src={props.profilData.mainPicture}
                         width={80}
                         height={80}
                         alt='photo of the profile'
@@ -382,7 +404,7 @@ export default function UserProfilDisplay(props:any){
                             alt='boost icon'
                             className='py-4 mr-2'
                             />
-                            <p>Boosts : {props.boosts.length}</p>
+                            <p>Boosts : {boosts.length}</p>
                         </div>   
                         
                         <Image
