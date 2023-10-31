@@ -1,5 +1,8 @@
 'use client'
 
+import GlobalModal from '../modals/globalmodal'
+import GlobalNavbar from '../common/globalnavbar'
+
 import Image from 'next/image'
 
 import { useRouter } from 'next/navigation'
@@ -30,6 +33,7 @@ import PostCardSimple from '../members/postcardsimple'
 import PostCard from '../members/postcard'
 import Newpost from '../members/newpost'
 import ProfilesAll from '../site/profilesall'
+
 
 const tabs = [
     { name: 'Actualités', href: '#', current: true },
@@ -72,13 +76,22 @@ export default function PeopleContainer() {
     const [loading, setLoading] = useState(true);
     const [showAll, setShowall] = useState(true);
 
-
     // Récupération des données au mount du composant
 
     useEffect(() => {
 
+    if (proUid !== 'all') { // Si le paramètre de la barre est différent de 'all' alors on n'affiche que le profil 
+
+        setShowall(false);
+
+    } else { //Si le paramètre est 'all', on affiche l'ensemble des profils
+
+        setShowall(true);
+
+    }
 
     async function fetchData() {
+
         try {
 
             const resp = await fetch(`${process.env.backendserver}/profiles/${proUid}`);
@@ -118,9 +131,27 @@ export default function PeopleContainer() {
 
     console.log(profile);
 
+    if (userState.token !== '') {
+
+        if (!userState.isActivated) {
+
+            router.push('/activate')
+    
+        }
+
+    } else {
+
+        router.push('/')
+
+    }
+
+
+    console.log('showAll : ' + showAll);
 
   return (
     
+    <> 
+
     <main>
 
       <div>
@@ -254,10 +285,6 @@ export default function PeopleContainer() {
 
                             </div>
 
-
-
-
-
                     </div> 
 
 
@@ -337,6 +364,9 @@ export default function PeopleContainer() {
       }   
   
 
+
     </main>
+
+    </>
   )
 }

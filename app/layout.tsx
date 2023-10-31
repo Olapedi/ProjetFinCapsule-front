@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import GlobalNavbar from '@/components/common/globalnavbar'
 
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -16,12 +17,23 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+
+
+
+
   return (
     <html lang="en">
       <body className={inter.className}>
           <ReduxProvider>
-            <GlobalNavbar />
+
+                {/* Barre de navigation */}
+
+                <GlobalNavbar />
+                    
+                {/* Contenu de la page */}
+
             {children}
+
           </ReduxProvider>
         </body>
     </html>

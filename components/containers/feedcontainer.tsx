@@ -1,9 +1,22 @@
 "use client";
 
-import { Fragment } from "react";
-import { Menu, Popover, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
+'use client'
+
+import GlobalModal from '../modals/globalmodal'
+import GlobalNavbar from '../common/globalnavbar'
+
+import Image from 'next/image'
+
+import { useRouter } from 'next/navigation'
+
+import { Fragment, useEffect, useState, useRef } from 'react'
+import { Disclosure, Menu, Transition, Popover } from '@headlessui/react'
+import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+
+import { useSearchParams } from 'next/navigation'
+import Link from 'next/link'
+
 import ProfilesAll from "../site/profilesall";
 import UserCard from "../members/usercard";
 import Newpost from "../members/newpost";
@@ -12,9 +25,12 @@ import AnnonceCard from "../members/annoncecard";
 import PostCard from "../members/postcard";
 import PostCardSimple from "../members/postcardsimple";
 
+// Import du redux
 
-import { useState, useEffect, useRef } from 'react'
-
+import { useAppSelector } from '@/redux/store'
+import { logIn, logOut } from '@/redux/features/auth-slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch } from "@/redux/store";
 
 
 const user = {
@@ -39,6 +55,16 @@ function classNames(...classes: any) {
 }
 
 export default function FeedContainer() {
+
+
+    const dispatch = useDispatch<AppDispatch>();
+    const router = useRouter()
+    const userState = useAppSelector((state) => state.authReducer.value)
+
+    const searchParams = useSearchParams()
+    const proUid = searchParams.get('search')
+
+
     // # Déclaration des états pour l'affichage des contenus
 
     const [showFeed, setShowfeed] = useState(true);
@@ -82,6 +108,21 @@ export default function FeedContainer() {
                 setShowOneevent(false);
         }
     };
+
+    if (userState.token !== '') {
+
+        if (!userState.isActivated) {
+
+            router.push('/activate')
+    
+        }
+
+    } else {
+
+        router.push('/')
+
+    }
+
 
 
     return (
@@ -200,6 +241,10 @@ export default function FeedContainer() {
                         </div>
                     </div>
                 </main>
+
+                {/* Ajout de la modale de création de contenu*/}
+
+
                 <footer>
                     <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
                         <div className="border-t border-gray-200 py-8 text-center text-sm text-gray-500 sm:text-left">

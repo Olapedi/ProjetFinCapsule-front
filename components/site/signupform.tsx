@@ -139,7 +139,7 @@ const handleSignUp = async () => {
 
               dispatch(logIn(data));
 
-              router.push('/members')
+              router.push('/activate')
               
             }
 
@@ -345,7 +345,13 @@ const handleSignUp = async () => {
                 <p className="text-red-600 text-sm"> {error} </p>
 
               </form>
-  
+
+              <p className="mt-10 text-center text-sm text-gray-500">
+              Déjà membre ?{' '}
+
+              <Link href = '/' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Connectez-vous ! </Link>
+
+              </p>
               <div>
                 
               </div>

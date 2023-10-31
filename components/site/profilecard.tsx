@@ -163,7 +163,7 @@ export default function ProfileCard(props: propsStyle) {
                         </div>
                     </div>
                 
-                    <Link href={`/members/profile?search=${props.proUid}`}>
+                    <Link href={`/people?search=${props.proUid}`}>
 
                     <button
                         type="button"

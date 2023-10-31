@@ -130,6 +130,7 @@ export default function ProfileDisplay() {
 
     return (
       <div className="min-h-full">
+        
         <p>Chargement en cours...</p>
       </div>
     );
