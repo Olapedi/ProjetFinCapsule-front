@@ -385,7 +385,7 @@ export default function GlobalNavbar() {
             footer={null}
             >
 
-            <EventForm />
+            <EventForm close={handleCancelEvent}/>
 
         </Modal>
 

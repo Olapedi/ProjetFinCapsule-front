@@ -36,9 +36,10 @@ export default function EventForm(props:any) {
     useEffect(() => {
         console.log("eventId =>", eventId)
         if (eventId !== "") {
-            // router.push(`/members/events?eventid=${eventId}`);
-            console.log("From composant EventsForm - eventId =>", eventId)
-            props.displayCreatedEvent(eventId)
+            router.push(`/meet/?search=${eventId}`);
+            props.close()
+            // console.log("From composant EventsForm - eventId =>", eventId)
+            // props.displayCreatedEvent(eventId)
         } else if (error === "Token non valide") {
             // console.log(error)
             router.push(`/members`);

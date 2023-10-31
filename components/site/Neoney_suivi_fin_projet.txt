@@ -8,13 +8,24 @@ Sur le plan d'action pour les développements - (on ne se concentre que sur les 
 
     - [x] Rajouter la possibilité de mettre une photo au moment de la création de son événement
     - [x] Pour le bouton "participer" des événements, indiquer au moins un message "vous êtes inscrit"
-    - [-] Pour faire des posts / créer des événements : on enlève le composant en haut du dashboard, et on le remplace par un bouton en bas à droite qui ouvre une Modal
-    - [-] A tester - Lorsqu'on fait une recherche sur les profils : ne pas afficher celui du profil connecté
+    - [x] Pour faire des posts / créer des événements : on enlève le composant en haut du dashboard, et on le remplace par un bouton en bas à droite qui ouvre une Modal
+    - [x] A tester - Lorsqu'on fait une recherche sur les profils : ne pas afficher celui du profil connecté
+    - [x] Nettoyer le dashboard des liens inutiles (barre Search, call-to-action de la publicité)
+    - [x] Rajouter la possibilité de mettre une photo au moment de la création de son profil
+    - [x] Affichage du profil : le faire à l'intérieur du dashboard, depuis le composant de Loïc UserProfileDisplay
+    - [x] Gérer les actions de la Popover
+    - [x] Mettre la bonne photo en haut à droite lorsqu'on est connecté
     - [-] Nettoyer la collection des événements, pour qu'il n'en reste que 3 ou 4, correctement remplis avec la bonne photo
-    - [] Sur la navigation générale : gérer tout depuis app.js, et une fois connecté, toujours rester avec le dashboard en Header (pas de page spéciale pour autre chose)
-    - [] Nettoyer le dashboard des liens inutiles (barre Search, call-to-action de la publicité)
-    - [] Nettoyer la collection des membres, pour qu'il n'en reste que 3 ou 4, correctement remplis avec la bonne photo
-    - [] Rajouter la possibilité de mettre une photo au moment de la création de son profil
-    - [] Affichage du profil : le faire à l'intérieur du dashboard, depuis le composant de Loïc UserProfileDisplay
-    - [] Gérer les actions de la Popover
-    - [] Mettre la bonne photo en haut à droite lorsqu'on est connecté
+    - [-] Sur la navigation générale : gérer tout depuis app.js, et une fois connecté, toujours rester avec le dashboard en Header (pas de page spéciale pour autre chose)
+    - [-] Nettoyer la collection des membres, pour qu'il n'en reste que 3 ou 4, correctement remplis avec la bonne photo
+
+    
+    - [] Dans les form vider le formData si la requête n'aboutit pas & vider les champs lorsqu'on valide la création d'un evenement
+    - [] Rerouting après validation du profil (bug?)
+    - [] Retour vers eventAll lorsque l'on est sur un évènement individuel (change l'url mais ne change pas le composant affiché)
+    - [] Uniformisation de la taille des images dans profilsAll
+    - [] Mise en forme de la consultation d'un événement
+    - [] déployer le front
+    - [] créer la fonction d'incrémentation du nombre de participants
+    - [] Dans la page de consultation des profils, lier les boosts à la BDD (en affichage de départ, après l'attribution)
+    - [] Gérer le lien mot de passe oublié (soit faire la fonctionnalité, soit enlever le lien)
