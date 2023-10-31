@@ -10,6 +10,7 @@ function classNames(...classes: any) {
 
 export default function PostCard(props: any) {
 
+
   console.log(props)
 
   const card = {
@@ -32,6 +33,7 @@ export default function PostCard(props: any) {
                   likes : props.likes,
                   alerts : props.alerts,
                   comments : props.comments,
+                  creationDate: props.creationDate
             
             }
 
@@ -58,13 +60,13 @@ export default function PostCard(props: any) {
         </div>
         <div className="min-w-0 flex-1">
           <p className="text-sm font-semibold text-gray-900">
-            <Link href="/people?search={card.proUid}" className="hover:underline">
+            <Link href={`/people?search=${card.proUid}`} className="hover:underline">
               {card.senderDisplayName}
             </Link>
           </p>
           <p className="text-sm text-gray-500">
             <h3 className="hover:underline">
-             {card.neocode}
+             {card.creationDate}
             </h3>
           </p>
         </div>

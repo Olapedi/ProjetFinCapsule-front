@@ -127,20 +127,8 @@ export default function FeedContainer() {
 
     return (
 
-      <div className="min-h-full">
-        <section aria-labelledby="section-1-title">
-            <div className="overflow-hidden rounded-lg bg-white shadow">
-                <div className="p-6">
-
-                <Newpost />
-                
-                </div>
-            </div>
-         </section>
-
         <p>Chargement en cours...</p>
 
-      </div>
     );
   }
 
@@ -170,7 +158,8 @@ export default function FeedContainer() {
                 hashtags={data.hashtags} 
                 likes={data.likes} 
                 alerts={data.alerts} 
-                comments={data.comments} 
+                comments={data.comments}
+                creationDate ={data.creationDate}
                 
                 />;
       
