@@ -124,7 +124,8 @@ export default function EventForm(props:any) {
             title !== "" &&
             preview !== "" &&
             description !== "" &&
-            dateBegin !== ""
+            dateBegin !== "" &&
+            picture
         ) {
             formData.append('token', 'tT0nqgfZNInZV7bAcwFuF9-A7tTaIsln');
             formData.append('title', title);

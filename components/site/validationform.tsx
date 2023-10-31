@@ -20,7 +20,7 @@ export default function Validation() {
     const [jobSubCategories, setJobSubCategories] = useState<string>('')
     const [error, setError] = useState<string>('')
     const [website, setWebsite] =useState<string>('http://')
-    const [picture, setPicture] = useState();
+    const [picture, setPicture] = useState<any>();
 
     const dispatch = useDispatch()
     const user = useAppSelector((state) => state.authReducer.value)
@@ -29,16 +29,9 @@ export default function Validation() {
     //selector for the image
 
     async function handleImageSelect(e: any) {
-
       const selectedFile = await e.target.files[0];
-
-      console.log(selectedFile);
-
       if (selectedFile) {
-
-          formData.append('photoFromFront', selectedFile, selectedFile.name);
           setPicture(selectedFile)
-
       }
   }
       
@@ -49,7 +42,7 @@ export default function Validation() {
       const req = await fetch(`${process.env.backendserver}/users/${user.usrUid}`)
       const tempRes = await req.json()
 
-      if(displayName && activationCode && description && organization && jobCategories && jobSubCategories){
+      if(displayName && activationCode && description && organization && jobCategories && jobSubCategories && picture){
 
           // formData to handle sending file to the backend
             formData.append('displayName', displayName);
@@ -62,10 +55,10 @@ export default function Validation() {
             formData.append('jobSubCategories', JSON.stringify(jobSubCategories));
             formData.append('website', website)
             formData.append('usrUid', user.usrUid);
-            formData.append('phone', tempRes.phone);
-            formData.append('email', tempRes.email);  
+            formData.append('phone', tempRes[1].phone);
+            formData.append('email', tempRes[1].email);  
 
-          // console.log(formData)
+          console.log('formData : ',formData)
           
           // const data = {
           //       displayName,
@@ -84,15 +77,15 @@ export default function Validation() {
             console.log('data',formData)
 
             const request = await fetch(`${process.env.backendserver}/users/activate`, {
-
                 method: 'POST',
-                headers: {'Content-Type' : 'application/json'},
-                // body: JSON.stringify(data),
                 body: formData,
-
+                // headers: {'Content-Type' : 'application/json'},
+                // body: JSON.stringify(data),
             })
-    
+            
+            console.log('request : ', request)
             const results = await request.json()
+            console.log('results : ', results)
             console.log('result error',results[0].message)
             if(!results[0].result){
                 setError(results[0].message)
@@ -111,8 +104,7 @@ export default function Validation() {
   return (
     <div className="items-center" style={{display : "flex", flexDirection : 'column'}}>
 
-            <SiteNavbar />
-            <h1 className="space-y-8 mt-20"> <b> Activez votre compte </b> </h1>
+        <h1 className="space-y-8 mt-20"> <b> Activez votre compte </b> </h1>
 
       <div className="space-y-8 mt-20">
         <div className="border-b border-gray-900/10 pb-8">

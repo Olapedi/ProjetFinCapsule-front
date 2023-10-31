@@ -129,12 +129,12 @@ const handleSignUp = async () => {
 
                 token : userSignedIn.token,
                 usrUid: userSignedIn.usrUid,
-                proUid: '',
-                displayName : '',
                 isActivated: userSignedIn.isActivated,
                 isCertified: userSignedIn.isCertified,
-                //plan : userSignedIn.plan.plnUid
-
+                proUid: '',
+                displayName : '',
+                proPicture: '',
+                email: '',
               }
 
               dispatch(logIn(data));
