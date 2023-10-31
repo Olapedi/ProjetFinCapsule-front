@@ -148,9 +148,8 @@ export default function EventForm(props:any) {
             //     city: city.value,
             // };
 
-
+            console.log('formData : ',formData)
             const result = await fetch(
-                // `http://localhost:3000/events/new`,
                 `${process.env.backendserver}/events/new`,
                 {
                     method: "POST",
@@ -161,9 +160,8 @@ export default function EventForm(props:any) {
                     body: formData,
                 }
             );
-
             const datareceived = await result.json();
-            // console.log(datareceived)
+            console.log(datareceived)
 
             if (datareceived[0].result == true) {
                 const eventCreate = datareceived[1];
