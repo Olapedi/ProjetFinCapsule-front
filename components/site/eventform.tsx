@@ -150,7 +150,8 @@ export default function EventForm(props:any) {
 
 
             const result = await fetch(
-                `http://localhost:3000/events/new`,
+                // `http://localhost:3000/events/new`,
+                `${process.env.backendserver}/events/new`,
                 {
                     method: "POST",
                     // headers: {
