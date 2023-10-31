@@ -85,10 +85,7 @@ export default function EventContainer() {
             if (data && data.length > 0) {
                 setProfile(data);
                 setLoading(false);
-
-                setProfile(data);
-
-                }
+            }
 
         } catch (error) {
             console.error('Erreur lors de la récupération des données du profil :', error);
@@ -111,8 +108,7 @@ export default function EventContainer() {
     );
     }
 
-    console.log(profile);
-
+    
     if (userState.token !== '') {
 
         if (!userState.isActivated) {
@@ -129,8 +125,10 @@ export default function EventContainer() {
 
 
     console.log('showAll : ' + showAll);
+    console.log('profile state:',profile)
+    console.log('loading state:',loading)
 
-  return (
+    return (
     
     <> 
 
