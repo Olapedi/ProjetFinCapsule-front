@@ -8,11 +8,12 @@ export default function AnnonceCard() {
         <div className="relative bg-black">
           {/* Decorative image and overlay */}
 
+
           <ReactPlayer 
           url='https://www.youtube.com/watch?v=Ahk8Cz_y_Ac' 
           width={335}
           height={200}
-          
+
           >
 
           </ReactPlayer>

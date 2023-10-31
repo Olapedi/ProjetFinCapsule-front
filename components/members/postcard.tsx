@@ -1,157 +1,167 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { CodeBracketIcon, EllipsisVerticalIcon, FlagIcon, StarIcon } from '@heroicons/react/20/solid'
+import Image from 'next/image'
+import Link from 'next/link'
 
-import {
-    AcademicCapIcon,
-    BanknotesIcon,
-    CheckBadgeIcon,
-    ClockIcon,
-    ReceiptRefundIcon,
-    UsersIcon,
-  } from '@heroicons/react/24/outline'
-  
-  const actions = [
-    {
-      title: 'Request time off',
-      href: '#',
-      icon: ClockIcon,
-      iconForeground: 'text-teal-700',
-      iconBackground: 'bg-teal-50',
-      dueDate : 'Cette semaine',
-      type : 'Lead qualifié',
-      displayName : 'Kodzo 1 Gawu',
-      date : 'il y a 3 jours',
-      job : 'ceo Kovalys Connect'
+function classNames(...classes: any) {
+  return classes.filter(Boolean).join(' ')
+}
 
-    },
-    {
-      title: 'Benefits',
-      href: '#',
-      icon: CheckBadgeIcon,
-      iconForeground: 'text-purple-700',
-      iconBackground: 'bg-purple-50',
-      dueDate : 'Cette semaine',
-      type : 'Lead qualifié',
-      displayName : 'Kodzo 1 Gawu',
-      date : 'il y a 3 jours',
-      job : 'ceo Kovalys Connect'
+export default function PostCard(props: any) {
 
-    },
-    {
-      title: 'Schedule a one-on-one',
-      href: '#',
-      icon: UsersIcon,
-      iconForeground: 'text-sky-700',
-      iconBackground: 'bg-sky-50',
-      dueDate : 'Cette semaine',
-      type : 'Lead qualifié',
-      displayName : 'Kodzo 1 Gawu',
-      date : 'il y a 3 jours',
-      job : 'ceo Kovalys Connect'
 
-    },
-    {
-      title: 'Payroll',
-      href: '#',
-      icon: BanknotesIcon,
-      iconForeground: 'text-yellow-700',
-      iconBackground: 'bg-yellow-50',
-      dueDate : 'Cette semaine',
-      type : 'Lead qualifié',
-      displayName : 'Kodzo 1 Gawu',
-      date : 'il y a 3 jours',
-      job : 'ceo Kovalys Connect'
+  console.log(props)
 
-    },
-    {
-      title: 'Submit an expense',
-      href: '#',
-      icon: ReceiptRefundIcon,
-      iconForeground: 'text-rose-700',
-      iconBackground: 'bg-rose-50',
-      dueDate : 'Cette semaine',
-      type : 'Opportunité',
-      displayName : 'Kodzo 2 Gawu',
-      date : 'il y a 3 jours',
-      job : 'ceo Kovalys Connect'
+  const card = {
+                  ctbUid : props.ctbUid,
+                  usrUid : props.usrUid,
+                  proUid : props.proUid,
+                  neocode : props.neocode,
+                  country : props.country,
+                  city : props.city,
+                  senderDisplayName : props.senderDisplayName,
+                  senderTitle : props.senderTitle,
+                  senderOrganization : props.senderOrganization,
+                  title : props.title,
+                  text : props.text,
+                  privacy : props.privacy,
+                  category : props.category,
+                  deadline : props.deadline,
+                  mainPicture : props.mainPicture,
+                  hashtags : props.hashtags,
+                  likes : props.likes,
+                  alerts : props.alerts,
+                  comments : props.comments,
+                  creationDate: props.creationDate
+            
+            }
 
-    },
-    {
-      title: 'Training',
-      href: '#',
-      icon: AcademicCapIcon,
-      iconForeground: 'text-indigo-700',
-      iconBackground: 'bg-indigo-50',
-      dueDate : 'Cette semaine',
-      type : 'Lead qualifié',
-      displayName : 'Mayline Gawu',
-      date : 'il y a 2 heures',
-      job : 'ceo Kovalys Connect'
 
-    },
-  ]
-  
-  function classNames(...classes: any) {
-    return classes.filter(Boolean).join(' ')
-  }
-  
-  export default function PostCard() {
-    return (
-      <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0">
-        {actions.map((action, actionIdx) => (
 
-          <div
-            key={action.title}
-            className={classNames(
-              actionIdx === 0 ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none' : '',
-              actionIdx === 1 ? 'sm:rounded-tr-lg' : '',
-              actionIdx === actions.length - 2 ? 'sm:rounded-bl-lg' : '',
-              actionIdx === actions.length - 1 ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none' : '',
-              'group relative bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500'
-            )}
-          >
+  return (
+
+
+    <section aria-labelledby="section-1-title">
+
+    <div className="overflow-hidden rounded-lg bg-white shadow">
+    <div className="p-6">
+
+
+
+    <div className="bg-white px-4 py-5 sm:px-6">
+      <div className="flex space-x-3 my-8">
+        <div className="flex-shrink-0">
+          <img
+            className="h-10 w-10 rounded-full"
+            src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+            alt=""
+          />
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-semibold text-gray-900">
+            <Link href={`/people?search=${card.proUid}`} className="hover:underline">
+              {card.senderDisplayName}
+            </Link>
+          </p>
+          <p className="text-sm text-gray-500">
+            <h3 className="hover:underline">
+             {card.creationDate}
+            </h3>
+          </p>
+        </div>
+        <div className="flex flex-shrink-0 self-center">
+          <Menu as="div" className="relative inline-block text-left">
             <div>
-              <span
-                className={classNames(
-                  action.iconBackground,
-                  action.iconForeground,
-                  'inline-flex rounded-lg p-3 ring-4 ring-white'
-                )}
-              >
-                <action.icon className="h-6 w-6" aria-hidden="true" />
-              </span>
+              <Menu.Button className="-m-2 flex items-center rounded-full p-2 text-gray-400 hover:text-gray-600">
+                <span className="sr-only">Open options</span>
+                <EllipsisVerticalIcon className="h-5 w-5" aria-hidden="true" />
+              </Menu.Button>
             </div>
-            
-            <div className="mt-8">
-              <h3 className="text-base font-semibold leading-6 text-gray-900">
-                <a href={action.href} className="focus:outline-none">
-                  {/* Extend touch target to entire panel */}
-                  <span className="absolute inset-0" aria-hidden="true" />
-                  {action.title}
-                </a>
-              </h3>
-              <p className="mt-2 text-sm text-gray-500">
-                Doloribus dolores nostrum quia qui natus officia quod et dolorem. Sit repellendus qui ut at blanditiis et
-                quo et molestiae.
-              </p>
-             
-              <h3> {action.displayName} </h3>
-              <p> {action.job} </p>
-            
 
-            </div>
-            <span
-              className="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
-              aria-hidden="true"
+            <Transition
+              as={Fragment}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
             >
-              <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
-              </svg>
-            </span>
-          </div>
-        ))}
+              <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div className="py-1">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        href="#"
+                        className={classNames(
+                          active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                          'flex px-4 py-2 text-sm'
+                        )}
+                      >
+                        <StarIcon className="mr-3 h-5 w-5 text-gray-400" aria-hidden="true" />
+                        <span>Add to favorites</span>
+                      </a>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        href="#"
+                        className={classNames(
+                          active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                          'flex px-4 py-2 text-sm'
+                        )}
+                      >
+                        <CodeBracketIcon className="mr-3 h-5 w-5 text-gray-400" aria-hidden="true" />
+                        <span>Embed</span>
+                      </a>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        href="#"
+                        className={classNames(
+                          active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                          'flex px-4 py-2 text-sm'
+                        )}
+                      >
+                        <FlagIcon className="mr-3 h-5 w-5 text-gray-400" aria-hidden="true" />
+                        <span>Report content</span>
+                      </a>
+                    )}
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Transition>
+          </Menu>
+        </div>
       </div>
-    )
-  }
-  
+
+      <p> 
+
+      {card.text}
+
+      </p>
+      
+      <div className='flex justify-center'> 
+
+      <Image 
+      src={card.mainPicture}
+      width = {500}
+      height = {500}
+      alt='Image'
+      className='my-20'
+      ></Image>
+
+      </div>
+
+    </div>
+
+    </div>
+    </div>
+    </section>
+
+  )
+}

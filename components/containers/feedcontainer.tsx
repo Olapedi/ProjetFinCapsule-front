@@ -67,47 +67,7 @@ export default function FeedContainer() {
 
     // # Déclaration des états pour l'affichage des contenus
 
-    const [showFeed, setShowfeed] = useState(true);
-    const [showMembers, setShowmembers] = useState(false);
-    const [showEvents, setShowevents] = useState(false);
-    const [showOneEvent, setShowOneevent] = useState(false);
-    let [dataNewEvent, setDataNewEvent] = useState<any>();
-    // let [eventDisplay, setEventDisplay] = useState(null);
-    let [evtUid, setEvtUid] = useState()
 
-    const handleshowMenu = (href: any) => {
-        switch (href) {
-            case "2":
-                setShowfeed(false);
-                setShowevents(false);
-                setShowmembers(true);
-                setShowOneevent(false);
-
-                break;
-
-            case "3":
-                setShowfeed(false);
-                setShowevents(true);
-                setShowmembers(false);
-                setShowOneevent(false);
-
-                break;
-
-            case "4":
-                setShowfeed(false);
-                setShowevents(false);
-                setShowmembers(false);
-                setShowOneevent(true);
-
-                break;
-
-            default:
-                setShowfeed(true);
-                setShowevents(false);
-                setShowmembers(false);
-                setShowOneevent(false);
-        }
-    };
 
     if (userState.token !== '') {
 
@@ -123,6 +83,89 @@ export default function FeedContainer() {
 
     }
 
+    // Récupération des données au mount du composant
+     
+    const [posts, setPosts] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    // Récupération des données au mount du composant
+
+       useEffect(() => {
+
+        async function fetchData() {
+            try {
+
+                const resp = await fetch(`${process.env.backendserver}/contributions`);
+
+                let data = await resp.json();
+                data = data.splice(1);
+
+                // Vérifier que les données ne sont pas vides
+
+                if (data && data.length > 0) {
+
+                    setPosts(data);
+                    setLoading(false);
+
+                  //  setProfile(data);
+
+                  }
+    
+            } catch (error) {
+                console.error('Erreur lors de la récupération des contributions :', error);
+              }
+
+        }
+
+        fetchData();
+
+    }, [proUid]);
+
+  // Afficher des valeurs par défaut tant que les données ne sont pas disponibles
+  
+  if (loading) {
+
+    return (
+
+        <p>Chargement en cours...</p>
+
+    );
+  }
+
+    console.log(posts);
+
+
+    const Postcards = posts.map(data => {
+
+        return <PostCard 
+
+                key = {data.ctbUid}
+                ctbUid = {data.ctbUid}
+                usrUid={data.usrUid} 
+                proUid = {data.proUid}
+                neocode={data.neocode} 
+                country={data.country} 
+                city={data.city} 
+                senderDisplayName={data.senderDisplayName} 
+                senderTitle={data.senderTitle} 
+                senderOrganization={data.senderOrganization} 
+                title={data.title} 
+                text={data.text} 
+                privacy={data.privacy} 
+                category={data.category} 
+                deadline={data.deadline} 
+                mainPicture={data.mainPicture} 
+                hashtags={data.hashtags} 
+                likes={data.likes} 
+                alerts={data.alerts} 
+                comments={data.comments}
+                creationDate ={data.creationDate}
+                
+                />;
+      
+    });
+
+
 
 
     return (
@@ -136,52 +179,27 @@ export default function FeedContainer() {
                         <div className="grid grid-cols-1 items-start gap-4 lg:grid-cols-3 lg:gap-8">
                             {/* Left column */}
 
+                            {/*  Ajout de la zone de création des posts */}
+
                             <div className="grid grid-cols-1 gap-4 lg:col-span-2">
- 
 
-                                {/*  Ajout de la carte des posts pour le feed */}
+                            <section aria-labelledby="section-1-title">
+                                <div className="overflow-hidden rounded-lg bg-white shadow">
+                                    <div className="p-6">
 
-                                {showFeed &&
-                                    !showEvents &&
-                                    !showMembers &&
-                                    !showOneEvent && (
-                                        <div>
-                                            <section aria-labelledby="section-1-title">
-                                                <h2
-                                                    className="sr-only"
-                                                    id="section-1-title"
-                                                >
-                                                    Header
-                                                </h2>
+                                    <Newpost />
+                                    
+                                    </div>
+                                </div>
+                            </section>
 
-                                                <div className="overflow-hidden rounded-lg bg-white shadow">
-                                                    <div className="p-6">
-                                                        {/* Header de la carte des posts */}
+                            
+                            {/*  Ajout de la carte des posts pour le feed */}
 
-                                                        <PostCardSimple />
-                                                    </div>
-                                                </div>
-                                            </section>
 
-                                            <section aria-labelledby="section-1-title">
-                                                <h2
-                                                    className="sr-only"
-                                                    id="section-1-title"
-                                                >
-                                                    Contenu du post
-                                                </h2>
+                            {Postcards}
 
-                                                <div className="overflow-hidden rounded-lg bg-white shadow">
-                                                    <div className="p-6">
-                                                        {/* Contenu du post pour test*/}
-
-                                                        <PostCard />
-                                                    </div>
-                                                </div>
-                                            </section>
-                                        </div>
-                                    )}
-
+           
                             </div>
 
                             {/* Right column */}

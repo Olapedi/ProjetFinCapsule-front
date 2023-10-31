@@ -331,12 +331,11 @@ export default function GlobalNavbar() {
         <Popover.Group>
             <Popover className="fixed bottom-12 right-12">
                 <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                    <button
-                    type="button"
+                    <p
                     className="rounded-full bg-indigo-600 p-4 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:animate-pulse"
                     >
                         <PlusIcon className="h-8 w-8" aria-hidden="true" />
-                    </button>
+                    </p>
                 </Popover.Button>
 
                 <Transition
