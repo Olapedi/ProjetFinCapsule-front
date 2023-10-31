@@ -24,13 +24,14 @@ const people = [
   },
 
   {
-    name: 'Mickey',
+    name: 'Dingo',
     key : '3',
-    title: 'Eastern Egg',
+    title: 'Directeur DisneyLand',
     role: 'Admin',
     email: 'mickey@lacapsule.com',
     telephone: '+1-202-555-0170',
     imageUrl:
+    // 'https://i.ebayimg.com/images/g/bU4AAOSwajVUNbIv/s-l1600.jpg'
     'https://3.bp.blogspot.com/-0AM-0MyQTzM/VwvY2yW7hlI/AAAAAAAAHaQ/M8J7igpDPWkoAcCU4zNre5UNhcsDv-q3w/s1600/mikey_mouse.png'
       // 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
   },
