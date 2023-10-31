@@ -2,7 +2,7 @@ import Image from 'next/image'
 import EventsAll from '@/components/site/eventsall'
 import SiteNavbar from '@/components/site/sitenavbar'
 import SiteFooter from '@/components/site/sitefooter'
-import EventsContainer from '@/components/containers/eventscontainer'
+import EventContainer from '@/components/containers/eventscontainer'
 
 export default function Meet() {
 
@@ -13,7 +13,7 @@ export default function Meet() {
 
     <div>
 
-    <EventsContainer />
+    <EventContainer />
 
     </div>
       

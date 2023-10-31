@@ -124,7 +124,8 @@ export default function EventForm(props:any) {
             title !== "" &&
             preview !== "" &&
             description !== "" &&
-            dateBegin !== ""
+            dateBegin !== "" &&
+            picture
         ) {
             formData.append('token', 'tT0nqgfZNInZV7bAcwFuF9-A7tTaIsln');
             formData.append('title', title);
@@ -147,9 +148,9 @@ export default function EventForm(props:any) {
             //     city: city.value,
             // };
 
-
+            console.log('formData : ',formData)
             const result = await fetch(
-                `http://localhost:3000/events/new`,
+                `${process.env.backendserver}/events/new`,
                 {
                     method: "POST",
                     // headers: {
@@ -159,9 +160,8 @@ export default function EventForm(props:any) {
                     body: formData,
                 }
             );
-
             const datareceived = await result.json();
-            // console.log(datareceived)
+            console.log(datareceived)
 
             if (datareceived[0].result == true) {
                 const eventCreate = datareceived[1];

@@ -6,6 +6,7 @@ import EventForm from "./eventform";
 import Link from "next/link";
 
 import { useState, useEffect } from 'react';
+import { propagateServerField } from "next/dist/server/lib/render-server";
 
   
 export default function EventsAll() {
@@ -57,7 +58,7 @@ export default function EventsAll() {
 
                     {events.map((event : any) => (
 
-                        <Link href={`/meet?search=${event.evtUid}`} key={event.evtUid} className='hover:scale-105 transition duration-500'>
+                        <Link href={`/meet?search=${event.evtUid}`} key={event.evtUid}  className='hover:scale-105 transition duration-500'>
 
                             <article className="flex flex-col items-start justify-between">
                             <div className="relative w-full">

@@ -20,6 +20,8 @@ export default function ProfilesAll() {
             const resp = await fetch(`${process.env.backendserver}/profiles`);
             let data = await resp.json();
             data = data.splice(1);
+            data = data.filter((profil : any)=> profil.proUid !== proUid )
+            
             setProfiles(data);
         }
         fetchData();

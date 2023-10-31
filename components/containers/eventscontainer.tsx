@@ -53,16 +53,21 @@ export default function EventContainer() {
 
     const searchParams = useSearchParams()
     const evtUid = searchParams.get('search')
-
+    //const [evtUid, setEvtUid] = useState(searchParams.get('search'))
     let [profile, setProfile] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [showAll, setShowall] = useState(true);
 
+
+    /* function handleEvtUid(uid:any ){
+      
+      setEvtUid(uid)
+    } */
     // Récupération des données au mount du composant
 
-    useEffect(() => {
+    useEffect( () => {
 
-    if (evtUid !== 'all') { // Si le paramètre de la barre est différent de 'all' alors on n'affiche que le profil 
+   /*  if (evtUid !== 'all') { // Si le paramètre de la barre est différent de 'all' alors on n'affiche que le profil 
 
         setShowall(false);
 
@@ -70,23 +75,27 @@ export default function EventContainer() {
 
         setShowall(true);
 
-    }
+    }   */   
 
-    async function fetchData() {
-
+    async function fetchData(eventId:any) {
+      console.log("eventUid from fetch", eventId)
         try {
 
-            const resp = await fetch(`${process.env.backendserver}/events/${evtUid}`);
+          console.log("adresse de fetch",`${process.env.backendserver}/events/${eventId}`)
+            const resp = await fetch(`${process.env.backendserver}/events/${eventId}`);
             let data = await resp.json();
             data = data.splice(1);
+            console.log("data from back", data)
 
             // Vérifier que les données ne sont pas vides
 
-            if (data && data.length > 0) {
-                setProfile(data);
-                setLoading(false);
+            if (data[0].evtUid) {
 
                 setProfile(data);
+                
+                setShowall(false)
+                
+
 
                 }
 
@@ -95,9 +104,9 @@ export default function EventContainer() {
             }
 
     }
-
-    fetchData();
-
+    
+     fetchData(evtUid)
+     setLoading(false);
     }, [evtUid]);
 
     // Afficher des valeurs par défaut tant que les données ne sont pas disponibles
@@ -111,8 +120,7 @@ export default function EventContainer() {
     );
     }
 
-    console.log(profile);
-
+    
     if (userState.token !== '') {
 
         if (!userState.isActivated) {
@@ -129,21 +137,22 @@ export default function EventContainer() {
 
 
     console.log('showAll : ' + showAll);
+    console.log('profile : ', profile);
 
-  return (
-    
-    <> 
 
-    <main>
+if(showAll || !profile.length){
 
-      <div>
+return ( 
 
-      {(showAll) && <EventsAll /> }
+ 
 
-      </div>
+       <EventsAll  /> 
 
-        
-      {(!showAll) &&  <EventDisplay 
+      )
+
+} else {
+
+return ( <EventDisplay 
                 
                 title = {profile[0].occurences[0].title}
                 shortDescription = {profile[0].occurences[0].shortDescription}
@@ -155,13 +164,9 @@ export default function EventContainer() {
                 evtUid = {profile[0].evtUid}
                 country = {profile[0].countries[0]}
                 city = {profile[0].cities[0]}
+                bannerPicture = {profile[0].bannerPicture}
 
                 />
-      
-      }
+)
 
-    </main>
-
-    </>
-  )
-}
+}}
