@@ -14,7 +14,8 @@ type AuthState = {
     isActivated: boolean,
     isCertified: boolean,
     displayName: string,
-    // plan: string,
+    proPicture: string,
+    email: string,
 }
 
 const initialState = {
@@ -27,7 +28,8 @@ const initialState = {
         isCertified: false,
         proUid: "",
         displayName: "",
-        // plan: "free",
+        proPicture: "",
+        email: "",
     } as AuthState,
 
 } as InitialState;
@@ -54,10 +56,8 @@ export const auth = createSlice({
                     isCertified: action.payload.isCertified,
                     proUid: action.payload.proUid,
                     displayName: action.payload.displayName,
-
-                 //   proUid: state.value.proUid,
-                 //   displayName: state.value.displayName,
-                 
+                    proPicture: action.payload.proPicture,
+                    email: action.payload.email,
                 }
             }
         },

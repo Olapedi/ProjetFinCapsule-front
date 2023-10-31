@@ -49,11 +49,12 @@ export default function SigninForm() {
 
                     token : userSignedIn.token,
                     usrUid : userSignedIn.usrUid,
-                    proUid : userSignedIn.profile.proUid,
-                    displayName : userSignedIn.profile.cards[0].displayName,
                     isActivated: userSignedIn.isActivated,
                     isCertified: userSignedIn.isCertified,
-
+                    proUid : userSignedIn.profile.proUid,
+                    displayName : userSignedIn.profile.cards[0].displayName,
+                    proPicture : userSignedIn.profile.mainPicture,
+                    email : userSignedIn.profile.cards[0].email,
                   }
 
                   dispatch(logIn(data));
@@ -65,11 +66,12 @@ export default function SigninForm() {
 
                     token : userSignedIn.token,
                     usrUid : userSignedIn.usrUid,
-                    proUid : '',
-                    displayName : '',
                     isActivated: userSignedIn.isActivated,
                     isCertified: userSignedIn.isCertified,
-
+                    proUid : '',
+                    displayName : '',
+                    proPicture: '',
+                    email: '',
                   }
                   
                   dispatch(logIn(data));
