@@ -7,37 +7,48 @@ import countries from "../../neoney_datas/countries.json";
 import Select from "react-select";
 import { useRouter } from "next/navigation";
 
-export default function EventForm(props:any) {
-    //Date de maintenant
-    let date = new Date();
-    let year = date.getFullYear();
-    let month = ("0" + (date.getMonth() + 1)).slice(-2);
-    let day = ("0" + date.getDate()).slice(-2);
-    let hours = ("0" + date.getHours()).slice(-2);
-    let minutes = ("0" + date.getMinutes()).slice(-2);
+export default function EventFormModify(props: any) {
+    //Date de départ
+    function formatDate(rawDate) {
+        let date = new Date(rawDate);
+        let year = date.getFullYear();
+        let month = ("0" + (date.getMonth() + 1)).slice(-2);
+        let day = ("0" + date.getDate()).slice(-2);
+        // let hours = ("0" + date.getHours()).slice(-2);
+        // let minutes = ("0" + date.getMinutes()).slice(-2);
+        let formattedDate = `${year}-${month}-${day}`;
+        return formattedDate;
+    }
+    let formattedStartDate = formatDate(props.startDate);
+    let formattedEndDate = formatDate(props.endDate);
 
-    let formattedDate = `${year}-${month}-${day}`;
+    console.log("eventformmodify - formattedStartDate => ", formattedStartDate);
 
-    const [title, setTitle] = useState("");
-    const [preview, setPreview] = useState("");
-    const [description, setDescription] = useState("");
-    const [dateBegin, setDateBegin] = useState(formattedDate);
-    const [dateEnd, setDateEnd] = useState("");
-    const [country, setCountry] = useState({ value: "", label: "" });
-    const [city, setCity] = useState({ value: "", label: "" });
+    console.log("eventformmodify - props => ", props);
+
+    const [title, setTitle] = useState(props.title);
+    const [preview, setPreview] = useState(props.shortDescritpion);
+    const [description, setDescription] = useState(props.longDescription);
+    const [dateBegin, setDateBegin] = useState(formattedStartDate);
+    const [dateEnd, setDateEnd] = useState(formattedEndDate);
+    const [country, setCountry] = useState({
+        value: props.country,
+        label: props.country,
+    });
+    const [city, setCity] = useState({ value: props.city, label: props.city });
     const [error, setError] = useState("");
-    const [eventId, setEventId] = useState("");
-    const [picture, setPicture] = useState<any>()
+    const [eventId, setEventId] = useState(props.evtUid);
+    const [picture, setPicture] = useState<any>(props.bannerPicture);
     const router = useRouter();
 
     const messageDateEnd = "Date de fin incompatible avec celle de début";
     const messageDateEndVisible = useRef(false);
 
     useEffect(() => {
-        console.log("eventId =>", eventId)
+        console.log("eventId =>", eventId);
         if (eventId !== "") {
             router.push(`/meet/?search=${eventId}`);
-            props.close()
+            // props.close()
             // console.log("From composant EventsForm - eventId =>", eventId)
             // props.displayCreatedEvent(eventId)
         } else if (error === "Token non valide") {
@@ -53,11 +64,10 @@ export default function EventForm(props:any) {
     let [citiesoptions, setCityoptions] = useState([]);
 
     function classNames(...classes: any) {
-        let filteredClasses = classes.filter(Boolean).join(' ')
+        let filteredClasses = classes.filter(Boolean).join(" ");
         // console.log("filteredClasses => ", filteredClasses)
-        return filteredClasses
-      }
-      
+        return filteredClasses;
+    }
 
     countries.map((item) => {
         countriesoptions.push({
@@ -92,13 +102,13 @@ export default function EventForm(props:any) {
 
     // Fonction englobant pour le setDateEnd afin de vérifier
     // que le date de fin n'est pas avant la date de début
-    function checkAndSetDateEnd(value:String): any {
-        let newDateEnd:any = value;
+    function checkAndSetDateEnd(value: String): any {
+        let newDateEnd: any = value;
         // console.log("date End =>", value)
-        let dE:any = new Date(newDateEnd);
-        let dB:any = new Date(dateBegin);
+        let dE: any = new Date(newDateEnd);
+        let dB: any = new Date(dateBegin);
         // console.log("dateEnd - dateBegin =>", dE-dB)
-        if ((dE - dB) <= 0) {
+        if (dE - dB <= 0) {
             setDateEnd(newDateEnd);
             messageDateEndVisible.current = true;
             // console.log("messageDateEndVisible.current (true) =>", messageDateEndVisible.current)
@@ -108,61 +118,62 @@ export default function EventForm(props:any) {
             // console.log("messageDateEndVisible.current (false) =>", messageDateEndVisible.current)
         }
     }
-    const formData = new FormData()
+    const formData = new FormData();
     //handle Image selection
 
     async function handleImageSelect(e: any) {
-        const selectedFile = await e.target.files[0];  
+        const selectedFile = await e.target.files[0];
         if (selectedFile) {
-              setPicture(selectedFile)
+            setPicture(selectedFile);
         }
     }
 
     //handle submit form
 
-    const handleEvent = async () => {
+    const handleModifyEvent = async () => {
         if (
             title !== "" &&
             preview !== "" &&
             description !== "" &&
-            dateBegin !== "" &&
-            picture
+            dateBegin !== ""
+            // picture
         ) {
-            formData.append('token', 'tT0nqgfZNInZV7bAcwFuF9-A7tTaIsln');
-            formData.append('title', title);
-            formData.append('shortDescription', preview);
-            formData.append('longDescription', description);
-            formData.append('startDate', dateBegin);
-            formData.append('endDate', dateEnd);
-            formData.append('country', country.value);
-            formData.append('city', city.value);
-            formData.append('picture', picture, picture.name)
+            // formData.append('token', 'tT0nqgfZNInZV7bAcwFuF9-A7tTaIsln');
+            // formData.append('title', title);
+            // formData.append('shortDescription', preview);
+            // formData.append('longDescription', description);
+            // formData.append('startDate', dateBegin);
+            // formData.append('endDate', dateEnd);
+            // formData.append('country', country.value);
+            // formData.append('city', city.value);
+            // formData.append('picture', picture, picture.name)
 
-            // const event = {
-            //     token: "tT0nqgfZNInZV7bAcwFuF9-A7tTaIsln",
-            //     title: title,
-            //     shortDescription: preview,
-            //     longDescription: description,
-            //     startDate: dateBegin,
-            //     endDate: dateEnd,
-            //     country: country.value,
-            //     city: city.value,
-            // };
+            const event = {
+                token: "tT0nqgfZNInZV7bAcwFuF9-A7tTaIsln",
+                evtUid: props.evtUid,
+                title: title,
+                shortDescription: preview,
+                longDescription: description,
+                startDate: dateBegin,
+                endDate: dateEnd,
+                country: country.value,
+                city: city.value,
+            };
 
-            console.log('formData : ',formData)
+            console.log("formData : ", formData);
             const result = await fetch(
-                `${process.env.backendserver}/events/new`,
+                `${process.env.backendserver}/events/update`,
                 {
-                    method: "POST",
-                    // headers: {
-                    //     "Content-Type": "application/json",
-                    // },
-                    // body: JSON.stringify(event),
-                    body: formData,
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(event),
+                    // body: formData,
                 }
             );
             const datareceived = await result.json();
-            console.log(datareceived)
+            console.log("From eventformmodify - datareceived=> ", datareceived);
 
             if (datareceived[0].result == true) {
                 const eventCreate = datareceived[1];
@@ -257,7 +268,7 @@ export default function EventForm(props:any) {
                             </p>
                         </div>
 
-                        <div className="col-span-full">
+                        {/* <div className="col-span-full">
                             <label
                                 className="block text-sm font-medium leading-6 text-gray-900"
                             >
@@ -273,7 +284,7 @@ export default function EventForm(props:any) {
                             <p className="mt-3 text-sm leading-6 text-gray-600">
                                 Écrivez quelques phrases sur votre événement..
                             </p>
-                        </div>
+                        </div> */}
 
                         <div className="sm:col-span-3">
                             <label
@@ -315,10 +326,18 @@ export default function EventForm(props:any) {
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     value={dateEnd}
                                     // onChange={(e) => setDateEnd(e.target.value)}
-                                    onChange={(e) => checkAndSetDateEnd(e.target.value)}
+                                    onChange={(e) =>
+                                        checkAndSetDateEnd(e.target.value)
+                                    }
                                 />
-                                <p className={classNames(
-                                    messageDateEndVisible.current ? 'bg-gray-100' : 'hidden', "mt-3 text-sm leading-6 text-gray-600")}>
+                                <p
+                                    className={classNames(
+                                        messageDateEndVisible.current
+                                            ? "bg-gray-100"
+                                            : "hidden",
+                                        "mt-3 text-sm leading-6 text-gray-600"
+                                    )}
+                                >
                                     {messageDateEnd}
                                 </p>
                             </div>
@@ -375,7 +394,7 @@ export default function EventForm(props:any) {
                 <button
                     type="submit"
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    onClick={()=>handleEvent()}
+                    onClick={() => handleModifyEvent()}
                 >
                     Enregistrer
                 </button>

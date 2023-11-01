@@ -9,13 +9,18 @@ import Select from "react-select";
 
 import { UserGroupIcon } from "@heroicons/react/24/outline";
 import { count } from "console";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import EventForm from "./eventform";
+import EventFormModify from "./eventformmodify";
 
 export default function EventDisplay(props: any) {
     const [modalVisible, setModalVisible] = useState(false);
-    const [modalDeletedVisible, setModalDeletedVisible] = useState(false)
+    const [modalDeletedVisible, setModalDeletedVisible] = useState(false);
+    const [modalModifyVisible, setModalModifyVisible] = useState<any>(false);
+    const router = useRouter();
 
-    const router = useRouter()
+    console.log("eventdisplay - props => ", props);
 
     const statsPaysVille = [
         { label: "Pays", value: props.country },
@@ -34,34 +39,38 @@ export default function EventDisplay(props: any) {
         setModalVisible(false);
     };
 
+    const handleCancelModifyModal = () => {
+        setModalModifyVisible(false);
+    };
+
     const handleParticipate = () => {
         setModalVisible(true);
         setTimeout(() => setModalVisible(false), 1500);
     };
 
     const handleDelete = async () => {
-        const result = await fetch(`${process.env.backendserver}/${props.evtUid}`,
-        {
-            method: "DELETE",
-            // body: JSON.stringify({evtUid: props.evtUid}),
-        })
+        const result = await fetch(
+            `${process.env.backendserver}/events/${props.evtUid}`,
+            {
+                method: "DELETE",
+                // body: JSON.stringify({evtUid: props.evtUid}),
+            }
+        );
         const datareceived = await result.json();
-        console.log(datareceived)
+        console.log(datareceived);
 
         // let message = datareceived[0]
-        let message = {result: true}
-        if (message.result === true) {
-            setModalDeletedVisible(true)
+        // let message = {result: true}
+        if (datareceived.acknowledged === true) {
+            setModalDeletedVisible(true);
             setTimeout(() => {
-                setModalDeletedVisible(false)
-                router.push('/')
+                setModalDeletedVisible(false);
+                // router.push('/meet')
+                router.push("/meet?search=all");
+                // router.push('/')
             }, 1500);
-            router.push('/events')
-            
         }
-
-    }
-
+    };
 
     let img = props.bannerPicture
         ? props.bannerPicture
@@ -87,7 +96,24 @@ export default function EventDisplay(props: any) {
                 <p>Evénement supprimé</p>
             </Modal>
 
-
+            <Modal
+                onCancel={() => handleCancelModifyModal()}
+                open={modalModifyVisible}
+                footer={null}
+                centered={true}
+            >
+                <EventFormModify
+                    title={props.title}
+                    shortDescritpion={props.shortDescription}
+                    longDescription={props.longDescription}
+                    startDate={props.startDate}
+                    endDate={props.endDate}
+                    country={props.country}
+                    city={props.city}
+                    evtUid={props.evtUid}
+                    bannerPicture={props.bannerPicture}
+                />
+            </Modal>
 
             <div className="bg-white py-24 sm:py-32">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -162,6 +188,19 @@ export default function EventDisplay(props: any) {
                                     <UserGroupIcon className="h-6 w-6 mr-2" />{" "}
                                     Participer
                                 </button>
+                                {/* <Link
+                                    href={`/members`}
+                                    key={props.evtUid}
+                                    className="hover:scale-105 transition duration-500"
+                                > */}
+                                <button
+                                    type="button"
+                                    className="mt-10 flex items-center rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                    onClick={() => setModalModifyVisible(true)}
+                                >
+                                    Modifier
+                                </button>
+                                {/* </Link> */}
                                 <button
                                     type="button"
                                     className="mt-10 flex items-center rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
