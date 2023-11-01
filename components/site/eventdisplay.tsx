@@ -203,11 +203,11 @@ export default function EventDisplay(props: any) {
                                 {/* </Link> */}
                                 <button
                                     type="button"
-                                    className="mt-10 flex items-center rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                    className="mt-10 flex items-center rounded-full bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                     onClick={handleDelete}
                                 >
                                     {/* <UserGroupIcon className="h-6 w-6 mr-2" />{" "} */}
-                                    Supprimer
+                                    X
                                 </button>
                             </div>
                         </div>

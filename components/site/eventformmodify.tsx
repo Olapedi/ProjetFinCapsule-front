@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 export default function EventFormModify(props: any) {
     //Date de départ
-    function formatDate(rawDate) {
+    function formatDate(rawDate:any) {
         let date = new Date(rawDate);
         let year = date.getFullYear();
         let month = ("0" + (date.getMonth() + 1)).slice(-2);
