@@ -18,6 +18,7 @@ import MemberDashboard from "@/components/members/memberdashboard";
 import EventDisplay from "@/components/site/eventdisplay";
 import {useEffect, useState} from 'react'
 import EventsAll from "@/components/site/eventsall";
+// import ProfileCard from "@/components/site/profilecard"
 
 
 export default function Test() {
@@ -27,7 +28,7 @@ export default function Test() {
     <main>
       
       <div>
-        <EventsAll/>
+        <EventDisplay />
       </div>
 
       <div>

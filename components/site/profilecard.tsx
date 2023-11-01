@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Modal } from "antd";
 import Boost from "./boost";
 import { useAppSelector } from "@/redux/store";
@@ -24,13 +24,40 @@ type propsStyle = {
     proUid: any;
 };
 
-export default function ProfileCard(props: propsStyle) {
-    let [nbBoost, setNbBoost] = useState(150);
-    const [boostModalVisible, setBoostModalVisible] = useState(false);
-    const currentUserId = useAppSelector(
-        (state) => state.authReducer.value.usrUid
-    );
-    const router = useRouter();
+// export default function ProfileCard(props: propsStyle) {
+//     let [nbBoost, setNbBoost] = useState(150);
+//     const [boostModalVisible, setBoostModalVisible] = useState(false);
+//     const currentUserId = useAppSelector(
+//         (state) => state.authReducer.value.usrUid
+//     );
+//     const currentProId = useAppSelector(
+//         (state) => state.authReducer.value.proUid
+//     );
+//     const router = useRouter();
+
+
+//     useEffect(()=>{
+//         console.log("From profilecard - useEffect => On passe bien par là")
+//         getProfileBoosts()
+//     },[])
+
+
+    //récupération des boosts du profil (repris de userprofiledisplay)
+    // const [boosts, setBoosts] = useState([])
+    const getProfileBoosts = async () => {
+        const result = await fetch(`${process.env.backendserver}/boosts/profile/${currentProId}`)
+        const data = await result.json()
+
+        console.log("From profilecard - currentProId => ", currentProId)
+        console.log("From profilecard - data => ", data)
+        if(data[0].result){
+            data.splice(0,1)
+            setNbBoost(data)
+        }
+    }
+
+
+    console.log(nbBoost)
 
     const showBoostModal = () => {
         setBoostModalVisible(true);
@@ -56,6 +83,8 @@ export default function ProfileCard(props: propsStyle) {
         }
     }
 
+
+    
     return (
         <li key={props.key}>
             <Modal
@@ -73,7 +102,7 @@ export default function ProfileCard(props: propsStyle) {
             </Modal>
 
             <Image
-                className="w-full rounded-2xl object-fill"
+                className="w-full rounded-2xl object-fill object-none h-64"
                 // className="aspect-[3/2] w-full rounded-2xl object-cover"
                 src={props.mainPicture}
                 width={1000}
