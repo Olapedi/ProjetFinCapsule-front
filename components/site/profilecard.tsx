@@ -24,40 +24,39 @@ type propsStyle = {
     proUid: any;
 };
 
-// export default function ProfileCard(props: propsStyle) {
-//     let [nbBoost, setNbBoost] = useState(150);
-//     const [boostModalVisible, setBoostModalVisible] = useState(false);
-//     const currentUserId = useAppSelector(
-//         (state) => state.authReducer.value.usrUid
-//     );
-//     const currentProId = useAppSelector(
-//         (state) => state.authReducer.value.proUid
-//     );
-//     const router = useRouter();
+export default function ProfileCard(props: propsStyle) {
+        let [nbBoost, setNbBoost] = useState(150);
+        const [boostModalVisible, setBoostModalVisible] = useState(false);
+        const currentUserId = useAppSelector(
+            (state) => state.authReducer.value.usrUid
+        );
+        const currentProId = useAppSelector(
+            (state) => state.authReducer.value.proUid
+        );
+        const router = useRouter();
 
-
-//     useEffect(()=>{
-//         console.log("From profilecard - useEffect => On passe bien par là")
-//         getProfileBoosts()
-//     },[])
-
+    //     useEffect(()=>{
+    //         console.log("From profilecard - useEffect => On passe bien par là")
+    //         getProfileBoosts()
+    //     },[])
 
     //récupération des boosts du profil (repris de userprofiledisplay)
     // const [boosts, setBoosts] = useState([])
     const getProfileBoosts = async () => {
-        const result = await fetch(`${process.env.backendserver}/boosts/profile/${currentProId}`)
-        const data = await result.json()
+        const result = await fetch(
+            `${process.env.backendserver}/boosts/profile/${currentProId}`
+        );
+        const data = await result.json();
 
-        console.log("From profilecard - currentProId => ", currentProId)
-        console.log("From profilecard - data => ", data)
-        if(data[0].result){
-            data.splice(0,1)
-            setNbBoost(data)
+        console.log("From profilecard - currentProId => ", currentProId);
+        console.log("From profilecard - data => ", data);
+        if (data[0].result) {
+            data.splice(0, 1);
+            setNbBoost(data);
         }
-    }
+    };
 
-
-    console.log(nbBoost)
+    // console.log(nbBoost);
 
     const showBoostModal = () => {
         setBoostModalVisible(true);
@@ -83,8 +82,6 @@ type propsStyle = {
         }
     }
 
-
-    
     return (
         <li key={props.key}>
             <Modal
@@ -191,20 +188,17 @@ type propsStyle = {
                             <div className="text-blue-800">{nbBoost}</div>
                         </div>
                     </div>
-                
+
                     <Link href={`/people?search=${props.proUid}`}>
+                        <button
+                            type="button"
+                            className="mr-5 h-8 rounded-full bg-indigo-600 px-2.5 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 
-                    <button
-                        type="button"
-                        className="mr-5 h-8 rounded-full bg-indigo-600 px-2.5 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-
-                        // className="mr-5 rounded bg-indigo-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    >
-                        voir
-                    </button>
-
+                            // className="mr-5 rounded bg-indigo-600 px-2 py-1 text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        >
+                            voir
+                        </button>
                     </Link>
-                    
                 </div>
             </div>
         </li>

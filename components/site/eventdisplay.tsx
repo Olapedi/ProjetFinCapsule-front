@@ -40,13 +40,13 @@ export default function EventDisplay(props: any) {
     };
 
     const handleDelete = async () => {
-        // const result = await fetch(`${process.env.backendserver}/delete`,
-        // {
-        //     method: "DELETE",
-        //     body: JSON.stringify({evtUid: props.evtUid}),
-        // })
-        // const datareceived = await result.json();
-        // console.log(datareceived)
+        const result = await fetch(`${process.env.backendserver}/${props.evtUid}`,
+        {
+            method: "DELETE",
+            // body: JSON.stringify({evtUid: props.evtUid}),
+        })
+        const datareceived = await result.json();
+        console.log(datareceived)
 
         // let message = datareceived[0]
         let message = {result: true}
