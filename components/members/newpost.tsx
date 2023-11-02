@@ -52,7 +52,7 @@ function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Newpost() {
+export default function Newpost(props : any) {
 
 
     // Récupération des états du Redux 
@@ -130,7 +130,7 @@ const handleSubmitPost = async () => {
           setDated(dueDates[0]);
           setTitle('');
           setText('');
-              
+          props.refresh()
         } else {
 
     } 
@@ -391,13 +391,13 @@ const handleSubmitPost = async () => {
         </div>
         <div className="flex items-center justify-between space-x-3 border-t border-gray-200 px-2 py-2 sm:px-3">
           <div className="flex">
-            <button
+            {/* <button
               type="button"
               className="group -my-2 -ml-2 inline-flex items-center rounded-full px-3 py-2 text-left text-gray-400"
             >
               <PaperClipIcon className="-ml-1 mr-2 h-5 w-5 group-hover:text-gray-500" aria-hidden="true" />
               <span className="text-sm italic text-gray-500 group-hover:text-gray-600">Ajouter un fichier pdf</span>
-            </button>
+            </button> */}
           </div>
           <div className="flex-shrink-0">
             <button
