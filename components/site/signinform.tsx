@@ -17,6 +17,13 @@ export default function SigninForm() {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
+  const handleInput = (event : any) => {
+    if (event.key === 'Enter') {
+      console.log('enter')
+      event.preventDefault();
+      handlelogin()
+      }
+    }
   
   const handlelogin = async () => {
 
@@ -134,37 +141,21 @@ export default function SigninForm() {
                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       onChange={(e) => setPassword(e.target.value)}
                       value={password}
+                      onKeyUp={handleInput}
                     />
                   </div>
                 </div>
                 
                 <p className="text-red-600 text-sm"> {error} </p>
 
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <input
-                      id="remember-me"
-                      name="remember-me"
-                      type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                    />
-                    <label htmlFor="remember-me" className="ml-3 block text-sm leading-6 text-gray-900">
-                      Sauvegarder
-                    </label>
-                  </div>
-  
-                  <div className="text-sm leading-6">
-                    
-                    <Link href = '/join/password' className="font-semibold text-indigo-600 hover:text-indigo-500"> Mot de passe oublié ? </Link>
-                    
-                  </div>
-                </div>
+
+
   
                 <div>
 
                   <button
                     type="button"
-                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="flex w-full mt-8 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     onClick={handlelogin}
                   >
                     Se connecter

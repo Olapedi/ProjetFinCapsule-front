@@ -205,8 +205,8 @@ export default function GlobalNavbar() {
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Ouvrir le menu</span>
                         <Image
-                            className="h-8 w-8 rounded-full"
-                            src={auth.proPicture}
+                            className="h-8 w-8 rounded-full object-fill "
+                            src={auth.proPicture? auth.proPicture : '/Generic_Image_Missing-Profile.jpg'}
                             alt="Image de profil"
                             width={200}
                             height={200}
@@ -227,7 +227,7 @@ export default function GlobalNavbar() {
                             {({ active }) => (
                             <button
                                 onClick = {() => handelUserMenu ('0')}
-                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                className={classNames(active ? 'bg-gray-100' : '', 'w-full text-left block px-4 py-2 text-sm text-gray-700')}
                             >
                                 Mon Profil
                             </button>
@@ -238,7 +238,7 @@ export default function GlobalNavbar() {
                             {({ active }) => (
                             <button
                             onClick = {() => handelUserMenu ('1')}
-                                className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
+                                className={classNames(active ? 'bg-gray-100' : '', 'w-full text-left block px-4 py-2 text-sm text-gray-700')}
                             >
                                 Se déconnecter
                             </button>
@@ -265,53 +265,45 @@ export default function GlobalNavbar() {
                 <Disclosure.Button
                     as="a"
                     href="/people"
-                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800"
+                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-200 hover:border-gray-300 hover:bg-gray-100 hover:text-gray-800"
                 >
                     Membres
                 </Disclosure.Button>
                 <Disclosure.Button
                     as="a"
                     href="/events"
-                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800"
+                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-200 hover:border-gray-300 hover:bg-gray-100 hover:text-gray-800"
                 >
                     Rencontres
                 </Disclosure.Button>
                 </div>
                 <div className="border-t border-gray-200 pb-3 pt-4">
                 <div className="flex items-center px-4">
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 aspect-w-1 aspect-h-1">
                     <Image
                         className="h-10 w-10 rounded-full"
-                        src={auth.proPicture}
+                        src={auth.proPicture? auth.proPicture : '/Generic_Image_Missing-Profile.jpg'}
                         alt="Image de profil"
                         width={200}
                         height={200}
                     />
                     </div>
                     <div className="ml-3">
-                    <div className="text-base font-medium text-gray-800">{auth.displayName}</div>
-                    <div className="text-sm font-medium text-gray-500">{auth.email}</div>
+                    <div className="text-base font-medium text-gray-300">{auth.displayName}</div>
+                    <div className="text-sm font-medium text-gray-200">{auth.email}</div>
                     </div>
-                    <button
-                    type="button"
-                    className="relative ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                    <span className="absolute -inset-1.5" />
-                    <span className="sr-only">Voir les notifications</span>
-                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                    </button>
                 </div>
                 <div className="mt-3 space-y-1">
                     <Disclosure.Button
                     onClick = {() => handelUserMenu ('0')}
-                    className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+                    className="block border-l-4 border-transparent w-full text-left px-4 py-2 text-base font-medium text-gray-200 hover:border-gray-300 hover:bg-gray-100 hover:text-gray-800"
                     >
                     Mon Profil
                     </Disclosure.Button>
                     <Disclosure.Button
                     
                     onClick = {() => handelUserMenu ('1')}
-                    className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
+                    className="block w-full border-l-4 border-transparent text-left px-4 py-2 text-base font-medium text-gray-200 hover:border-gray-300 hover:bg-gray-100 hover:text-gray-800"
                     >
                     Se déconnecter
                     </Disclosure.Button>
@@ -323,7 +315,7 @@ export default function GlobalNavbar() {
         </Disclosure>
 
 
-    {/* Ajout de la modale en dessois de la page*/}
+    {/* Ajout de la modale en dessous de la page*/}
 
         
     {(userState.isActivated) && <main>
@@ -347,7 +339,7 @@ export default function GlobalNavbar() {
                     leaveFrom="opacity-100 translate-y-0"
                     leaveTo="opacity-0 translate-y-1"
                 >
-                    <Popover.Panel className="absolute right-1 bottom-full z-10 mb-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+                    <Popover.Panel className="absolute right-1 bottom-full z-10 mb-3 w-screen sm:max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                         <div className="p-4">
                         {add.map((item) => (
                             <div

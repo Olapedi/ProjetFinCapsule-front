@@ -74,9 +74,9 @@ export default function PeopleContainer() {
     const proUid = searchParams.get('search')
 
     let [profile, setProfile] = useState<any[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [showAll, setShowall] = useState(true);
-
+    const [loading, setLoading] = useState<boolean>(true);
+    const [showAll, setShowall] = useState<boolean>(true);
+    const [refresh, setRefresh] = useState<boolean>(false)
     
     // Récupération des données au mount du composant
 
@@ -115,7 +115,11 @@ export default function PeopleContainer() {
     }
     fetchData();
 
-    }, [proUid]);
+    }, [proUid, refresh]);
+
+    const handleProfilUpdate = () =>{
+        setRefresh(!refresh)
+    }
 
     // Afficher des valeurs par défaut tant que les données ne sont pas disponibles
 
@@ -147,9 +151,8 @@ export default function PeopleContainer() {
     let onPersonnalProfil = userState.proUid === proUid ? true : false
     let display = showAll ? <ProfilesAll/> : <UserProfilDisplay
         profilData={profile[0]}
-        // neo={neo}
         onPersonnalProfil={onPersonnalProfil}
-        // alerts={alerts}
+        refresh={handleProfilUpdate}
         /> 
     return(
         <main>

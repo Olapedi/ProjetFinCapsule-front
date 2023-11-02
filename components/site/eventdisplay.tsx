@@ -9,9 +9,18 @@ import Select from "react-select";
 
 import { UserGroupIcon } from "@heroicons/react/24/outline";
 import { count } from "console";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import EventForm from "./eventform";
+import EventFormModify from "./eventformmodify";
 
 export default function EventDisplay(props: any) {
     const [modalVisible, setModalVisible] = useState(false);
+    const [modalDeletedVisible, setModalDeletedVisible] = useState(false);
+    const [modalModifyVisible, setModalModifyVisible] = useState<any>(false);
+    const router = useRouter();
+
+    console.log("eventdisplay - props => ", props);
 
     const statsPaysVille = [
         { label: "Pays", value: props.country },
@@ -30,13 +39,42 @@ export default function EventDisplay(props: any) {
         setModalVisible(false);
     };
 
+    const handleCancelModifyModal = () => {
+        setModalModifyVisible(false);
+    };
+
     const handleParticipate = () => {
-        setModalVisible(true)
+        setModalVisible(true);
         setTimeout(() => setModalVisible(false), 1500);
+    };
 
-    }
+    const handleDelete = async () => {
+        const result = await fetch(
+            `${process.env.backendserver}/events/${props.evtUid}`,
+            {
+                method: "DELETE",
+                // body: JSON.stringify({evtUid: props.evtUid}),
+            }
+        );
+        const datareceived = await result.json();
+        console.log(datareceived);
 
-    let img= props.bannerPicture? props.bannerPicture : "https://images.unsplash.com/photo-1697809462690-57bc1601f665?auto=format&fit=crop&q=80&w=1887&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        // let message = datareceived[0]
+        // let message = {result: true}
+        if (datareceived.acknowledged === true) {
+            setModalDeletedVisible(true);
+            setTimeout(() => {
+                setModalDeletedVisible(false);
+                // router.push('/meet')
+                router.push("/meet?search=all");
+                // router.push('/')
+            }, 1500);
+        }
+    };
+
+    let img = props.bannerPicture
+        ? props.bannerPicture
+        : "https://images.unsplash.com/photo-1697809462690-57bc1601f665?auto=format&fit=crop&q=80&w=1887&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
     return (
         <>
@@ -44,9 +82,37 @@ export default function EventDisplay(props: any) {
                 onCancel={() => handleCancelModal()}
                 open={modalVisible}
                 footer={null}
-                centered = {true}
+                centered={true}
             >
                 <p>Votre inscription a bien été prise en compte</p>
+            </Modal>
+
+            <Modal
+                onCancel={() => handleCancelModal()}
+                open={modalDeletedVisible}
+                footer={null}
+                centered={true}
+            >
+                <p>Evénement supprimé</p>
+            </Modal>
+
+            <Modal
+                onCancel={() => handleCancelModifyModal()}
+                open={modalModifyVisible}
+                footer={null}
+                centered={true}
+            >
+                <EventFormModify
+                    title={props.title}
+                    shortDescritpion={props.shortDescription}
+                    longDescription={props.longDescription}
+                    startDate={props.startDate}
+                    endDate={props.endDate}
+                    country={props.country}
+                    city={props.city}
+                    evtUid={props.evtUid}
+                    bannerPicture={props.bannerPicture}
+                />
             </Modal>
 
             <div className="bg-white py-24 sm:py-32">
@@ -113,15 +179,37 @@ export default function EventDisplay(props: any) {
                                     </div>
                                 ))}
                             </dl>
-
-                            <button
-                                type="button"
-                                className="mt-10 flex items-center rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                                onClick={handleParticipate}
+                            <div className="flex w-30 justify-between">
+                                <button
+                                    type="button"
+                                    className="mt-10 flex items-center rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                    onClick={handleParticipate}
                                 >
-                                <UserGroupIcon className="h-6 w-6 mr-2" />{" "}
-                                Participer
-                            </button>
+                                    <UserGroupIcon className="h-6 w-6 mr-2" />{" "}
+                                    Participer
+                                </button>
+                                {/* <Link
+                                    href={`/members`}
+                                    key={props.evtUid}
+                                    className="hover:scale-105 transition duration-500"
+                                > */}
+                                <button
+                                    type="button"
+                                    className="mt-10 flex items-center rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                    onClick={() => setModalModifyVisible(true)}
+                                >
+                                    Modifier
+                                </button>
+                                {/* </Link> */}
+                                <button
+                                    type="button"
+                                    className="mt-10 flex items-center rounded-full bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                    onClick={handleDelete}
+                                >
+                                    {/* <UserGroupIcon className="h-6 w-6 mr-2" />{" "} */}
+                                    X
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

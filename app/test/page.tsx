@@ -18,7 +18,12 @@ import MemberDashboard from "@/components/members/memberdashboard";
 import EventDisplay from "@/components/site/eventdisplay";
 import {useEffect, useState} from 'react'
 import EventsAll from "@/components/site/eventsall";
+<<<<<<< HEAD
 import UpdateProfilForm from '@/components/members/updateProfilForm'
+=======
+// import ProfileCard from "@/components/site/profilecard"
+
+>>>>>>> b286050686f1da6ab25a17b13c051a7a62132511
 
 export default function Test() {
 
@@ -27,7 +32,15 @@ export default function Test() {
     <main>
       
       <div>
+<<<<<<< HEAD
         <UpdateProfilForm/>        
+=======
+        <EventDisplay />
+      </div>
+
+      <div>
+        
+>>>>>>> b286050686f1da6ab25a17b13c051a7a62132511
       </div>
       
     </main>

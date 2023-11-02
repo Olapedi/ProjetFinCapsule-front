@@ -85,8 +85,8 @@ const handleDeleteAccount = async () => {
     setError(response.message)
   }
   else{
-    router.push(`/`)
     dispatch(logOut())
+    router.push(`/`)
   }
 }
 
@@ -124,7 +124,8 @@ const handleUpdate = async () => {
   console.log('response from back:' , response);
   
   if(response.result){
-    props.closeEditModal()    
+    props.closeEditModal()
+    props.refresh()    
   }
 }
 

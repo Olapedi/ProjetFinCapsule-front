@@ -22,6 +22,7 @@ const initialState = {
 
     value : {
 
+        // token: "tT0nqgfZNInZV7bAcwFuF9-A7tTaIsln",
         token: "",
         usrUid: "",
         isActivated: false,

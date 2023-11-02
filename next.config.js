@@ -4,13 +4,24 @@ const nextConfig = {
 
     // CDN à rajouter pour les images en https
     images: {
-        domains: ["i.ebayimg.com", "images.unsplash.com", "pexels.com", "static.lacapsule.academy", "ieminc.org", "tailwindui.com", "3.bp.blogspot.com", "res.cloudinary.com"],
+        domains: [
+            "i.ebayimg.com",
+            "images.unsplash.com",
+            "pexels.com",
+            "static.lacapsule.academy",
+            "ieminc.org",
+            "tailwindui.com",
+            "3.bp.blogspot.com",
+            "res.cloudinary.com",
+            "entreprendre2024cegrandest.fr",
+            "www.entrepreneur-liberte.com",
+            "www.e-couveuz.fr",
+        ],
     },
 
     env: {
         // backendserver: "https://neoneydev1-backend.vercel.app",
         backendserver: "http://localhost:3000",
-
     },
 };
 

@@ -36,16 +36,7 @@ export default function UserProfilDisplay(props:any){
     }
 
 
-
-    //récupération du code néo de l'utilisateur du profil // n'ai pas accès à l'userUid si ce n'est pas le profil de l'utilisateur
-    // const [neo,setNeo] = useState('')
-    // const getUserNeo = async () => {
-    //     const result = await fetch(`${process.env.backendserver}/users/${user.usrUid}`)
-    //     const userData = await result.json()
-    //     setNeo(userData[1].neocode)
-    // }
-
-    //récupération des boosts du profil
+    //récupération des boosts & alertes du profil
     const [boosts, setBoosts] = useState([])
     const [alerts, setAlerts] = useState([])
 
@@ -147,7 +138,7 @@ export default function UserProfilDisplay(props:any){
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <Menu.Item>
             {({ active }) => (
-                <div className={classNames(active ? 'bg-gray-100 cursor-grab' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
+                <div className={classNames(active ? 'bg-gray-100 cursor-pointer' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
                     <Image
                 src='/msgIcon.svg'
                 width={20}
@@ -162,7 +153,7 @@ export default function UserProfilDisplay(props:any){
           </Menu.Item>
           <Menu.Item>
             {({ active }) => (
-                <div className={classNames(active ? 'bg-gray-100 cursor-grab' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
+                <div className={classNames(active ? 'bg-gray-100 cursor-pointer' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
                     <Image
                 src='/circleIcon.svg'
                 width={20}
@@ -177,7 +168,7 @@ export default function UserProfilDisplay(props:any){
           </Menu.Item>
           <Menu.Item>
             {({ active }) => (
-                <div className={classNames(active ? 'bg-gray-100 cursor-grab' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
+                <div className={classNames(active ? 'bg-gray-100 cursor-pointer' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
                     <Image
                 src='/boostIcon.svg'
                 width={20}
@@ -192,7 +183,7 @@ export default function UserProfilDisplay(props:any){
           </Menu.Item>
           <Menu.Item>
             {({ active }) => (
-                <div className={classNames(active ? 'bg-gray-100 cursor-grab' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
+                <div className={classNames(active ? 'bg-gray-100 cursor-pointer' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
                     <Image
                 src='/alertIcon.svg'
                 width={20}
@@ -216,9 +207,24 @@ console.log('strs : ',props.profilData.strengths)
     //Partie concernant le content Fiche
     //Afficher la liste des strengths renseignés mis à part pour possible futur ajout d'icone
     let strengths
-    if(props.profilData.strengths){
-        strengths = props.profilData.strengths.text
-    }
+    if (props.profilData.strengths.length >0) {
+        strengths = (
+          <div className='mb-6'>
+            <h2 className='text-2xl font-bold tracking-wide text-gray-900'>Forces de {props.profilData.cards[0].displayName}</h2>
+            {props.profilData.strengths.map((str: any, index: number) => (
+              <div
+                key={index}
+                className="mt-4 mx-2 rounded-md bg-indigo-500 inline-block px-3 py-2 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                {str.text}
+              </div>
+            ))}
+          </div>
+        );
+      }
+      else{
+        strengths = <></>
+      }
 
 
     //afficher la section video uniquement si uploadée
@@ -230,17 +236,20 @@ console.log('strs : ',props.profilData.strengths)
     //affichage des réseaux remplis par l'utilisateur uniquement
     const reseaux = []
     if(props.profilData.socialLinkedIn){
-        reseaux.push(<Link href={props.profilData.socialLinkedIn}>
-            <Image
-                src ='/linkedinIcon.svg'
-                width={18}
-                height={18}
-                alt='LinkedIn profile logo'
-            />
-        </Link>)
+        reseaux.push(
+            <Link href={props.profilData.socialLinkedIn} className='mx-1'>
+                <Image
+                    src ='/linkedinIcon.svg'
+                    width={18}
+                    height={18}
+                    alt='LinkedIn profile logo'
+                />
+            </Link>
+        )
     }
     if(props.profilData.socialFacebook){
-        reseaux.push(<Link href={props.profilData.socialFacebook}>
+        reseaux.push(
+        <Link href={props.profilData.socialFacebook} className='mx-1'>
             <Image
                 src ='/facebookIcon.svg'
                 width={18}
@@ -250,9 +259,10 @@ console.log('strs : ',props.profilData.strengths)
         </Link>)
     }
     if(props.profilData.socialInstagram){
-        reseaux.push(<Link href={props.profilData.socialInstagram}>
+        reseaux.push(
+        <Link href={props.profilData.socialInstagram} className='mx-1'>
             <Image
-                src ='/public/instagramIcon.svg'
+                src ='/instagramIcon.svg'
                 width={18}
                 height={18}
                 alt='Instagram profile logo'
@@ -260,7 +270,8 @@ console.log('strs : ',props.profilData.strengths)
         </Link>)
     }
     if(props.profilData.socialYoutube){
-        reseaux.push(<Link href={props.profilData.socialYoutube}>
+        reseaux.push(
+        <Link href={props.profilData.socialYoutube} className='mx-1'>
             <Image
                 src ='/youtubeIcon.svg'
                 width={18}
@@ -270,7 +281,8 @@ console.log('strs : ',props.profilData.strengths)
         </Link>)
     }
     if(props.profilData.socialTweeter){
-        reseaux.push(<Link href={props.profilData.socialTweeter}>
+        reseaux.push(
+        <Link href={props.profilData.socialTweeter} className='mx-1'>
             <Image
                 src ='/tweetIcon.svg'
                 width={18}
@@ -285,21 +297,24 @@ console.log('strs : ',props.profilData.strengths)
     const contactActions = []
     if(props.profilData.cards[0].website){
         contactActions.push(<Link href={props.profilData.cards[0].website}
-            className='ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-        >En savoir plus</Link>)
+            className='inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+        >Site Web</Link>)
     }
     // if(props.profilData.agenda){
     //     contactActions.push( <button onClick={()=>handleAppointment()}>Prendre rendez-vous</button> )
     // }
 
     let contacts = 
-        <div>
-            <div>
-                {reseaux}
+        <div className='flex flex-col'>
+        <div className='mb-6 mt-4'>
+            <h2 className='text-2xl font-bold tracking-wide text-gray-900'>Réseaux sociaux</h2>
+            <div className='flex flex-row mt-2'>
+            {reseaux}
             </div>
-            <div className='flex justify-center'>
-                {contactActions}
-            </div>
+        </div>
+        <div className='mt-4'>
+            {contactActions}
+        </div>
         </div>
     //Partie concernant le content About
 
@@ -341,6 +356,7 @@ console.log('strs : ',props.profilData.strengths)
             <div  className='text-base leading-7 text-gray-700'>
                 <h2 className='text-2xl font-bold tracking-wide text-gray-900'>Informations légales</h2>
                 <p className='text-base leading-7 text-gray-700'>{props.profilData.legalinfos}</p>
+                <p className='text-base leading-7 text-gray-700'>{props.profilData.organization}</p>
             </div>
                  
         break;
@@ -349,12 +365,11 @@ console.log('strs : ',props.profilData.strengths)
             content = 
                 <div>
                     <div>
-                        {strengths}
-
                         <div>
                             <h2 className='text-2xl font-bold tracking-wide text-gray-900'>Présentation</h2>
                             <p className='text-base leading-7 text-gray-700'>{props.profilData.cards[0].description}</p>
                         </div>
+                        {strengths}
                     </div>
                 
                     {video}
@@ -398,11 +413,12 @@ console.log('strs : ',props.profilData.strengths)
                 <UpdateProfilForm
                 data={...props}
                 closeEditModal={handleCancelEdit}
+                refresh={props.refresh}
                 />
             </Modal>
             <div className='text-base leading-7 text-gray-700 flex justify-between rounded-md shadow-sm ring-1 ring-inset ring-gray-300 p-10 mb-4'>
                 <div className='flex'>
-                    <div className='pr-6'>
+                    <div className="pr-6">
                         <Image
                         src={props.profilData.mainPicture}
                         width={80}
@@ -418,7 +434,7 @@ console.log('strs : ',props.profilData.strengths)
                         <p>{props.profilData.cards[0].organisation}</p>
                         <p>{props.profilData.jobCategories} {props.profilData.jobSubCategories}</p>
                         <p>{props.profilData.countries} {props.profilData.cities}</p>
-                        <p>Code neo : {props.profilData.owner.neocode}</p>
+                        {props.onPersonnalProfil?<p>Code neo : {props.profilData.owner.neocode}</p> : <></>}
                     </div>
                     <div className='pr-6 flex flex-col justify-center'>
                         <div className='flex flex-row items-center'>

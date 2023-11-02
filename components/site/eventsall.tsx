@@ -63,7 +63,7 @@ export default function EventsAll() {
                             <article className="flex flex-col items-start justify-between">
                             <div className="relative w-full">
 
-                                <Image className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+                                <Image className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-fill sm:aspect-[2/1] lg:aspect-[3/2]"
                                     // src={'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'}
                                     src={event.bannerPicture}
                                     width={500} height={500} 

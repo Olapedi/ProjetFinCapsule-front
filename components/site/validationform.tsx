@@ -8,6 +8,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useAppSelector } from '@/redux/store'
 import SiteNavbar from './sitenavbar'
+import { useRouter } from 'next/navigation'
 
 export default function Validation() {
 
@@ -25,7 +26,7 @@ export default function Validation() {
     const dispatch = useDispatch()
     const user = useAppSelector((state) => state.authReducer.value)
     const formData = new FormData();
-
+    const router = useRouter()
     //selector for the image
 
     async function handleImageSelect(e: any) {
@@ -56,7 +57,8 @@ export default function Validation() {
             formData.append('website', website)
             formData.append('usrUid', user.usrUid);
             formData.append('phone', tempRes[1].phone);
-            formData.append('email', tempRes[1].email);  
+            formData.append('email', tempRes[1].email); 
+            formData.append('usrUid', user.usrUid) 
 
           console.log('formData : ',formData)
           
@@ -94,6 +96,7 @@ export default function Validation() {
             
             else{
                 dispatch(activate())
+                router.push(`/feed?search=${user.proUid}`)
                 // dispatch(chooseProfil())
                 console.log('has been dispatched')
             }
@@ -102,6 +105,7 @@ export default function Validation() {
 // console.log('avatarName',avatarName)
 // console.log('avatarType',avatarType)
 // console.log('uri',avatarURI)
+  console.log('reducer :',user)
   return (
     <div className="items-center" style={{display : "flex", flexDirection : 'column'}}>
 
