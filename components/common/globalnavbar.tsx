@@ -264,25 +264,15 @@ export default function GlobalNavbar() {
                 </Disclosure.Button>
                 <Disclosure.Button
                     as="a"
-<<<<<<< HEAD
-                    href="/people"
-                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-200 hover:border-gray-300 hover:bg-gray-100 hover:text-gray-800"
-=======
                     href="/people?search=all"
                     className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800"
->>>>>>> 0fd40151a540260508499424136d0c53b108e79f
                 >
                     Membres
                 </Disclosure.Button>
                 <Disclosure.Button
                     as="a"
-<<<<<<< HEAD
-                    href="/events"
-                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-200 hover:border-gray-300 hover:bg-gray-100 hover:text-gray-800"
-=======
                     href="/meet?search=all"
                     className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800"
->>>>>>> 0fd40151a540260508499424136d0c53b108e79f
                 >
                     Rencontres
                 </Disclosure.Button>
@@ -302,8 +292,6 @@ export default function GlobalNavbar() {
                     <div className="text-base font-medium text-gray-300">{auth.displayName}</div>
                     <div className="text-sm font-medium text-gray-200">{auth.email}</div>
                     </div>
-<<<<<<< HEAD
-=======
                     {/* <button
                     type="button"
                     className="relative ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -312,7 +300,6 @@ export default function GlobalNavbar() {
                     <span className="sr-only">Voir les notifications</span>
                     <BellIcon className="h-6 w-6" aria-hidden="true" />
                     </button> */}
->>>>>>> 0fd40151a540260508499424136d0c53b108e79f
                 </div>
                 <div className="mt-3 space-y-1">
                     <Disclosure.Button
