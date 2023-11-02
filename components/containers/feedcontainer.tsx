@@ -64,10 +64,12 @@ export default function FeedContainer() {
     const searchParams = useSearchParams()
     const proUid = searchParams.get('search')
 
+    const [refresh, setRefresh] = useState<boolean>(true)
+    const handleRefresh = () => {
+        setRefresh(!refresh)
+    }
 
     // # Déclaration des états pour l'affichage des contenus
-
-
 
     if (userState.token !== '') {
 
@@ -99,12 +101,12 @@ export default function FeedContainer() {
 
                 let data = await resp.json();
                 data = data.splice(1);
-
+                console.log('posts',data)
                 // Vérifier que les données ne sont pas vides
 
                 if (data && data.length > 0) {
 
-                    setPosts(data);
+                    setPosts(data.reverse());
                     setLoading(false);
 
                   //  setProfile(data);
@@ -119,7 +121,7 @@ export default function FeedContainer() {
 
         fetchData();
 
-    }, [proUid]);
+    }, [proUid, refresh]);
 
   // Afficher des valeurs par défaut tant que les données ne sont pas disponibles
   
@@ -187,7 +189,8 @@ export default function FeedContainer() {
                                 <div className="overflow-hidden rounded-lg bg-white shadow">
                                     <div className="p-6">
 
-                                    <Newpost />
+                                    <Newpost 
+                                    refresh={handleRefresh}/>
                                     
                                     </div>
                                 </div>
