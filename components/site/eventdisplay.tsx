@@ -21,7 +21,7 @@ export default function EventDisplay(props: any) {
     const [modalModifyVisible, setModalModifyVisible] = useState<any>(false);
     const [redirectToAll, setRedirectToAll] = useState(false);
     const [dummyState, setDummyState] = useState(false)
-    const [refreshRoute, setRefreshRoute] = useState(false)
+    // const [refreshRoute, setRefreshRoute] = useState(false)
     const router = useRouter();
 
     const userState = useAppSelector((state) => state.authReducer.value);
@@ -41,16 +41,16 @@ export default function EventDisplay(props: any) {
         { label: "", value: "" },
     ];
 
-    useEffect(() => {
-        if (refreshRoute) {
-            console.log("From eventscontainer - refreshRoute =>", refreshRoute)
-            setDummyState(!dummyState)
-            console.log("From eventdisplay - useEffect if redicrectToAll est true - engendre re-routage vers /meet?search=all", redirectToAll)
-            // router.push(`/meet/${props.evtUid}`);
-            // router.push(`/meet/all`);
-            props.refresh(`${props.evtUid}`)
-        }
-    }, [refreshRoute]);
+    // useEffect(() => {
+    //     if (refreshRoute) {
+    //         console.log("From eventscontainer - refreshRoute =>", refreshRoute)
+    //         setDummyState(!dummyState)
+    //         console.log("From eventdisplay - useEffect if redicrectToAll est true - engendre re-routage vers /meet?search=all", redirectToAll)
+    //         // router.push(`/meet/${props.evtUid}`);
+    //         // router.push(`/meet/all`);
+    //         props.refresh(`${props.evtUid}`)
+    //     }
+    // }, [refreshRoute]);
 
     const handleCancelModal = () => {
         setModalVisible(false);
@@ -95,9 +95,9 @@ export default function EventDisplay(props: any) {
         }
     };
 
-    const handleRefreshRoute = () => {
-       setRefreshRoute(true);
-    };
+    // const handleRefreshRoute = () => {
+    //    setRefreshRoute(true);
+    // };
 
     let img = props.bannerPicture
         ? props.bannerPicture
@@ -178,7 +178,7 @@ export default function EventDisplay(props: any) {
                     evtUid={props.evtUid}
                     bannerPicture={props.bannerPicture}
                     close={handleCancelModifyModal}
-                    refreshRoute={handleRefreshRoute}
+                    refreshRoute={props.refresh}
                 />
             </Modal>
 

@@ -110,13 +110,13 @@ export default function EventContainer({urlParam}) {
     
     fetchData(evtUid)
     setLoading(false);
-    }, [evtUid, forceRefresh]);
+    }, [forceRefresh]);
 
     // Afficher des valeurs par défaut tant que les données ne sont pas disponibles
 
     function handleRefresh(evtUid:any) {
       console.log("From eventscontainer - handleRefresh() - evtUid =>", evtUid)
-      setEvtUid(evtUid)
+      // setEvtUid(evtUid)
       setForceRefresh(!forceRefresh)
     }
 
