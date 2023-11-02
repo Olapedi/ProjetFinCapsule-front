@@ -6,6 +6,8 @@ import { useState, useId, useEffect, useRef } from "react";
 import countries from "../../neoney_datas/countries.json";
 import Select from "react-select";
 import { useRouter } from "next/navigation";
+import { useAppSelector } from "@/redux/store";
+
 
 export default function EventForm(props:any) {
     //Date de maintenant
@@ -32,6 +34,7 @@ export default function EventForm(props:any) {
 
     const messageDateEnd = "Date de fin incompatible avec celle de début";
     const messageDateEndVisible = useRef(false);
+    const userState = useAppSelector((state) => state.authReducer.value);
 
     useEffect(() => {
         console.log("eventId =>", eventId)
@@ -128,7 +131,7 @@ export default function EventForm(props:any) {
             dateBegin !== "" &&
             picture
         ) {
-            formData.append('token', 'tT0nqgfZNInZV7bAcwFuF9-A7tTaIsln');
+            formData.append('token', userState.token);
             formData.append('title', title);
             formData.append('shortDescription', preview);
             formData.append('longDescription', description);

@@ -8,11 +8,13 @@ import Link from "next/link";
 import { useState, useEffect } from 'react';
 import { propagateServerField } from "next/dist/server/lib/render-server";
 
-  
+
+
 export default function EventsAll() {
 
     const [events, setEvents] = useState<any[]>([]);
     const [eventFormModalVisible, setEventFormModalVisible] = useState(false)
+
 
     // useEffect(() => {
     //     fetch(`${process.env.backendserver}/events`)
@@ -76,7 +78,7 @@ export default function EventsAll() {
                             <div className="max-w-xl">
                                 <div className="mt-8 flex items-center gap-x-4 text-xs">
                                     <time dateTime={event.occurences[0].startDate} className="text-gray-500">
-                                        {event.occurences[0].startDate}
+                                        {event.occurences[0].startDate.slice(0, 9+1)} - {event.occurences[0].startDate.slice(11, 15+1)}
                                     </time>
                                     <a
                                         href="#"
