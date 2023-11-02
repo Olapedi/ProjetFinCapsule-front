@@ -6,9 +6,15 @@ import { useState, useId, useEffect, useRef } from "react";
 import countries from "../../neoney_datas/countries.json";
 import Select from "react-select";
 import { useRouter } from "next/navigation";
+import { useFormState } from "react-dom";
+import { useAppSelector } from "@/redux/store";
+
 
 export default function EventFormModify(props: any) {
-    //Date de départ
+
+    const userState = useAppSelector((state) => state.authReducer.value);
+
+    // Fonction de fromatage des dates
     function formatDate(rawDate:any) {
         let date = new Date(rawDate);
         let year = date.getFullYear();
@@ -149,7 +155,7 @@ export default function EventFormModify(props: any) {
             // formData.append('picture', picture, picture.name)
 
             const event = {
-                token: "tT0nqgfZNInZV7bAcwFuF9-A7tTaIsln",
+                token: userState.token,
                 evtUid: props.evtUid,
                 title: title,
                 shortDescription: preview,
@@ -160,7 +166,8 @@ export default function EventFormModify(props: any) {
                 city: city.value,
             };
 
-            console.log("formData : ", formData);
+            console.log("From eventformmodify - event => ", event)
+            // console.log("formData : ", formData);
             const result = await fetch(
                 `${process.env.backendserver}/events/update`,
                 {
@@ -179,6 +186,8 @@ export default function EventFormModify(props: any) {
                 const eventCreate = datareceived[1];
 
                 setEventId(eventCreate.evtUid);
+                setTimeout(() => {props.close(); router.push(`/meet?search=${props.evtUid}`)}, 2000) 
+                
             } else {
                 setError(datareceived[0].message);
             }

@@ -39,9 +39,12 @@ export default function ProfilesAll() {
                 setProfiles([]);
             } else {
                 data = data[1];
+                // data = data.splice(1);
                 // console.log(data);
                 // const proUid = useAppSelector(state => state.authReducer.value.proUid);
-                console.log("From profilesall - au moment de la Search - proUid => ", proUid)
+                console.log("From profilesall - handleClick recherche - proUid => ", proUid)
+                console.log("From profilesall - handleClick recherche => ", data)
+                data = data.filter((profil : any)=> profil.proUid !== proUid );
                 setProfiles(data);
             }
             setSearch("");
@@ -49,6 +52,7 @@ export default function ProfilesAll() {
             const resp = await fetch(`${process.env.backendserver}/profiles`);
             let data = await resp.json();
             data = data.splice(1);
+            data = data.filter((profil : any)=> profil.proUid !== proUid )
             setProfiles(data);
         }
     }

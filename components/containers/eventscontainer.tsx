@@ -165,6 +165,8 @@ return ( <EventDisplay
                 country = {profile[0].countries[0]}
                 city = {profile[0].cities[0]}
                 bannerPicture = {profile[0].bannerPicture}
+                owner = {profile[0].owner}
+                usrUid = {profile[0].owner.usrUid}
 
                 />
 )

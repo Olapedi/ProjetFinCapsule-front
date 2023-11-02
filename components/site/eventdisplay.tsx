@@ -13,12 +13,15 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import EventForm from "./eventform";
 import EventFormModify from "./eventformmodify";
+import { useAppSelector } from "@/redux/store";
 
 export default function EventDisplay(props: any) {
     const [modalVisible, setModalVisible] = useState(false);
     const [modalDeletedVisible, setModalDeletedVisible] = useState(false);
     const [modalModifyVisible, setModalModifyVisible] = useState<any>(false);
     const router = useRouter();
+
+    const userState = useAppSelector((state) => state.authReducer.value);
 
     console.log("eventdisplay - props => ", props);
 
@@ -27,12 +30,12 @@ export default function EventDisplay(props: any) {
         { label: "Ville", value: props.city },
     ];
     const statsDateDebutFin = [
-        { label: "Début", value: "26 Oct 2023" },
-        { label: "Fin", value: "01 Nov 2023" },
+        { label: "Début", value: props.startDate.slice(0, 10) },
+        { label: "Fin", value: props.endDate.slice(0, 10) },
     ];
     const statsHeureDebutFin = [
-        { label: "", value: "10:30" },
-        { label: "", value: "19:00" },
+        { label: "", value: "" },
+        { label: "", value: "" },
     ];
 
     const handleCancelModal = () => {
@@ -57,11 +60,11 @@ export default function EventDisplay(props: any) {
             }
         );
         const datareceived = await result.json();
-        console.log(datareceived);
+        console.log("eventdisplay - handleDelete - datareceived => ", datareceived);
 
         // let message = datareceived[0]
         // let message = {result: true}
-        if (datareceived.acknowledged === true) {
+        if (datareceived[1].acknowledged === true) {
             setModalDeletedVisible(true);
             setTimeout(() => {
                 setModalDeletedVisible(false);
@@ -75,6 +78,44 @@ export default function EventDisplay(props: any) {
     let img = props.bannerPicture
         ? props.bannerPicture
         : "https://images.unsplash.com/photo-1697809462690-57bc1601f665?auto=format&fit=crop&q=80&w=1887&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
+    // Initialisation des boutons
+    let buttons = <button></button>;
+    console.log("From eventdisplay - userState.usrUid => ", userState.usrUid)
+    console.log("From eventdisplay - props.owner => ", props.owner)
+
+    // Apparition conditionnelle des boutons
+    if (userState.usrUid === props.usrUid) {
+        buttons = (
+            <>
+                <button
+                    type="button"
+                    className="mt-10 flex items-center rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    onClick={() => setModalModifyVisible(true)}
+                >
+                    Modifier
+                </button>
+                <button
+                    type="button"
+                    className="mt-10 flex items-center rounded-full bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    onClick={handleDelete}
+                >
+                    {/* <UserGroupIcon className="h-6 w-6 mr-2" />{" "} */}X -
+                    Supprimer
+                </button>
+            </>
+        );
+    } else {
+        buttons = (
+            <button
+                type="button"
+                className="mt-10 flex items-center rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                onClick={handleParticipate}
+            >
+                <UserGroupIcon className="h-6 w-6 mr-2" /> Participer
+            </button>
+        );
+    }
 
     return (
         <>
@@ -112,6 +153,7 @@ export default function EventDisplay(props: any) {
                     city={props.city}
                     evtUid={props.evtUid}
                     bannerPicture={props.bannerPicture}
+                    close={handleCancelModifyModal}
                 />
             </Modal>
 
@@ -121,7 +163,7 @@ export default function EventDisplay(props: any) {
                         <div className="lg:pr-4">
                             <div className="relative overflow-hidden rounded-3xl bg-gray-900 px-6 pb-9 pt-96 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10">
                                 <Image
-                                    className="absolute inset-0 h-full w-full object-cover hover:scale-105 transition duration-500"
+                                    className="absolute inset-0 h-full w-full object-fill bg-white hover:scale-105 transition duration-500"
                                     src={props.bannerPicture}
                                     width={500}
                                     height={500}
@@ -180,35 +222,32 @@ export default function EventDisplay(props: any) {
                                 ))}
                             </dl>
                             <div className="flex w-30 justify-between">
-                                <button
+                                {buttons}
+                                {/* Bouton si on n'est pas le créateur de l'événement (proUid) - participer*/}
+                                {/* <button
                                     type="button"
                                     className="mt-10 flex items-center rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                     onClick={handleParticipate}
                                 >
                                     <UserGroupIcon className="h-6 w-6 mr-2" />{" "}
                                     Participer
-                                </button>
-                                {/* <Link
-                                    href={`/members`}
-                                    key={props.evtUid}
-                                    className="hover:scale-105 transition duration-500"
-                                > */}
-                                <button
+                                </button> */}
+
+                                {/* Bouton si on est le créateur de l'événement (proUid) - modifier, supprimer */}
+                                {/* <button
                                     type="button"
                                     className="mt-10 flex items-center rounded-full bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                     onClick={() => setModalModifyVisible(true)}
                                 >
                                     Modifier
                                 </button>
-                                {/* </Link> */}
                                 <button
                                     type="button"
-                                    className="mt-10 flex items-center rounded-full bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                    className="mt-10 flex items-center rounded-full bg-red-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                     onClick={handleDelete}
                                 >
-                                    {/* <UserGroupIcon className="h-6 w-6 mr-2" />{" "} */}
-                                    X
-                                </button>
+                                    X - Supprimer
+                                </button> */}
                             </div>
                         </div>
                     </div>

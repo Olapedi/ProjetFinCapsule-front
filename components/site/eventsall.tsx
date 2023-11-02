@@ -8,11 +8,13 @@ import Link from "next/link";
 import { useState, useEffect } from 'react';
 import { propagateServerField } from "next/dist/server/lib/render-server";
 
-  
+
+
 export default function EventsAll() {
 
     const [events, setEvents] = useState<any[]>([]);
     const [eventFormModalVisible, setEventFormModalVisible] = useState(false)
+
 
     // useEffect(() => {
     //     fetch(`${process.env.backendserver}/events`)
@@ -44,7 +46,7 @@ export default function EventsAll() {
         console.log('events', events)
     return (
         
-        <div className="bg-white py-24 sm:py-32">
+        <div className="absolute left-0 right-0 top-0 bottom-0 -z-10 bg-white py-24 sm:py-32">
         
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl text-center">
@@ -76,14 +78,14 @@ export default function EventsAll() {
                             <div className="max-w-xl">
                                 <div className="mt-8 flex items-center gap-x-4 text-xs">
                                     <time dateTime={event.occurences[0].startDate} className="text-gray-500">
-                                        {event.occurences[0].startDate}
+                                        {event.occurences[0].startDate.slice(0, 9+1)} - {event.occurences[0].startDate.slice(11, 15+1)}
                                     </time>
-                                    <a
+                                    {/* <a
                                         href="#"
                                         className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
                                     >
                                     {event.occurences[0].title}
-                                    </a>
+                                    </a> */}
                                 </div>
                                 <div className="group relative">
                                     <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -94,7 +96,7 @@ export default function EventsAll() {
                                     </h3>
                                     <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">{event.occurences[0].shortDescription}</p>
                                 </div>
-                                <div className="relative mt-8 flex items-center gap-x-4">
+                                {/* <div className="relative mt-8 flex items-center gap-x-4">
 
                                     <Image className="h-10 w-10 rounded-full bg-gray-100"
                                             src={'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'}
@@ -110,7 +112,7 @@ export default function EventsAll() {
                                         </p>
                                         <p className="text-gray-600">Co-Founder / CTO</p>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                             </article>
                         </Link>
