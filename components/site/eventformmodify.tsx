@@ -187,7 +187,7 @@ export default function EventFormModify(props: any) {
                 setEventId(eventCreate.evtUid);
                 setTimeout(() => {
                     props.close();
-                    router.push(`/meet/all`);
+                    // router.push(`/meet/all`);
                     // router.push(`/meet/${props.evtUid}`);
                     props.refreshRoute()
                 }, 2000);
