@@ -8,6 +8,7 @@ import { Modal } from "antd";
 
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
+import UpdateProfilForm from './updateProfilForm'
 
 function classNames(...classes: any) {
     return classes.filter(Boolean).join(' ')
@@ -33,26 +34,38 @@ export default function UserProfilDisplay(props:any){
     const handleMessage = () => {
         
     }
-    //récupération du code néo de l'utilisateur du profil // n'ai pas accès à l'userUid si ce n'est pas le profil de l'utilisateur
-    // const [neo,setNeo] = useState('')
-    // const getUserNeo = async () => {
-    //     const result = await fetch(`${process.env.backendserver}/users/${user.usrUid}`)
-    //     const userData = await result.json()
-    //     setNeo(userData[1].neocode)
-    // }
 
-    //récupération des boosts du profil
+
+    //récupération des boosts & alertes du profil
     const [boosts, setBoosts] = useState([])
+    const [alerts, setAlerts] = useState([])
+
     const getProfilBoosts = async () => {
-        const result = await fetch(`${process.env.backendserver}/boosts/profile/${props}`)
+        const result = await fetch(`${process.env.backendserver}/boosts/profile/${props.profilData.proUid}`)
         const data = await result.json()
         if(data[0].result){
             data.splice(0,1)
             setBoosts(data)
         }
     }
+    
+    const getProfilAlerts = async () => {
+        const result = await fetch(`${process.env.backendserver}/alerts/profile/${props.profilData.proUid}`)
+        const data = await result.json()
+        if(data[0].result){
+            data.splice(0,1)
+            setAlerts(data)
+        }
+    }
+
+    const [editModalVisible,setEditModalVisible] = useState<boolean>(false)
+    const handleCancelEdit = () => {
+        setEditModalVisible(false)
+    }
+
     useEffect(()=>{
-        getProfilBoosts()
+        // getProfilBoosts()
+        // getProfilAlerts()
     },[])
 
     //mockData for testing
@@ -93,7 +106,7 @@ export default function UserProfilDisplay(props:any){
         <div>    
             <button
             className='ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-            onClick={()=> handleEdit()}>Modifier mon profil</button>
+            onClick={()=> setEditModalVisible(true)}>Modifier mon profil</button>
         </div> 
     }
     else{
@@ -125,7 +138,7 @@ export default function UserProfilDisplay(props:any){
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <Menu.Item>
             {({ active }) => (
-                <div className={classNames(active ? 'bg-gray-100 cursor-grab' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
+                <div className={classNames(active ? 'bg-gray-100 cursor-pointer' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
                     <Image
                 src='/msgIcon.svg'
                 width={20}
@@ -140,7 +153,7 @@ export default function UserProfilDisplay(props:any){
           </Menu.Item>
           <Menu.Item>
             {({ active }) => (
-                <div className={classNames(active ? 'bg-gray-100 cursor-grab' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
+                <div className={classNames(active ? 'bg-gray-100 cursor-pointer' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
                     <Image
                 src='/circleIcon.svg'
                 width={20}
@@ -155,7 +168,7 @@ export default function UserProfilDisplay(props:any){
           </Menu.Item>
           <Menu.Item>
             {({ active }) => (
-                <div className={classNames(active ? 'bg-gray-100 cursor-grab' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
+                <div className={classNames(active ? 'bg-gray-100 cursor-pointer' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
                     <Image
                 src='/boostIcon.svg'
                 width={20}
@@ -170,7 +183,7 @@ export default function UserProfilDisplay(props:any){
           </Menu.Item>
           <Menu.Item>
             {({ active }) => (
-                <div className={classNames(active ? 'bg-gray-100 cursor-grab' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
+                <div className={classNames(active ? 'bg-gray-100 cursor-pointer' : '', 'block px-4 py-2 text-sm text-gray-700 flex')}>
                     <Image
                 src='/alertIcon.svg'
                 width={20}
@@ -190,18 +203,28 @@ export default function UserProfilDisplay(props:any){
 }
 
     const [contentShown, setContentShown] = useState<string>('Fiche')
-
-    //Fonction au click sur Editer, renvoie vers le formulaire d'édition du profil utilisateur
-    const handleEdit = () => {
-
-    }
-
+console.log('strs : ',props.profilData.strengths)
     //Partie concernant le content Fiche
     //Afficher la liste des strengths renseignés mis à part pour possible futur ajout d'icone
     let strengths
-    if(props.profilData.strengths){
-        strengths = props.profilData.strengths
-    }
+    if (props.profilData.strengths.length >0) {
+        strengths = (
+          <div className='mb-6'>
+            <h2 className='text-2xl font-bold tracking-wide text-gray-900'>Forces de {props.profilData.cards[0].displayName}</h2>
+            {props.profilData.strengths.map((str: any, index: number) => (
+              <div
+                key={index}
+                className="mt-4 mx-2 rounded-md bg-indigo-500 inline-block px-3 py-2 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                {str.text}
+              </div>
+            ))}
+          </div>
+        );
+      }
+      else{
+        strengths = <></>
+      }
 
 
     //afficher la section video uniquement si uploadée
@@ -213,17 +236,20 @@ export default function UserProfilDisplay(props:any){
     //affichage des réseaux remplis par l'utilisateur uniquement
     const reseaux = []
     if(props.profilData.socialLinkedIn){
-        reseaux.push(<Link href={props.profilData.socialLinkedIn}>
-            <Image
-                src ='/linkedinIcon.svg'
-                width={18}
-                height={18}
-                alt='LinkedIn profile logo'
-            />
-        </Link>)
+        reseaux.push(
+            <Link href={props.profilData.socialLinkedIn} className='mx-1'>
+                <Image
+                    src ='/linkedinIcon.svg'
+                    width={18}
+                    height={18}
+                    alt='LinkedIn profile logo'
+                />
+            </Link>
+        )
     }
     if(props.profilData.socialFacebook){
-        reseaux.push(<Link href={props.profilData.socialFacebook}>
+        reseaux.push(
+        <Link href={props.profilData.socialFacebook} className='mx-1'>
             <Image
                 src ='/facebookIcon.svg'
                 width={18}
@@ -233,9 +259,10 @@ export default function UserProfilDisplay(props:any){
         </Link>)
     }
     if(props.profilData.socialInstagram){
-        reseaux.push(<Link href={props.profilData.socialInstagram}>
+        reseaux.push(
+        <Link href={props.profilData.socialInstagram} className='mx-1'>
             <Image
-                src ='/public/instagramIcon.svg'
+                src ='/instagramIcon.svg'
                 width={18}
                 height={18}
                 alt='Instagram profile logo'
@@ -243,7 +270,8 @@ export default function UserProfilDisplay(props:any){
         </Link>)
     }
     if(props.profilData.socialYoutube){
-        reseaux.push(<Link href={props.profilData.socialYoutube}>
+        reseaux.push(
+        <Link href={props.profilData.socialYoutube} className='mx-1'>
             <Image
                 src ='/youtubeIcon.svg'
                 width={18}
@@ -253,7 +281,8 @@ export default function UserProfilDisplay(props:any){
         </Link>)
     }
     if(props.profilData.socialTweeter){
-        reseaux.push(<Link href={props.profilData.socialTweeter}>
+        reseaux.push(
+        <Link href={props.profilData.socialTweeter} className='mx-1'>
             <Image
                 src ='/tweetIcon.svg'
                 width={18}
@@ -268,21 +297,24 @@ export default function UserProfilDisplay(props:any){
     const contactActions = []
     if(props.profilData.cards[0].website){
         contactActions.push(<Link href={props.profilData.cards[0].website}
-            className='ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-        >En savoir plus</Link>)
+            className='inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+        >Site Web</Link>)
     }
     // if(props.profilData.agenda){
     //     contactActions.push( <button onClick={()=>handleAppointment()}>Prendre rendez-vous</button> )
     // }
 
     let contacts = 
-        <div>
-            <div>
-                {reseaux}
+        <div className='flex flex-col'>
+        <div className='mb-6 mt-4'>
+            <h2 className='text-2xl font-bold tracking-wide text-gray-900'>Réseaux sociaux</h2>
+            <div className='flex flex-row mt-2'>
+            {reseaux}
             </div>
-            <div className='flex justify-center'>
-                {contactActions}
-            </div>
+        </div>
+        <div className='mt-4'>
+            {contactActions}
+        </div>
         </div>
     //Partie concernant le content About
 
@@ -324,6 +356,7 @@ export default function UserProfilDisplay(props:any){
             <div  className='text-base leading-7 text-gray-700'>
                 <h2 className='text-2xl font-bold tracking-wide text-gray-900'>Informations légales</h2>
                 <p className='text-base leading-7 text-gray-700'>{props.profilData.legalinfos}</p>
+                <p className='text-base leading-7 text-gray-700'>{props.profilData.organization}</p>
             </div>
                  
         break;
@@ -332,12 +365,11 @@ export default function UserProfilDisplay(props:any){
             content = 
                 <div>
                     <div>
-                        {strengths}
-
                         <div>
                             <h2 className='text-2xl font-bold tracking-wide text-gray-900'>Présentation</h2>
                             <p className='text-base leading-7 text-gray-700'>{props.profilData.cards[0].description}</p>
                         </div>
+                        {strengths}
                     </div>
                 
                     {video}
@@ -348,7 +380,7 @@ export default function UserProfilDisplay(props:any){
     }
 
 
-    console.log(props)
+    console.log('props : ',props)
     return (
         <div className='m-12' >
             {/* <Modal
@@ -372,12 +404,22 @@ export default function UserProfilDisplay(props:any){
             >
                 <Boost name={props.displayName} profileOwner={currentUserId} sender={currentUserId} receiver={props.proUid} confirmOk={confirmOk}/>
             </Modal> */}
-
+            <Modal
+                className='w-1/2'
+                onCancel={() => handleCancelEdit()}
+                open={editModalVisible}
+                footer={null}
+            >
+                <UpdateProfilForm
+                data={...props}
+                closeEditModal={handleCancelEdit}
+                refresh={props.refresh}
+                />
+            </Modal>
             <div className='text-base leading-7 text-gray-700 flex justify-between rounded-md shadow-sm ring-1 ring-inset ring-gray-300 p-10 mb-4'>
                 <div className='flex'>
-                    <div className='pr-6'>
+                    <div className="pr-6">
                         <Image
-                        // src={'https://static.lacapsule.academy/avatar/64e5dae107f71b001adb6c77.jpg'}
                         src={props.profilData.mainPicture}
                         width={80}
                         height={80}
@@ -392,8 +434,7 @@ export default function UserProfilDisplay(props:any){
                         <p>{props.profilData.cards[0].organisation}</p>
                         <p>{props.profilData.jobCategories} {props.profilData.jobSubCategories}</p>
                         <p>{props.profilData.countries} {props.profilData.cities}</p>
-                        <p>Code Neo : {props.neo}</p>
-
+                        {props.onPersonnalProfil?<p>Code neo : {props.profilData.owner.neocode}</p> : <></>}
                     </div>
                     <div className='pr-6 flex flex-col justify-center'>
                         <div className='flex flex-row items-center'>
@@ -402,19 +443,21 @@ export default function UserProfilDisplay(props:any){
                             width={20}
                             height={20}
                             alt='boost icon'
-                            className='py-4 mr-2'
+                            className='py-4 mr-4'
                             />
                             <p>Boosts : {boosts.length}</p>
                         </div>   
                         
-                        <Image
-                        src='/alertIcon.svg'
-                        width={20}
-                        height={20}
-                        alt='alert icon'
-                        />
-                        {/* <p>Signalements : {props.profilData.alerts.length}</p> */}
-                        
+                        <div className='flex flex-row items-center'>
+                            <Image
+                            src='/alertIcon.svg'
+                            width={20}
+                            height={20}
+                            alt='alert icon'
+                            className='mr-4'
+                            />
+                            <p>Signalements : {alerts.length}</p>
+                        </div>                        
                     </div>
             </div>
                 <div className='flex justify-between flex-col'>

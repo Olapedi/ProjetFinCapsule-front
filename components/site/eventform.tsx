@@ -175,9 +175,9 @@ export default function EventForm(props:any) {
 
             if (datareceived[0].result == true) {
                 const eventCreate = datareceived[1];
-
                 setEventId(eventCreate.evtUid);
             } else {
+                formData.delete('picture')
                 setError(datareceived[0].message);
             }
         }

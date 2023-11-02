@@ -155,7 +155,7 @@ export default function ProfilesAll() {
                     <input
                         type="text"
                         className="w-10/12 rounded-2xl mt-5"
-                        placeholder="rechercher un membre"
+                        placeholder="Rechercher un membre"
                         onChange={(e) => {
                             setMessageVisible(false);
                             setSearch(e.target.value);

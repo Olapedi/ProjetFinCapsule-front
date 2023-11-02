@@ -46,33 +46,31 @@ countries.map((item) => {
 
 const handelCountryChange = async (countrySelected : any) => {
 
-setCountry(countrySelected);
-setCity({value: '', label: ''})
+  setCountry(countrySelected);
+  setCity({value: '', label: ''})
 
-let cityArray: any = [];
+  let cityArray: any = [];
 
-await countries.map((item) => {
+  await countries.map((item) => {
 
-  if (item.name == countrySelected.value) {
+    if (item.name == countrySelected.value) {
 
-    item.cities.map((item2) => {
+      item.cities.map((item2) => {
 
-      cityArray.push({
+        cityArray.push({
 
-        value: item2, 
-        label : item2
+          value: item2, 
+          label : item2
 
-    })
-    
-    })
+      })
+      
+      })
 
-    setCityoptions(cityArray);
+      setCityoptions(cityArray);
 
-  }  
- 
-} )
-
-
+    }  
+  
+  } )
 } 
 
 const handelCityChange = (citySelected : any) => {
