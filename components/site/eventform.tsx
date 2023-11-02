@@ -10,6 +10,10 @@ import { useAppSelector } from "@/redux/store";
 
 
 export default function EventForm(props:any) {
+
+    console.log("From eventform - appel composant => Le composant est bien appelé")
+
+
     //Date de maintenant
     let date = new Date();
     let year = date.getFullYear();
@@ -124,6 +128,8 @@ export default function EventForm(props:any) {
     //handle submit form
 
     const handleEvent = async () => {
+        console.log("From eventform - handleEvent - dateEnd => ", dateEnd)
+
         if (
             title !== "" &&
             preview !== "" &&
