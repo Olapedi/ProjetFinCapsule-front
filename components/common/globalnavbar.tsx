@@ -229,7 +229,7 @@ export default function GlobalNavbar() {
                                 onClick = {() => handelUserMenu ('0')}
                                 className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                             >
-                                Mon Profile
+                                Mon Profil
                             </button>
                             )}
                         </Menu.Item>
@@ -306,7 +306,7 @@ export default function GlobalNavbar() {
                     onClick = {() => handelUserMenu ('0')}
                     className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                     >
-                    Mon Profile
+                    Mon Profil
                     </Disclosure.Button>
                     <Disclosure.Button
                     

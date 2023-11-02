@@ -76,9 +76,7 @@ export default function PeopleContainer() {
     let [profile, setProfile] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [showAll, setShowall] = useState(true);
-    const [neo,setNeo]= useState('')
-    const [boosts, setBoosts] = useState()
-    const [alerts, setAlerts] = useState()
+
     
     // Récupération des données au mount du composant
 

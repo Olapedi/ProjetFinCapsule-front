@@ -161,7 +161,6 @@ export default function GlobalModal() {
                     </Popover.Group>
 
                         <Modal
-
                             onCancel={() => handleCancelEvent()}
                             open={eventModalVisible}
                             footer={null}

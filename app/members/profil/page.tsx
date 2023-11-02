@@ -39,11 +39,14 @@ export default function ProfilUser() {
             setBoosts(data)
         }
     }
-    // const getProfilAlerts = async () => {
-    //     const result = await fetch(`${process.env.backendserver}/alerts/${user.proUid}`)
-    //     const data = await result.json()
-    //     setAlerts(data)
-    // }
+    const getProfilAlerts = async () => {
+        const result = await fetch(`${process.env.backendserver}/alerts/${user.proUid}`)
+        const data = await result.json()
+        if(data[0].result){
+            data.splice(0,1)
+            setAlerts(data)
+        }
+    }
   
     useEffect(()=>{
         getprofilData()

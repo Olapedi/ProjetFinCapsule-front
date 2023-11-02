@@ -8,6 +8,7 @@ import { Modal } from "antd";
 
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
+import UpdateProfilForm from './updateProfilForm'
 
 function classNames(...classes: any) {
     return classes.filter(Boolean).join(' ')
@@ -33,6 +34,9 @@ export default function UserProfilDisplay(props:any){
     const handleMessage = () => {
         
     }
+
+
+
     //récupération du code néo de l'utilisateur du profil // n'ai pas accès à l'userUid si ce n'est pas le profil de l'utilisateur
     // const [neo,setNeo] = useState('')
     // const getUserNeo = async () => {
@@ -43,16 +47,34 @@ export default function UserProfilDisplay(props:any){
 
     //récupération des boosts du profil
     const [boosts, setBoosts] = useState([])
+    const [alerts, setAlerts] = useState([])
+
     const getProfilBoosts = async () => {
-        const result = await fetch(`${process.env.backendserver}/boosts/profile/${props}`)
+        const result = await fetch(`${process.env.backendserver}/boosts/profile/${props.profilData.proUid}`)
         const data = await result.json()
         if(data[0].result){
             data.splice(0,1)
             setBoosts(data)
         }
     }
+    
+    const getProfilAlerts = async () => {
+        const result = await fetch(`${process.env.backendserver}/alerts/profile/${props.profilData.proUid}`)
+        const data = await result.json()
+        if(data[0].result){
+            data.splice(0,1)
+            setAlerts(data)
+        }
+    }
+
+    const [editModalVisible,setEditModalVisible] = useState<boolean>(false)
+    const handleCancelEdit = () => {
+        setEditModalVisible(false)
+    }
+
     useEffect(()=>{
-        getProfilBoosts()
+        // getProfilBoosts()
+        // getProfilAlerts()
     },[])
 
     //mockData for testing
@@ -93,7 +115,7 @@ export default function UserProfilDisplay(props:any){
         <div>    
             <button
             className='ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-            onClick={()=> handleEdit()}>Modifier mon profil</button>
+            onClick={()=> setEditModalVisible(true)}>Modifier mon profil</button>
         </div> 
     }
     else{
@@ -190,17 +212,12 @@ export default function UserProfilDisplay(props:any){
 }
 
     const [contentShown, setContentShown] = useState<string>('Fiche')
-
-    //Fonction au click sur Editer, renvoie vers le formulaire d'édition du profil utilisateur
-    const handleEdit = () => {
-
-    }
-
+console.log('strs : ',props.profilData.strengths)
     //Partie concernant le content Fiche
     //Afficher la liste des strengths renseignés mis à part pour possible futur ajout d'icone
     let strengths
     if(props.profilData.strengths){
-        strengths = props.profilData.strengths
+        strengths = props.profilData.strengths.text
     }
 
 
@@ -348,7 +365,7 @@ export default function UserProfilDisplay(props:any){
     }
 
 
-    console.log(props)
+    console.log('props : ',props)
     return (
         <div className='m-12' >
             {/* <Modal
@@ -372,12 +389,21 @@ export default function UserProfilDisplay(props:any){
             >
                 <Boost name={props.displayName} profileOwner={currentUserId} sender={currentUserId} receiver={props.proUid} confirmOk={confirmOk}/>
             </Modal> */}
-
+            <Modal
+                className='w-1/2'
+                onCancel={() => handleCancelEdit()}
+                open={editModalVisible}
+                footer={null}
+            >
+                <UpdateProfilForm
+                data={...props}
+                closeEditModal={handleCancelEdit}
+                />
+            </Modal>
             <div className='text-base leading-7 text-gray-700 flex justify-between rounded-md shadow-sm ring-1 ring-inset ring-gray-300 p-10 mb-4'>
                 <div className='flex'>
                     <div className='pr-6'>
                         <Image
-                        // src={'https://static.lacapsule.academy/avatar/64e5dae107f71b001adb6c77.jpg'}
                         src={props.profilData.mainPicture}
                         width={80}
                         height={80}
@@ -392,8 +418,7 @@ export default function UserProfilDisplay(props:any){
                         <p>{props.profilData.cards[0].organisation}</p>
                         <p>{props.profilData.jobCategories} {props.profilData.jobSubCategories}</p>
                         <p>{props.profilData.countries} {props.profilData.cities}</p>
-                        <p>Code Neo : {props.neo}</p>
-
+                        <p>Code neo : {props.profilData.owner.neocode}</p>
                     </div>
                     <div className='pr-6 flex flex-col justify-center'>
                         <div className='flex flex-row items-center'>
@@ -402,19 +427,21 @@ export default function UserProfilDisplay(props:any){
                             width={20}
                             height={20}
                             alt='boost icon'
-                            className='py-4 mr-2'
+                            className='py-4 mr-4'
                             />
                             <p>Boosts : {boosts.length}</p>
                         </div>   
                         
-                        <Image
-                        src='/alertIcon.svg'
-                        width={20}
-                        height={20}
-                        alt='alert icon'
-                        />
-                        {/* <p>Signalements : {props.profilData.alerts.length}</p> */}
-                        
+                        <div className='flex flex-row items-center'>
+                            <Image
+                            src='/alertIcon.svg'
+                            width={20}
+                            height={20}
+                            alt='alert icon'
+                            className='mr-4'
+                            />
+                            <p>Signalements : {alerts.length}</p>
+                        </div>                        
                     </div>
             </div>
                 <div className='flex justify-between flex-col'>

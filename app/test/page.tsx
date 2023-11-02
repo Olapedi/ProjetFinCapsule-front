@@ -18,7 +18,7 @@ import MemberDashboard from "@/components/members/memberdashboard";
 import EventDisplay from "@/components/site/eventdisplay";
 import {useEffect, useState} from 'react'
 import EventsAll from "@/components/site/eventsall";
-
+import UpdateProfilForm from '@/components/members/updateProfilForm'
 
 export default function Test() {
 
@@ -27,11 +27,7 @@ export default function Test() {
     <main>
       
       <div>
-        <EventsAll/>
-      </div>
-
-      <div>
-        
+        <UpdateProfilForm/>        
       </div>
       
     </main>

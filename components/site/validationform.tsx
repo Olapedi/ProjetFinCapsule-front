@@ -52,7 +52,7 @@ export default function Validation() {
             formData.append('organization', organization);
             formData.append('title', title);
             formData.append('jobCategories', jobCategories);
-            formData.append('jobSubCategories', JSON.stringify(jobSubCategories));
+            formData.append('jobSubCategories', jobSubCategories);
             formData.append('website', website)
             formData.append('usrUid', user.usrUid);
             formData.append('phone', tempRes[1].phone);
@@ -88,6 +88,7 @@ export default function Validation() {
             console.log('results : ', results)
             console.log('result error',results[0].message)
             if(!results[0].result){
+                formData.delete('picture')
                 setError(results[0].message)
             }
             
