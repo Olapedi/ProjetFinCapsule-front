@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Modal } from "antd";
 
-import { useState, useId } from "react";
+import { useState, useId, useEffect } from "react";
 import countries from "../../neoney_datas/countries.json";
 import Select from "react-select";
 
@@ -19,6 +19,7 @@ export default function EventDisplay(props: any) {
     const [modalVisible, setModalVisible] = useState(false);
     const [modalDeletedVisible, setModalDeletedVisible] = useState(false);
     const [modalModifyVisible, setModalModifyVisible] = useState<any>(false);
+    const [redirectToAll, setRedirectToAll] = useState(false);
     const router = useRouter();
 
     const userState = useAppSelector((state) => state.authReducer.value);
@@ -37,6 +38,13 @@ export default function EventDisplay(props: any) {
         { label: "", value: "" },
         { label: "", value: "" },
     ];
+
+    // useEffect(() => {
+    //     if (redirectToAll) {
+    //         console.log("From eventdisplay - useEffect if redicrectToAll est true - engendre re-routage vers /meet?search=all", redirectToAll)
+    //         router.push("/meet?search=all");
+    //     }
+    // }, [redirectToAll]);
 
     const handleCancelModal = () => {
         setModalVisible(false);
@@ -60,16 +68,22 @@ export default function EventDisplay(props: any) {
             }
         );
         const datareceived = await result.json();
-        console.log("eventdisplay - handleDelete - datareceived => ", datareceived);
+        console.log(
+            "eventdisplay - handleDelete - datareceived => ",
+            datareceived
+        );
 
         // let message = datareceived[0]
         // let message = {result: true}
-        if (datareceived[1].acknowledged === true) {
+        console.log("datareceived", datareceived)
+        if (datareceived[1].acknowledged) {
             setModalDeletedVisible(true);
             setTimeout(() => {
                 setModalDeletedVisible(false);
                 // router.push('/meet')
-                router.push("/meet?search=all");
+                setRedirectToAll(true);
+                
+                 router.push("/meet?search=all");
                 // router.push('/')
             }, 1500);
         }
@@ -81,8 +95,8 @@ export default function EventDisplay(props: any) {
 
     // Initialisation des boutons
     let buttons = <button></button>;
-    console.log("From eventdisplay - userState.usrUid => ", userState.usrUid)
-    console.log("From eventdisplay - props.owner => ", props.owner)
+    console.log("From eventdisplay - userState.usrUid => ", userState.usrUid);
+    console.log("From eventdisplay - props.owner => ", props.owner);
 
     // Apparition conditionnelle des boutons
     if (userState.usrUid === props.usrUid) {

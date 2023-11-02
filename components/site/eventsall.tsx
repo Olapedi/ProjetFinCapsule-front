@@ -60,7 +60,7 @@ export default function EventsAll() {
 
                     {events.map((event : any) => (
 
-                        <Link href={`/meet?search=${event.evtUid}`} key={event.evtUid}  className='hover:scale-105 transition duration-500'>
+                        <Link href={`/meet/${event.evtUid}`} key={event.evtUid}  className='hover:scale-105 transition duration-500'>
 
                             <article className="flex flex-col items-start justify-between">
                             <div className="relative w-full">

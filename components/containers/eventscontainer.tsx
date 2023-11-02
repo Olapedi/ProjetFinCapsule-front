@@ -45,18 +45,18 @@ function classNames(...classes: any) {
 }
 
 
-export default function EventContainer() {
+export default function EventContainer({urlParam}) {
 
     const dispatch = useDispatch<AppDispatch>();
     const router = useRouter()
     const userState = useAppSelector((state) => state.authReducer.value)
 
     const searchParams = useSearchParams()
-    const evtUid = searchParams.get('search')
+    const evtUid = urlParam
     //const [evtUid, setEvtUid] = useState(searchParams.get('search'))
     let [profile, setProfile] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
-    const [showAll, setShowall] = useState(true);
+    const [showAll, setShowall] = useState(urlParam=='all');
 
 
     /* function handleEvtUid(uid:any ){
