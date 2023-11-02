@@ -25,30 +25,29 @@ type propsStyle = {
 };
 
 export default function ProfileCard(props: propsStyle) {
-        let [nbBoost, setNbBoost] = useState(150);
+        let [nbBoost, setNbBoost] = useState(0);
         const [boostModalVisible, setBoostModalVisible] = useState(false);
         const currentUserId = useAppSelector(
             (state) => state.authReducer.value.usrUid
         );
-        const currentProId = useAppSelector(
+        const proUid = useAppSelector(
             (state) => state.authReducer.value.proUid
         );
         const router = useRouter();
 
-    //     useEffect(()=>{
-    //         console.log("From profilecard - useEffect => On passe bien par là")
-    //         getProfileBoosts()
-    //     },[])
+        // useEffect(()=>{
+        //     console.log("From profilecard - useEffect => On passe bien par là")
+        //     getProfileBoosts()
+        // },[])
 
     //récupération des boosts du profil (repris de userprofiledisplay)
     // const [boosts, setBoosts] = useState([])
     // const getProfileBoosts = async () => {
     //     const result = await fetch(
-    //         `${process.env.backendserver}/boosts/profile/${currentProId}`
+    //         `${process.env.backendserver}/boosts/profile/${proUid}`
     //     );
     //     const data = await result.json();
-
-    //     console.log("From profilecard - currentProId => ", currentProId);
+    //     console.log("From profilecard - currentProId => ", proUid);
     //     console.log("From profilecard - data => ", data);
     //     if (data[0].result) {
     //         data.splice(0, 1);
@@ -56,7 +55,7 @@ export default function ProfileCard(props: propsStyle) {
     //     }
     // };
 
-    // console.log(nbBoost);
+    console.log(nbBoost);
 
     const showBoostModal = () => {
         setBoostModalVisible(true);

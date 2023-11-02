@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 // import Image from 'next/image';
 // import styles from '../styles/SignUp.module.css';
 import Select from "react-select";
+import { useAppSelector } from "@/redux/store";
+
 
 type propsStyle = {
     name: String;
@@ -28,6 +30,7 @@ function Boost(props: propsStyle) {
     const [subCategory, setSubCategory] = useState("");
     const [testimonial, setTestimonial] = useState("");
     let [boostDelivered, setBoostDelivered] = useState("");
+    const userState = useAppSelector((state) => state.authReducer.value)
 
     const categoryOptions = [
         { label: "collaborateur", value: "collaborateur" },
@@ -62,8 +65,13 @@ function Boost(props: propsStyle) {
         // console.log("=============================")
         // setBoostDelivered(category)
 
-        const usrUidMock = "usr2023102552112";
-        const proUidMock = "pro2023102527605";
+        // const userState = useAppSelector(state => state.authReducer.value)
+
+        // const usrUidMock = "usr2023102552112";
+        const usrUidMock = userState.usrUid;
+        console.log("From boost.tsx - usrUid => ", usrUidMock)
+        // const proUidMock = "pro2023102527605";
+        const proUidMock = userState.proUid;
 
         // Remplacer les usrUidMock et proUidMock quand l'identificaiton sera active sur le site
         fetch(`${process.env.backendserver}/boosts/new`, {
