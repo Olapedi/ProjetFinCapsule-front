@@ -30,8 +30,8 @@ export default function EventDisplay(props: any) {
         { label: "Ville", value: props.city },
     ];
     const statsDateDebutFin = [
-        { label: "Début", value: props.startDate },
-        { label: "Fin", value: props.endDate },
+        { label: "Début", value: props.startDate.slice(0, 10) },
+        { label: "Fin", value: props.endDate.slice(0, 10) },
     ];
     const statsHeureDebutFin = [
         { label: "", value: "" },
