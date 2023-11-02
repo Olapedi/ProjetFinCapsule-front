@@ -43,7 +43,7 @@ export default function EventForm(props:any) {
     useEffect(() => {
         console.log("eventId =>", eventId)
         if (eventId !== "") {
-            router.push(`/meet/?search=${eventId}`);
+            router.push(`/meet/${eventId}`);
             props.close()
             // console.log("From composant EventsForm - eventId =>", eventId)
             // props.displayCreatedEvent(eventId)

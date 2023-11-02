@@ -20,6 +20,8 @@ export default function EventDisplay(props: any) {
     const [modalDeletedVisible, setModalDeletedVisible] = useState(false);
     const [modalModifyVisible, setModalModifyVisible] = useState<any>(false);
     const [redirectToAll, setRedirectToAll] = useState(false);
+    const [dummyState, setDummyState] = useState(false)
+    const [refreshRoute, setRefreshRoute] = useState(false)
     const router = useRouter();
 
     const userState = useAppSelector((state) => state.authReducer.value);
@@ -39,12 +41,16 @@ export default function EventDisplay(props: any) {
         { label: "", value: "" },
     ];
 
-    // useEffect(() => {
-    //     if (redirectToAll) {
-    //         console.log("From eventdisplay - useEffect if redicrectToAll est true - engendre re-routage vers /meet?search=all", redirectToAll)
-    //         router.push("/meet?search=all");
-    //     }
-    // }, [redirectToAll]);
+    useEffect(() => {
+        if (refreshRoute) {
+            console.log("From eventscontainer - refreshRoute =>", refreshRoute)
+            setDummyState(!dummyState)
+            console.log("From eventdisplay - useEffect if redicrectToAll est true - engendre re-routage vers /meet?search=all", redirectToAll)
+            // router.push(`/meet/${props.evtUid}`);
+            // router.push(`/meet/all`);
+            props.refresh(`${props.evtUid}`)
+        }
+    }, [refreshRoute]);
 
     const handleCancelModal = () => {
         setModalVisible(false);
@@ -75,18 +81,22 @@ export default function EventDisplay(props: any) {
 
         // let message = datareceived[0]
         // let message = {result: true}
-        console.log("datareceived", datareceived)
+        console.log("datareceived", datareceived);
         if (datareceived[1].acknowledged) {
             setModalDeletedVisible(true);
             setTimeout(() => {
                 setModalDeletedVisible(false);
                 // router.push('/meet')
                 setRedirectToAll(true);
-                
-                 router.push("/meet?search=all");
+
+                router.push("/meet/all");
                 // router.push('/')
             }, 1500);
         }
+    };
+
+    const handleRefreshRoute = () => {
+       setRefreshRoute(true);
     };
 
     let img = props.bannerPicture
@@ -168,6 +178,7 @@ export default function EventDisplay(props: any) {
                     evtUid={props.evtUid}
                     bannerPicture={props.bannerPicture}
                     close={handleCancelModifyModal}
+                    refreshRoute={handleRefreshRoute}
                 />
             </Modal>
 

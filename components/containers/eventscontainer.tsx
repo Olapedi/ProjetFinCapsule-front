@@ -52,11 +52,13 @@ export default function EventContainer({urlParam}) {
     const userState = useAppSelector((state) => state.authReducer.value)
 
     const searchParams = useSearchParams()
-    const evtUid = urlParam
-    //const [evtUid, setEvtUid] = useState(searchParams.get('search'))
+    // const evtUid = urlParam
+    const [evtUid, setEvtUid] = useState(urlParam)
+    // const [evtUid, setEvtUid] = useState(searchParams.get('search'))
     let [profile, setProfile] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
     const [showAll, setShowall] = useState(urlParam=='all');
+    const [forceRefresh, setForceRefresh] = useState(true)
 
 
     /* function handleEvtUid(uid:any ){
@@ -76,6 +78,7 @@ export default function EventContainer({urlParam}) {
         setShowall(true);
 
     }   */   
+    console.log("From eventscontainer - useEffect")
 
     async function fetchData(eventId:any) {
       console.log("eventUid from fetch", eventId)
@@ -105,11 +108,18 @@ export default function EventContainer({urlParam}) {
 
     }
     
-     fetchData(evtUid)
-     setLoading(false);
-    }, [evtUid]);
+    fetchData(evtUid)
+    setLoading(false);
+    }, [evtUid, forceRefresh]);
 
     // Afficher des valeurs par défaut tant que les données ne sont pas disponibles
+
+    function handleRefresh(evtUid:any) {
+      console.log("From eventscontainer - handleRefresh() - evtUid =>", evtUid)
+      setEvtUid(evtUid)
+      setForceRefresh(!forceRefresh)
+    }
+
 
     if (loading) {
 
@@ -167,6 +177,7 @@ return ( <EventDisplay
                 bannerPicture = {profile[0].bannerPicture}
                 owner = {profile[0].owner}
                 usrUid = {profile[0].owner.usrUid}
+                refresh = {handleRefresh}
 
                 />
 )

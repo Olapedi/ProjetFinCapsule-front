@@ -11,11 +11,10 @@ import { useAppSelector } from "@/redux/store";
 
 
 export default function EventFormModify(props: any) {
-
     const userState = useAppSelector((state) => state.authReducer.value);
 
     // Fonction de fromatage des dates
-    function formatDate(rawDate:any) {
+    function formatDate(rawDate: any) {
         let date = new Date(rawDate);
         let year = date.getFullYear();
         let month = ("0" + (date.getMonth() + 1)).slice(-2);
@@ -50,20 +49,20 @@ export default function EventFormModify(props: any) {
     const messageDateEnd = "Date de fin incompatible avec celle de début";
     const messageDateEndVisible = useRef(false);
 
-    useEffect(() => {
-        console.log("eventId =>", eventId);
-        if (eventId !== "") {
-            router.push(`/meet/?search=${eventId}`);
-            // props.close()
-            // console.log("From composant EventsForm - eventId =>", eventId)
-            // props.displayCreatedEvent(eventId)
-        } else if (error === "Token non valide") {
-            // console.log(error)
-            router.push(`/members`);
-        } else {
-            console.log("error dans le useEffect =>", error);
-        }
-    }, [router, eventId, error]);
+    // useEffect(() => {
+    //     console.log("eventId =>", eventId);
+    //     if (eventId !== "") {
+    //         router.push(`/meet/?search=${eventId}`);
+    //         // props.close()
+    //         // console.log("From composant EventsForm - eventId =>", eventId)
+    //         // props.displayCreatedEvent(eventId)
+    //     } else if (error === "Token non valide") {
+    //         // console.log(error)
+    //         router.push(`/members`);
+    //     } else {
+    //         console.log("error dans le useEffect =>", error);
+    //     }
+    // }, [router, eventId, error]);
 
     // Country selector
     let countriesoptions: any = [];
@@ -166,7 +165,7 @@ export default function EventFormModify(props: any) {
                 city: city.value,
             };
 
-            console.log("From eventformmodify - event => ", event)
+            console.log("From eventformmodify - event => ", event);
             // console.log("formData : ", formData);
             const result = await fetch(
                 `${process.env.backendserver}/events/update`,
@@ -186,8 +185,12 @@ export default function EventFormModify(props: any) {
                 const eventCreate = datareceived[1];
 
                 setEventId(eventCreate.evtUid);
-                setTimeout(() => {props.close(); router.push(`/meet?search=${props.evtUid}`)}, 2000) 
-                
+                setTimeout(() => {
+                    props.close();
+                    router.push(`/meet/all`);
+                    // router.push(`/meet/${props.evtUid}`);
+                    props.refreshRoute()
+                }, 2000);
             } else {
                 setError(datareceived[0].message);
             }
