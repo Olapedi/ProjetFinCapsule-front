@@ -30,12 +30,12 @@ export default function EventDisplay(props: any) {
         { label: "Ville", value: props.city },
     ];
     const statsDateDebutFin = [
-        { label: "Début", value: "26 Oct 2023" },
-        { label: "Fin", value: "01 Nov 2023" },
+        { label: "Début", value: props.startDate },
+        { label: "Fin", value: props.endDate },
     ];
     const statsHeureDebutFin = [
-        { label: "", value: "10:30" },
-        { label: "", value: "19:00" },
+        { label: "", value: "" },
+        { label: "", value: "" },
     ];
 
     const handleCancelModal = () => {
