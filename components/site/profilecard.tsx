@@ -98,7 +98,7 @@ export default function ProfileCard(props: propsStyle) {
             </Modal>
 
             <Image
-                className="w-full rounded-2xl object-fill object-none h-64"
+                className="w-full rounded-2xl object-cover h-64"
                 // className="aspect-[3/2] w-full rounded-2xl object-cover"
                 src={props.mainPicture}
                 width={1000}

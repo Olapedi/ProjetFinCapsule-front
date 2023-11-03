@@ -3,7 +3,7 @@
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { activate, chooseProfil } from '../../redux/features/auth-slice'
+import { activate, chooseProfil, logIn } from '../../redux/features/auth-slice'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useAppSelector } from '@/redux/store'
@@ -95,7 +95,18 @@ export default function Validation() {
             }
             
             else{
+              const login = {
+                token: user.token,
+                usrUid: user.usrUid,
+                isActivated : true,
+                isCertified: false,
+                proUid: results[1].proUid,
+                displayName: results[1].cards[0].displayName,
+                proPicture: results[1].mainPicture,
+                email: results[1].cards[0].email,
+              }
                 dispatch(activate())
+                dispatch(logIn(login))
                 router.push(`/feed?search=${user.proUid}`)
                 // dispatch(chooseProfil())
                 console.log('has been dispatched')
@@ -279,7 +290,7 @@ export default function Validation() {
       <p className="text-red-600 text-sm mt-6"> {error} </p>
       <div className="mt-4 flex items-center justify-end gap-x-6">
         <button
-          className="rounded-md bg-indigo-600 px-5 tracking-wider py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          className="rounded-md mb-8 bg-indigo-600 px-5 tracking-wider py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           onClick={()=>handleSubmit()}
         >
           Confirmer
