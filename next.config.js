@@ -16,6 +16,7 @@ const nextConfig = {
             "entreprendre2024cegrandest.fr",
             "www.entrepreneur-liberte.com",
             "www.e-couveuz.fr",
+            "upload.wikimedia.org",
         ],
     },
 
