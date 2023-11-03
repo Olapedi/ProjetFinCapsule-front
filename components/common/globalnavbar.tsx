@@ -118,7 +118,7 @@ export default function GlobalNavbar() {
                 open={chatModalVisible}
                 footer={null}
                 centered={true}
-                width={1100}
+                width={600}
                 keyboard={true}
                 // style={{backgroundColor: "Yellow "}}
             >
