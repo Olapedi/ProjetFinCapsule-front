@@ -17,6 +17,7 @@ const nextConfig = {
             "www.entrepreneur-liberte.com",
             "www.e-couveuz.fr",
             "upload.wikimedia.org",
+            "pole-autoentrepreneur.com",
         ],
     },
 
