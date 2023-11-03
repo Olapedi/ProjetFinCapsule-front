@@ -40,9 +40,9 @@ function Boost(props: propsStyle) {
     ];
 
     const subCategoryOptions = [
-      { label: "sous-catégorie 1", value: "sous-catégorie 1" },
-      { label: "sous-catégorie 2", value: "sous-catégorie 2" },
-      { label: "sous-catégorie 3", value: "sous-catégorie 3" },
+      { label: "neoney Cat 1", value: "neoney Cat 1" },
+      { label: "neoney Cat 2", value: "neoney Cat 2" },
+      { label: "neoney Cat 3", value: "neoney Cat 3" },
   ]
 
     const handleCategoryChange = (selection: any) => {
@@ -68,10 +68,10 @@ function Boost(props: propsStyle) {
         // const userState = useAppSelector(state => state.authReducer.value)
 
         // const usrUidMock = "usr2023102552112";
-        const usrUidMock = userState.usrUid;
+        const usrUid = userState.usrUid;
         console.log("From boost.tsx - usrUid => ", usrUidMock)
         // const proUidMock = "pro2023102527605";
-        const proUidMock = userState.proUid;
+        const proUid = userState.proUid;
 
         // Remplacer les usrUidMock et proUidMock quand l'identificaiton sera active sur le site
         fetch(`${process.env.backendserver}/boosts/new`, {
@@ -82,9 +82,9 @@ function Boost(props: propsStyle) {
                 category,
                 subCategory,
                 // owner: props.profileOwner,
-                owner: usrUidMock,
+                owner: usrUid,
                 // sender: props.sender,
-                sender: proUidMock,
+                sender: proUid,
                 receiver: props.receiver,
                 testimonial,
             }),
