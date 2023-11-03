@@ -69,7 +69,7 @@ function Boost(props: propsStyle) {
 
         // const usrUidMock = "usr2023102552112";
         const usrUid = userState.usrUid;
-        console.log("From boost.tsx - usrUid => ", usrUidMock)
+        // console.log("From boost.tsx - usrUid => ", usrUidMock)
         // const proUidMock = "pro2023102527605";
         const proUid = userState.proUid;
 
