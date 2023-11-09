@@ -28,7 +28,7 @@ const [socialYoutube, setSocialYoutube] = useState<string>(props.data.profilData
 const [socialInstagram, setSocialInstagram] = useState<string>(props.data.profilData.socialInstagram)
 const [socialTweeter, setSocialTweeter] = useState<string>(props.data.profilData.socialTweeter)
 const [website, setWebsite] = useState<string>(props.data.profilData.cards[0].website)
-const [about, setAbout] = useState<string>(props.data.profilData.updates[0])
+// const [about, setAbout] = useState<string>(props.data.profilData.updates[0])
 
 const [error, setError] = useState('')
 
@@ -110,7 +110,7 @@ const handleUpdate = async () => {
     socialInstagram: socialInstagram,
     socialTweeter: socialTweeter,
     website: website,
-    updates: about,
+    // updates: about,
     tags: tags
   };
   console.log('data before fetch', data)
@@ -408,7 +408,7 @@ console.log('props profilForm',props)
               <p className="mt-3 text-sm leading-6 text-gray-600"></p>
             </div>
 
-            <div className="col-span-full">
+            {/* <div className="col-span-full">
               <label  className="block text-sm font-medium leading-6 text-gray-900">
                 À propos
               </label>
@@ -422,7 +422,8 @@ console.log('props profilForm',props)
                 />
               </div>
               <p className="mt-3 text-sm leading-6 text-gray-600">Présentez en détail vos objectifs, services que vous souhaitez proposer sur la plateforme.</p>
-            </div>
+            </div> */}
+            
           </div>
         </div>
 

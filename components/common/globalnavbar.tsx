@@ -276,7 +276,7 @@ export default function GlobalNavbar() {
                                                             Ouvrir le menu
                                                         </span>
                                                         <Image
-                                                            className="h-8 w-8 rounded-full object-fill "
+                                                            className="h-8 w-8 rounded-full object-cover "
                                                             src={
                                                                 auth.proPicture
                                                                     ? auth.proPicture

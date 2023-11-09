@@ -52,7 +52,7 @@ export default function EventCard() {
               </div>
               <p className="mt-1 truncate text-sm text-gray-500">{person.title}</p>
             </div>
-            <img className="h-10 w-10 flex-shrink-0 rounded-full bg-gray-300" src={person.imageUrl} alt="" />
+            <img className="h-10 w-10 flex-shrink-0 rounded-full object-cover bg-gray-300" src={person.imageUrl} alt="" />
           </div>
           <div>
             <div className="-mt-px flex divide-x divide-gray-200">

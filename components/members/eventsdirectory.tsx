@@ -16,7 +16,7 @@ export default function Eventsdirectory() {
             const resp = await fetch(`${process.env.backendserver}/profiles`);
             let data = await resp.json();
             data = data.splice(1);
-            setProfiles(data);
+            setProfiles(data.reverse());
         }
         fetchData();
     }, []);

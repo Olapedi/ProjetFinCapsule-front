@@ -188,7 +188,7 @@ export default function EventDisplay(props: any) {
                         <div className="lg:pr-4">
                             <div className="relative overflow-hidden rounded-3xl bg-gray-900 px-6 pb-9 pt-96 shadow-2xl sm:px-12 lg:max-w-lg lg:px-8 lg:pb-8 xl:px-10 xl:pb-10">
                                 <Image
-                                    className="absolute inset-0 h-full w-full object-fill bg-white hover:scale-105 transition duration-500"
+                                    className="absolute inset-0 h-full w-full object-cover bg-white hover:scale-105 transition duration-500"
                                     src={props.bannerPicture}
                                     width={500}
                                     height={500}
